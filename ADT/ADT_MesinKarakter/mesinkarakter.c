@@ -38,3 +38,7 @@ void advFile() {
         finish = true;
     }
 }
+void advTerminal(){
+       retval = fscanf(pita,"%c", &currentChar);
+       EOP = (currentChar == ENTER);
+}

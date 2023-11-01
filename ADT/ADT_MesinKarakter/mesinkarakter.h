@@ -60,4 +60,9 @@ void advFile();
           menyala ketika sudah terjadi error atau tidak bisa melakukan pembacaan kembali
           finish bernilai TRUE yang bemakna file sudah selesai dibaca */ 
 
+void advTerminal();
+/* I.S. : Karakter pada jendela = currentChar, currentChar != ENTER
+   F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
+          currentChar mungkin = ENTER
+          Jika  currentChar = ENTER maka EOP akan menyala (true) */
 #endif

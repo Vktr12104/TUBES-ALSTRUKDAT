@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "mesinkata.h"
 
+boolean EndWord;
+Word currentWord; // Deklarasi currentWord
+Word currentCommand;
+
 void IgnoreBlanks(){ 
     while (currentChar==BLANK || currentChar==ENTER){
         ADV();
@@ -119,6 +123,59 @@ void advNewline(){
 /* I.S. : currentChar sembarang
    F.S. : currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
+
+void STARTCOMMAND () {
+    START();
+    IgnoreBlanks();
+    if (currentChar == ENTER) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        ADVCOMMAND();
+    }
+}
+/* I.S. : currentChar sembarang
+   F.S. : EndWord = true, dan currentChar = MARK;
+          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
+          currentChar karakter pertama sesudah karakter terakhir kata */
+void ADVCOMMAND () {
+    IgnoreDots();
+    if (currentChar == ENTER && !EndWord) {
+        EndWord = true;
+    } else {
+        CopyCommand();
+        IgnoreDots();
+    }
+}
+/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+   F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
+          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
+          Jika currentChar = MARK, EndWord = true.
+   Proses : Akuisisi kata menggunakan procedure SalinWord */
+
+void CopyCommand () {
+    int i;
+    i = 0;
+    while ((currentChar != BLANK) && (currentChar != ENTER)) {
+        if (i < NMax) {
+            currentCommand.TabWord[i] = currentChar;
+            i++;
+        }
+        advTerminal();
+    }
+    currentCommand.Length = i;
+}
+void IgnoreDots() {
+    while (currentChar == BLANK || currentChar == '.') {
+         advTerminal();
+    }
+}
+/* Mengakuisisi kata, menyimpan dalam currentWord
+   I.S. : currentChar adalah karakter pertama dari kata
+   F.S. : currentWord berisi kata yang sudah diakuisisi;
+          currentChar = BLANK atau currentChar = MARK;
+          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 boolean isWordEqual(Word a, Word b) { 
     boolean cek=true;
     if (a.Length!=b.Length){
@@ -132,7 +189,19 @@ boolean isWordEqual(Word a, Word b) {
     }
 }
 /* Mengembalikan true jika kata a dan b sama */
-
+char* wordToString(Word word)
+{
+    char *str = (char *)malloc(sizeof(char) * word.Length);
+    for (int i = 0; i < word.Length; i++)
+    {
+        str[i] = word.TabWord[i];
+        if (i == word.Length - 1)
+        {
+            str[i + 1] = '\0';
+        }
+    }
+    return str;
+}
 void displayWord(Word w)
 {
     int i;
