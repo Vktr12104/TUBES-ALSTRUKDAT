@@ -73,11 +73,9 @@ void startWFile(char *file){
 void copywFile(){
     int i=0; 
     while(currentChar!=ENTER && !finish){
-        if(i<NMax){
-            currentWord.TabWord[i]=currentChar;
-            i++;
-            advFile();
-        }
+        currentWord.TabWord[i]=currentChar;
+        i++;
+        advFile();
     }if (i>NMax){
         currentWord.Length = NMax;
     }else{
@@ -114,10 +112,9 @@ void advNewlineFile(){
 void advNewline(){
     Word EMPTY = {"", 0};
     currentWord = EMPTY;
-    if(currentChar == MARK){
-        EndWord = false;
-        ADV();
-        CopyWord();
+    if(currentChar == ENTER){
+        advFile();
+        copywFile();
     }
 }
 /* I.S. : currentChar sembarang
