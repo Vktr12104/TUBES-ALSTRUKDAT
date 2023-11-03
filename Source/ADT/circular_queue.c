@@ -4,12 +4,12 @@
 
 
 /* ********* Prototype ********* */
-boolean CIsEmpty (Queue Q){
+boolean CIsEmpty (CQueue Q){
     return ((CIDX_HEAD(Q)==IDX_UNDEF) && (CIDX_TAIL(Q)==IDX_UNDEF));
 }
 /* Mengirim true jika Q kosong */
 /* yaitu ketika idxHead=IDX_UNDEF dan idxTail=IDX_UNDEF */
-boolean CIsFull (Queue Q){
+boolean CIsFull (CQueue Q){
     if (CIDX_HEAD(Q) == 0) {
         return (CIDX_TAIL(Q)==IDX_MAX);
     }
@@ -19,7 +19,7 @@ boolean CIsFull (Queue Q){
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu ketika idxHead=0 dan idxTail=IDX_MAX atau idxHead=idxTail+1 ketika idxHead > idxTail */
-int CLength (Queue Q){
+int CLength (CQueue Q){
     if (CIsEmpty(Q)){
         return 0;
     }
@@ -30,7 +30,7 @@ int CLength (Queue Q){
 /* Mengirimkan banyaknya elemen Q, 0 jika kosong */
 
 /* *** Kreator *** */
-void CCreateQueue (Queue * Q){
+void CCreateQueue (CQueue * Q){
     CIDX_HEAD(*Q)=IDX_UNDEF;
     CIDX_TAIL(*Q)=IDX_UNDEF;
 }
@@ -40,7 +40,7 @@ void CCreateQueue (Queue * Q){
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue (Queue * Q, ElType X){
+void Cenqueue (CQueue * Q, ElType X){
     if (CIsEmpty(*Q)) {
         CIDX_HEAD(*Q)=0;
         CIDX_TAIL(*Q)=0;
@@ -55,7 +55,7 @@ void Cenqueue (Queue * Q, ElType X){
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-ElType Cdequeue (Queue * Q){
+ElType Cdequeue (CQueue * Q){
     ElType val = CHEAD(*Q);
     if (cIDX_HEAD(*Q)==CIDX_TAIL(*Q)) {
         CIDX_HEAD(*Q)=IDX_UNDEF;
@@ -73,7 +73,7 @@ ElType Cdequeue (Queue * Q){
         Q mungkin kosong */
 
 /* *** Display Queue *** */
-void CdisplayQueue(Queue q){
+void CdisplayQueue(CQueue q){
     int i = CIDX_HEAD(q);
 
     if (CIsEmpty(q)){
