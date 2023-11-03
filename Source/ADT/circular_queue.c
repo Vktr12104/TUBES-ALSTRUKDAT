@@ -5,16 +5,16 @@
 
 /* ********* Prototype ********* */
 boolean CIsEmpty (Queue Q){
-    return ((IDX_HEAD(Q)==IDX_UNDEF) && (IDX_TAIL(Q)==IDX_UNDEF));
+    return ((CIDX_HEAD(Q)==IDX_UNDEF) && (CIDX_TAIL(Q)==IDX_UNDEF));
 }
 /* Mengirim true jika Q kosong */
 /* yaitu ketika idxHead=IDX_UNDEF dan idxTail=IDX_UNDEF */
 boolean CIsFull (Queue Q){
-    if (IDX_HEAD(Q) == 0) {
-        return (IDX_TAIL(Q)==IDX_MAX);
+    if (CIDX_HEAD(Q) == 0) {
+        return (CIDX_TAIL(Q)==IDX_MAX);
     }
     else {
-        return (IDX_HEAD(Q)==IDX_TAIL(Q)+1);
+        return (CIDX_HEAD(Q)==CIDX_TAIL(Q)+1);
     }
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
@@ -24,15 +24,15 @@ int CLength (Queue Q){
         return 0;
     }
     else {
-        return ( (IDX_HEAD(Q) <= IDX_TAIL(Q)) ? IDX_TAIL(Q)-IDX_HEAD(Q)+1 : (IDX_MAX+1)-IDX_HEAD(Q)+IDX_TAIL(Q)+1 );
+        return ( (CIDX_HEAD(Q) <= CIDX_TAIL(Q)) ? CIDX_TAIL(Q)-CIDX_HEAD(Q)+1 : (IDX_MAX+1)-CIDX_HEAD(Q)+CIDX_TAIL(Q)+1 );
     }
 }
 /* Mengirimkan banyaknya elemen Q, 0 jika kosong */
 
 /* *** Kreator *** */
 void CCreateQueue (Queue * Q){
-    IDX_HEAD(*Q)=IDX_UNDEF;
-    IDX_TAIL(*Q)=IDX_UNDEF;
+    CIDX_HEAD(*Q)=IDX_UNDEF;
+    CIDX_TAIL(*Q)=IDX_UNDEF;
 }
 /* I.S. sembarang */
 /* F.S. mengembalikan Q kosong dengan kondisi sbb: */
@@ -42,13 +42,13 @@ void CCreateQueue (Queue * Q){
 /* *** Primitif Add/Delete *** */
 void Cenqueue (Queue * Q, ElType X){
     if (CIsEmpty(*Q)) {
-        IDX_HEAD(*Q)=0;
-        IDX_TAIL(*Q)=0;
+        CIDX_HEAD(*Q)=0;
+        CIDX_TAIL(*Q)=0;
     }
     else {
-        IDX_TAIL(*Q)=(IDX_TAIL(*Q)+1)%(IDX_MAX+1);
+        CIDX_TAIL(*Q)=(CIDX_TAIL(*Q)+1)%(IDX_MAX+1);
     }   
-    TAIL(*Q)=X;
+    CTAIL(*Q)=X;
 }
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
@@ -56,13 +56,13 @@ void Cenqueue (Queue * Q, ElType X){
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
 ElType Cdequeue (Queue * Q){
-    ElType val = HEAD(*Q);
-    if (IDX_HEAD(*Q)==IDX_TAIL(*Q)) {
-        IDX_HEAD(*Q)=IDX_UNDEF;
-        IDX_TAIL(*Q)=IDX_UNDEF;
+    ElType val = CHEAD(*Q);
+    if (cIDX_HEAD(*Q)==CIDX_TAIL(*Q)) {
+        CIDX_HEAD(*Q)=IDX_UNDEF;
+        CIDX_TAIL(*Q)=IDX_UNDEF;
     }
     else {
-        IDX_HEAD(*Q)=(IDX_HEAD(*Q)+1)%(IDX_MAX+1);
+        CIDX_HEAD(*Q)=(CIDX_HEAD(*Q)+1)%(IDX_MAX+1);
     }
     return val;
 }
@@ -74,13 +74,13 @@ ElType Cdequeue (Queue * Q){
 
 /* *** Display Queue *** */
 void CdisplayQueue(Queue q){
-    int i = IDX_HEAD(q);
+    int i = CIDX_HEAD(q);
 
     if (CIsEmpty(q)){
         printf("[]\n");
     } else {
         printf("[");
-        for (i = IDX_HEAD(q); i < (IDX_HEAD(q)+Length(q))-1; i++){
+        for (i = CIDX_HEAD(q); i < (CIDX_HEAD(q)+CLength(q))-1; i++){
             printf("%d,", q.Tab[i%(IDX_MAX+1)]);
         }
         printf("%d]\n", q.Tab[(i)%(IDX_MAX+1)]);
