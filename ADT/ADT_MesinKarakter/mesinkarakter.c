@@ -16,6 +16,7 @@ void START(){
 
 void ADV() {
     retval = fscanf(pita,"%c", &currentChar);
+    EOP=currentChar==ENTER;
 }
 
 char GetCC() {
@@ -27,14 +28,20 @@ boolean IsEOP() {
 }
 
 void StartFile(char *str){
-       finish = false;
-       pita = fopen(str, "r");
-       advFile();
+    finish = false;
+    pita = fopen(str, "r");
+    advFile();
 }
 
 void advFile() {
     retval = fscanf(pita,"%c", &currentChar);
-    if(retval == EOP) {
+    if(retval == EOF) {
+        fclose(pita);
         finish = true;
+
     }
+}
+void advTerminal(){
+    retval = fscanf(pita,"%c", &currentChar);
+    EOP = (currentChar == ENTER);
 }
