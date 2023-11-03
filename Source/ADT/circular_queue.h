@@ -21,10 +21,10 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah CQueue, maka akses elemen : */
-#define CQIDX_HEAD(q) (q).idxHead
-#define CQIDX_TAIL(q) (q).idxTail
-#define     CQHEAD(q) (q).Tab[(q).idxHead]
-#define     CQTAIL(q) (q).Tab[(q).idxTail]
+#define CIDX_HEAD(q) (q).idxHead
+#define CIDX_TAIL(q) (q).idxTail
+#define     CHEAD(q) (q).Tab[(q).idxHead]
+#define     CTAIL(q) (q).Tab[(q).idxTail]
 
 /* ********* Prototype ********* */
 boolean CIsEmpty (CQueue Q);
