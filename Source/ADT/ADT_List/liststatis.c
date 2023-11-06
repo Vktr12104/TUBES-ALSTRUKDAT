@@ -1,5 +1,5 @@
 #include "liststatis.h"
-#include "../../boolean.h"
+#include "../ADT_Set/boolean.h"
 
 List MakeList(){
     List L;
@@ -43,7 +43,7 @@ boolean IsIdxEff (List L, IdxType i){
 boolean Search(List L, ElType X){
     boolean isFound = false;
     for (int i=0; i < L.NEff; i++){
-        if (isWordEqual (X,L.A[i])) isFound = true; break;
+        if (isWordEqual (X,L.A[i])) {isFound = true; break;}
     }
     return isFound;
 }
@@ -100,6 +100,10 @@ List Concat(List L1, List L2){
 
 void DisplayList(List L){
     for (int i=0; i < L.NEff; i++){
-        printf("   %d. %s\n", (i+1), L.A[i].TabWord);
+        printf("   %d. ", (i+1));
+        for (int j = 0; j < L.A[i].Length; j++){
+            printf("%c", L.A[i].TabWord[j]);
+        }
+        printf("\n");
     }
 }

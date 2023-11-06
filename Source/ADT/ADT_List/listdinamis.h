@@ -8,6 +8,7 @@
 #include "../ADT_Set/boolean.h"
 #include "../ADT_Mesin-Kata/mesinkata.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Kamus Umum */
 #define MaxEl 100
@@ -18,11 +19,12 @@
 #define ElType Word
 
 typedef struct {
-	ElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	ElType *A;  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
+	int Max;
 } List;
 
-#define List(i) L.A(i)
+#define List(i) L.A[i]
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */
 /* Jika L adalah List, cara deklarasi dan akses: */
@@ -75,7 +77,7 @@ boolean IsIdxValid (List L, IdxType i);
 
 boolean IsIdxEff (List L, IdxType i);
 /* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
+/* Mengirimkan true jika i adalah indeks yang valid utk list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
 /* ********** Operasi-operasi ********** */
@@ -101,18 +103,4 @@ void DeleteFirst(List *L);
 /* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
 
 void DeleteAt(List *L, IdxType i);
-/* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
-/* F.S. Elemen L pada indeks ke-i dihapus dari L. */
-
-void DeleteLast(List *L);
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
-
-List Concat(List L1, List L2);
-/* Prekondisi : L1 dan L2 tidak kosong */
-/* Mengirimkan sebuah List yang merupakan gabungan dari L1 dan L2 */
-/* Urutan elemen terisi dari L1, lalu L2 */
-/* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
-
-void DisplayList(List L);
 #endif
