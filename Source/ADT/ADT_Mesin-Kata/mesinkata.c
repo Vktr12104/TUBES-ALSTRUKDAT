@@ -220,3 +220,25 @@ int wordToInt(Word word) {
     }
     return num;
 }
+int stringLength(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+    {
+        i++;
+    }
+    return i;
+}
+
+boolean StrComp(char *str,char *str2){ 
+    boolean cek=true;
+    if (stringLength(str)!= stringLength(str2)){
+        return false;
+    }else{
+        for (int i=0;i<stringLength(str);i++){
+            if(str[i]!=str2[i]){
+                cek=false;
+            }
+        }
+    }return cek;
+}

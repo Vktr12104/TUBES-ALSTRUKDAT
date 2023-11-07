@@ -115,4 +115,10 @@ void displayWord(Word w);
 
 int wordToInt(Word w);
 /* Mengubah kata menjadi integer */
+int stringLength(char *str);
+/* Mengembalikan panjang string */
+
+boolean StrComp(char *str,char *str2);
+/*Mengembalikan true jika char str dan str1 sama*/
+
 #endif
