@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "queue.h"
-#include "boolean.h"
+#include "../boolean.h"
 
 /* *** Kreator *** */
-void CreateQueue(Queue *q){
+void CreateQueue(QueueLagu *q){
     IDX_HEAD(*q)=IDX_UNDEF;
     IDX_TAIL(*q)=IDX_UNDEF;
 }
@@ -14,11 +14,11 @@ void CreateQueue(Queue *q){
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q){
+boolean isEmpty(QueueLagu q){
     return ((IDX_HEAD(q)==IDX_UNDEF) && (IDX_TAIL(q)==IDX_UNDEF));
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q){
+boolean isFull(QueueLagu q){
     if (IDX_HEAD(q)==0){
         return (IDX_TAIL(q)==99);
     }
@@ -29,7 +29,7 @@ boolean isFull(Queue q){
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(Queue q){
+int length(QueueLagu q){
     if (isEmpty(q)){
         return 0;
     }
@@ -40,7 +40,7 @@ int length(Queue q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val){
+void enqueue(QueueLagu *q, Lagu val){
     if (isEmpty(*q)){
         IDX_HEAD(*q)=0;
         IDX_TAIL(*q)=0;
@@ -48,13 +48,13 @@ void enqueue(Queue *q, ElType val){
     else {
         IDX_TAIL(*q)=(IDX_TAIL(*q)+1) % CAPACITY;
     }
-    (*q).buffer[IDX_TAIL(*q)] = val;
+    (*q).lagu_queue[IDX_TAIL(*q)] = val;
 }
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, ElType *val){
+void dequeue(QueueLagu *q, Lagu *val){
     *val=HEAD(*q);
     if (IDX_HEAD(*q)==IDX_TAIL(*q)){
         IDX_HEAD(*q)=IDX_UNDEF;
@@ -70,18 +70,22 @@ void dequeue(Queue *q, ElType *val){
         q mungkin kosong */
 
 /* *** Display Queue *** */
-void displayQueue(Queue q){
-    if(isEmpty(q)){
-        printf ("[]\n");
-    }
-    else {
-        printf ("[");
-        for (int i=IDX_HEAD(q); i < (IDX_HEAD(q)+length(q)); i++) {
-            printf ("%d,", q.buffer[i%CAPACITY]);
+void displayQueue(QueueLagu q) {
+    if (isEmpty(q)) {
+        printf("[]\n");
+    } else {
+        printf("[");
+        for (int i = IDX_HEAD(q); i < (IDX_HEAD(q) + length(q)); i++) {
+            printf("%s", q.lagu_queue[i % CAPACITY].nama_lagu);
+            if (i < (IDX_HEAD(q) + length(q) - 1)) {
+                printf(",");
+            }
         }
-        printf ("]\n");
+        printf("]\n");
     }
 }
+
+
 /* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
@@ -89,3 +93,39 @@ void displayQueue(Queue q){
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
+int main() {
+    QueueLagu q;
+    Lagu val;
+
+    CreateQueue(&q);
+
+    printf("Queue is empty: %s\n", isEmpty(q) ? "true" : "false");
+    printf("Queue is full: %s\n", isFull(q) ? "true" : "false");
+    printf("Queue length: %d\n", length(q));
+
+    printf("Enqueue 3 elements:\n");
+    Lagu lagu1 = {"Lagu 1", 101};
+    Lagu lagu2 = {"Lagu 2", 102};
+    Lagu lagu3 = {"Lagu 3", 103};
+    enqueue(&q, lagu1);
+    enqueue(&q, lagu2);
+    enqueue(&q, lagu3);
+
+    printf("Queue is empty: %s\n", isEmpty(q) ? "true" : "false");
+    printf("Queue is full: %s\n", isFull(q) ? "true" : "false");
+    printf("Queue length: %d\n", length(q));
+
+    displayQueue(q);
+
+    printf("Dequeue an element\n");
+    dequeue(&q, &val);
+
+    printf("Dequeued value: %s, %d\n", val.nama_lagu, val.album_id);
+    printf("Queue is empty: %s\n", isEmpty(q) ? "true" : "false");
+    printf("Queue is full: %s\n", isFull(q) ? "true" : "false");
+    printf("Queue length: %d\n", length(q));
+
+    displayQueue(q);
+
+    return 0;
+}

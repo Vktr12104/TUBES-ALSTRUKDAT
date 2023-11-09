@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "mesinkarakter.h": "c",
-        "boolean.h": "c"
+        "boolean.h": "c",
+        "stack.h": "c"
     }
 }

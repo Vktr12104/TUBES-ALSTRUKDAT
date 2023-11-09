@@ -186,6 +186,18 @@ boolean isWordEqual(Word a, Word b) {
         }return cek;
     }
 }
+
+/*Fungsi yang mengembalikan true jika w1 = w2 dengan case insensitive*/
+boolean isCharEqual(Word w1, Word w2){ // case insensitive
+    if (w1.Length != w2.Length) return false;
+    for (int i = 0; i < w1.Length; i++){
+        if (w1.TabWord[i] >= 65 && w1.TabWord[i] <= 90) w1.TabWord[i] += 32;
+        if (w2.TabWord[i] >= 65 && w2.TabWord[i] <= 90) w2.TabWord[i] += 32;
+        if (w1.TabWord[i] != w2.TabWord[i]) return false;
+    }
+    return true;
+}
+
 /* Mengembalikan true jika kata a dan b sama */
 char* wordToString(Word word)
 {
@@ -220,4 +232,35 @@ int wordToInt(Word word) {
         num = num * 10 + (word.TabWord[i] - '0');
     }
     return num;
+}
+int stringLength(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+    {
+        i++;
+    }
+    return i;
+}
+
+boolean StrComp(char *str,char *str2){ 
+    boolean cek=true;
+    if (stringLength(str)!= stringLength(str2)){
+        return false;
+    }else{
+        for (int i=0;i<stringLength(str);i++){
+            if(str[i]!=str2[i]){
+                cek=false;
+            }
+        }
+    }return cek;
+}
+
+/*Word w sembarang*/
+void assignWord(Word *w, char arr[], int len){
+    CreateWord(w);
+    for (int i = 0; i < len; i++){
+        w->TabWord[i] = arr[i];
+    }
+    w->Length = len;
 }

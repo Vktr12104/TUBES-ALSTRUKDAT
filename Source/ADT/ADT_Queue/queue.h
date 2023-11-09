@@ -8,25 +8,17 @@
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
-
-/* Definisi elemen dan address */
-typedef int ElType;
-typedef struct {
-	ElType buffer[CAPACITY]; 
-	int idxHead;
-	int idxTail;
-} Queue;
-
-
+#include "../ADT_Mesin-Kata/mesinkata.h"
+#include "../struc.h"
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah Queue, maka akses elemen : */
 #define IDX_HEAD(q) (q).idxHead
 #define IDX_TAIL(q) (q).idxTail
-#define     HEAD(q) (q).buffer[(q).idxHead]
-#define     TAIL(q) (q).buffer[(q).idxTail]
+#define     HEAD(q) (q).lagu_queue[(q).idxHead]
+#define     TAIL(q) (q).lagu_queue[(q).idxtail]
 
 /* *** Kreator *** */
-void CreateQueue(Queue *q);
+void CreateQueue(QueueLagu *q);
 /* I.S. sembarang */
 /* F.S. Sebuah q kosong terbentuk dengan kondisi sbb: */
 /* - Index head bernilai IDX_UNDEF */
@@ -34,31 +26,31 @@ void CreateQueue(Queue *q);
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q);
+boolean isEmpty(QueueLagu q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q);
+boolean isFull(QueueLagu q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu ketika IDX_HEAD=0 dan IDX_TAIL=CAPACITY-1 */
 
-int length(Queue q);
+int length(QueueLagu q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val);
+void enqueue(QueueLagu *q, Lagu val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur".
         Jika q penuh semu, maka perlu dilakukan aksi penggeseran "maju" elemen-elemen q
         menjadi rata kiri untuk membuat ruang kosong bagi TAIL baru  */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(QueueLagu *q, Lagu *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
 /* *** Display Queue *** */
-void displayQueue(Queue q);
+void displayQueue(QueueLagu q);
 /* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */

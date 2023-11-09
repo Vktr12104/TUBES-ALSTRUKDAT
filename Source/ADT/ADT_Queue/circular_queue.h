@@ -5,7 +5,8 @@
 #define __circular_Cqueue_h__
 
 #include "../boolean.h"
-
+#include "../ADT_Mesin-Kata/mesinkata.h"
+#include "../struc.h"
 #define IDX_UNDEF -1
 #define IDX_MAX 99
 
@@ -13,44 +14,38 @@
 typedef int ElType;
 typedef int IdxType;
 
-typedef struct {
-        ElType Tab[IDX_MAX+1];  /* tabel penyimpan elemen */
-        IdxType idxHead;  /* indeks elemen paling awal (terdepan) */
-        IdxType idxTail;  /* indeks tempat menambah elemen baru */
-} CQueue;
-
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah CQueue, maka akses elemen : */
 #define CIDX_HEAD(q) (q).idxHead
 #define CIDX_TAIL(q) (q).idxTail
-#define     CHEAD(q) (q).Tab[(q).idxHead]
-#define     CTAIL(q) (q).Tab[(q).idxTail]
+#define     CHEAD(q) (q).lagu_queue[(q).idxHead]
+#define     CTAIL(q) (q).lagu_queue[(q).idxTail]
 
 /* ********* Prototype ********* */
-boolean CIsEmpty (CQueue Q);
+boolean CIsEmpty (QueueLagu Q);
 /* Mengirim true jika Q kosong */
 /* yaitu ketika idxHead=IDX_UNDEF dan idxTail=IDX_UNDEF */
-boolean CIsFull (CQueue Q);
+boolean CIsFull (QueueLagu Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu ketika idxHead=0 dan idxTail=IDX_MAX atau idxHead=idxTail+1 ketika idxHead > idxTail */
-int CLength (CQueue Q);
+int CLength (QueueLagu Q);
 /* Mengirimkan banyaknya elemen Q, 0 jika kosong */
 
 /* *** Kreator *** */
-void CCreateQueue (CQueue * Q);
+void CCreateQueue (QueueLagu * Q);
 /* I.S. sembarang */
 /* F.S. mengembalikan Q kosong dengan kondisi sbb: */
 /* - idxHead=IDX_UNDEF; */
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue (CQueue * Q, ElType X);
+void Cenqueue (QueueLagu * Q, Lagu X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-ElType Cdequeue (CQueue * Q);
+Lagu Cdequeue (QueueLagu * Q);
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. mengembalikan nilai Q pada idxHead;
@@ -58,7 +53,7 @@ ElType Cdequeue (CQueue * Q);
         Q mungkin kosong */
 
 /* *** Display CQueue *** */
-void CdisplayQueue(CQueue q);
+void CdisplayQueue(QueueLagu q);
 /* Proses : Menuliskan isi CQueue dengan traversal; CQueue ditulis di antara kurung 
    siku; antara dua elemen dipisahkan dengan separator "koma" */
 /* I.S. q boleh kosong */
