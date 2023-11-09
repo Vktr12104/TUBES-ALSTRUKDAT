@@ -1,6 +1,7 @@
 #ifndef structure_H
 #define structure_H
 #include "boolean.h"
+#include <stdio.h>
 
 typedef char Title;
 typedef int Key;
