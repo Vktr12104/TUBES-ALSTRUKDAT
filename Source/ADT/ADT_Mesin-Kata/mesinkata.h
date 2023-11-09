@@ -123,6 +123,8 @@ int stringLength(char *str);
 boolean StrComp(char *str,char *str2);
 /*Mengembalikan true jika char str dan str1 sama*/
 
+void CreateWord(Word *w);
+
 void assignWord(Word *w, char arr[], int len);
 
 
