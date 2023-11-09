@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mesinkata.h"
+#include "../boolean.h"
 
 boolean EndWord;
 Word currentWord; // Deklarasi currentWord

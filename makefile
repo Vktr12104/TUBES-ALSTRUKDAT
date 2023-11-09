@@ -1,7 +1,7 @@
 all: run clean
 
-test: main.c ADT/ADT_Mesin-Kata/mesinkata.c ADT/ADT_MesinKarakter/mesinkarakter.c
-	gcc -o main main.c ADT/ADT_Mesin-Kata/mesinkata.c ADT/ADT_MesinKarakter/mesinkarakter.c
+test: main.c Source/ADT/ADT_Mesin-Kata/mesinkata.c Source/ADT/ADT_MesinKarakter/mesinkarakter.c Source/ADT/ADT_Set/set.c Source/ADT/ADT_Map/map.c
+	gcc -o main main.c Source/ADT/ADT_Mesin-Kata/mesinkata.c Source/ADT/ADT_MesinKarakter/mesinkarakter.c Source/ADT/ADT_Set/set.c Source/ADT/ADT_Map/map.c 
 
 run: test
 	./main.exe
