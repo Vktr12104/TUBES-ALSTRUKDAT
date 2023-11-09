@@ -1,4 +1,4 @@
-   /* File: mesinkata.h */
+/* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
 #ifndef __MESINKATA_H__
@@ -107,6 +107,8 @@ Word concatWord(Word w1, Word w2);
 boolean isWordEqual(Word a, Word b);
 /* Mengembalikan true jika kata a dan b sama */
 
+boolean isCharEqual(Word w1, Word w2); // case insensitive
+
 char* wordToString(Word w);
 /* Mengubah kata menjadi string */
 
@@ -120,5 +122,8 @@ int stringLength(char *str);
 
 boolean StrComp(char *str,char *str2);
 /*Mengembalikan true jika char str dan str1 sama*/
+
+void assignWord(Word *w, char arr[], int len);
+
 
 #endif
