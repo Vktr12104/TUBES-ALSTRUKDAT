@@ -255,6 +255,10 @@ boolean StrComp(char *str,char *str2){
     }return cek;
 }
 
+void CreateWord(Word * w){
+    w->Length = 0;
+}
+
 /*Word w sembarang*/
 void assignWord(Word *w, char arr[], int len){
     CreateWord(w);
