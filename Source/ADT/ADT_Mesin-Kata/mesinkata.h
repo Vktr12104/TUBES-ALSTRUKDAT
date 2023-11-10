@@ -7,6 +7,7 @@
 #include "../boolean.h"
 #include "../ADT_MesinKarakter/mesinkarakter.h"
 
+
 #define NMax 300
 #define BLANK ' '
 #define ENTER '\n'
@@ -126,6 +127,7 @@ boolean StrComp(char *str,char *str2);
 void CreateWord(Word *w);
 
 void assignWord(Word *w, char arr[], int len);
+
 
 
 #endif

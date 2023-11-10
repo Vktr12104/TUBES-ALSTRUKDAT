@@ -2,6 +2,23 @@
 #include "../struc.h"
 
 
+boolean WordCompare(Title *currentWord, Title *inputWord) {
+    int i = 0;
+    
+    // Continue looping until a null terminator is encountered in one of the strings
+    while (currentWord[i] != '\0' && inputWord[i] != '\0') {
+        if (currentWord[i] != inputWord[i]) {
+            return false; // Words are different
+        }
+        i++;
+    }
+
+    // If we reach here, it means at least one of the strings has ended
+    // If both strings end at the same position, they have the same length
+    // Otherwise, they have different lengths
+    return currentWord[i] == '\0' && inputWord[i] == '\0';
+}
+
 /* ### Konstruktor ### */
 /* Membuat Album kosong (A.lagu_length = Nil) sebagai Map dari Lagu */
 void CreateMapLagu(Album* A){
@@ -84,6 +101,8 @@ void DeleteMapLagu(Album *A, Key K){
         }
     }
 }
+
+
 /* Menghapus array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
 void DeleteMapAlbum(Penyanyi *P, Key K){
     if (!IsEmptyMapAlbum(*P)){
@@ -94,5 +113,68 @@ void DeleteMapAlbum(Penyanyi *P, Key K){
             }
             (*P).album_length--;
         }
+    }
+}
+
+/* Menambahkan array of character (Title) ST sebagai value elemen Album A dengan Key K. */
+void InsertMapLagu(Penyanyi* P, Album* A, Title* ST){
+    if (!IsFullMapLagu(*A)){
+        int i = 0;
+        boolean found = false;
+        while (!found && i < (*A).lagu_length){
+            if (WordCompare(&(*A).album_lagu[i].nama_lagu[0], &*ST)){ 
+                    found = true;
+            }
+            (*A).album_lagu[i].album_id = IndexOfAlbum(*P, *A);
+            i++;  
+        }
+    }
+}
+/* Menambahkan array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
+void InsertMapAlbum(ListPenyanyi* LP, Penyanyi P, Title AT){
+    if (!IsFullMapAlbum(P)){
+        int i = 0;
+        boolean found = false;
+        while (!found && i < (P).album_length){
+            if (WordCompare(&(P).album_penyanyi[i].nama_album[0], &AT)){ 
+                    found = true;
+            }
+            (P).album_penyanyi[i].penyanyi_id = IndexOfPenyanyi(*LP, P);
+            i++;  
+        }
+    }
+}
+
+/* ### Operator Dasar Map ### */
+/* Mendapatkan indeks sebuah Album pada Penyanyi */
+int IndexOfAlbum(Penyanyi P, Album A){
+    boolean found = false;
+    int i = 0;
+    while (!found && i < P.album_length){
+        if (WordCompare(P.album_penyanyi[i].nama_album, A.nama_album)){
+            found = true;
+        }
+        i++;
+    }
+    if (found){
+        return i - 1;
+    } else{
+        return IDX_UNDEF;
+    }
+}
+/* Mendapatkan indeks sebuah Penyanyi pada List Penyanyi  */
+int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P){
+    boolean found = false;
+    int i = 0;
+    while (!found && i < LP.penyanyi_length){
+        if (WordCompare(LP.penyanyi[i].nama_penyanyi, P.nama_penyanyi)){
+            found = true;
+        }
+        i++;
+    }
+    if (found){
+        return i - 1;
+    } else{
+        return IDX_UNDEF;
     }
 }

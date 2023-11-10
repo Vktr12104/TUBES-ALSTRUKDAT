@@ -52,4 +52,12 @@ void DeleteMapLagu(Album *A, Key K);
 /* Menghapus array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
 void DeleteMapAlbum(Penyanyi *P, Key K);
 
+void InsertMapAlbum(ListPenyanyi* LP, Penyanyi P, Title AT);
+
+void InsertMapLagu(Penyanyi* P, Album* A, Title* ST);
+
+int IndexOfAlbum(Penyanyi P, Album A);
+
+int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P);
+
 #endif

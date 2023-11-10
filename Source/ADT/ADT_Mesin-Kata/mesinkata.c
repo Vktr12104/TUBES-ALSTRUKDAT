@@ -267,3 +267,8 @@ void assignWord(Word *w, char arr[], int len){
     }
     w->Length = len;
 }
+
+    boolean found = false;
+    int i = 0;
+
+
