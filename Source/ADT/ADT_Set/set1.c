@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "../structure.h"
+#include "../struct.h"
 
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Lagu *S) {
     for (int i = 0; i < MaxEl; i++) {
-        S->lagu_nama[i] = STR_UNDEF;  // Mengisi dengan nilai '0' sebagai nilai undefinied
+        S->nama_lagu[i] = IDX_UNDEF;  // Mengisi dengan nilai '0' sebagai nilai undefinied
     }
     S->album_id = INT_UNDEF;  // Mengisi album_id dengan nilai -999 sebagai nilai undefinied
 }
@@ -19,7 +19,7 @@ boolean IsEmpty(Lagu S){
     boolean empty = true;
     
     while (i < MaxEl && empty) {
-        if (S.lagu_nama[i] != STR_UNDEF) {  // Memeriksa apakah ada elemen yang tidak undefinied
+        if (S.nama_lagu[i] != IDX_UNDEF) {  // Memeriksa apakah ada elemen yang tidak undefinied
             empty = false;
         }
         i++;
@@ -39,7 +39,7 @@ boolean IsFull(Lagu S){
     boolean full = true;
     
     while (i < MaxEl && full) {
-        if (S.lagu_nama[i] == STR_UNDEF) {  // Memeriksa apakah ada elemen yang masih undefinied
+        if (S.nama_lagu[i] == IDX_UNDEF) {  // Memeriksa apakah ada elemen yang masih undefinied
             full = false;
         }
         i++;
@@ -64,14 +64,14 @@ void Insert(Lagu *S, Title song) {
 
     // Periksa apakah song sudah ada di Lagu S
     for (int i = 0; i < S->album_id; i++) {
-        if (S->lagu_nama[i] == song) {
+        if (S->nama_lagu[i] == song) {
             printf("song sudah merupakan anggota, operasi tidak dilakukan\n");
             return;
         }
     }
 
     // Tambahkan song ke Lagu S
-    S->lagu_nama[S->album_id] = song;
+    S->nama_lagu[S->album_id] = song;
     S->album_id++; // Naikkan album_id sesuai dengan jumlah lagu yang sudah ada
 }
 
@@ -85,7 +85,7 @@ void Delete(Lagu *S, Title song) {
 
     int i;
     for (i = 0; i < S->album_id; i++) {
-        if (S->lagu_nama[i] == song) {
+        if (S->nama_lagu[i] == song) {
             break; // Temukan indeks dari song
         }
     }
@@ -97,7 +97,7 @@ void Delete(Lagu *S, Title song) {
 
     // Geser elemen-elemen di bawah song ke atas
     for (int j = i; j < S->album_id - 1; j++) {
-        S->lagu_nama[j] = S->lagu_nama[j + 1];
+        S->nama_lagu[j] = S->nama_lagu[j + 1];
     }
 
     S->album_id--; // Kurangi jumlah elemen di Lagu S
@@ -105,7 +105,7 @@ void Delete(Lagu *S, Title song) {
 
 boolean IsMember(Lagu S, Title song){
     for (int i = 0; i < MaxEl; i++) {
-        if (S.lagu_nama[i] == song) {
+        if (S.nama_lagu[i] == song) {
             return true; // Jika ditemukan, kembalikan true
         }
     }

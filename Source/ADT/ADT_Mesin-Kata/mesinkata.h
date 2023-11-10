@@ -5,6 +5,7 @@
 #define __MESINKATA_H__
 
 #include "../ADT_MesinKarakter/mesinkarakter.h"
+#include "../struct.h"
 
 #define NMax 300
 #define BLANK ' '
@@ -119,8 +120,6 @@ int wordToInt(Word w);
 int stringLength(char *str);
 /* Mengembalikan panjang string */
 
-boolean StrComp(char *str,char *str2);
-/*Mengembalikan true jika char str dan str1 sama*/
 
 void CreateWord(Word *w);
 

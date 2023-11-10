@@ -243,18 +243,6 @@ int stringLength(char *str)
     return i;
 }
 
-boolean StrComp(char *str,char *str2){ 
-    boolean cek=true;
-    if (stringLength(str)!= stringLength(str2)){
-        return false;
-    }else{
-        for (int i=0;i<stringLength(str);i++){
-            if(str[i]!=str2[i]){
-                cek=false;
-            }
-        }
-    }return cek;
-}
 
 void CreateWord(Word * w){
     w->Length = 0;

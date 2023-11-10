@@ -1,6 +1,7 @@
 #include "map.h"
 #include "../struct.h"
 
+
 /* ### Konstruktor ### */
 /* Membuat Album kosong (A.lagu_length = Nil) sebagai Map dari Lagu */
 void CreateMapLagu(Album* A){
@@ -119,7 +120,7 @@ void InsertMapAlbum(ListPenyanyi* LP, Penyanyi P, Title AT){
         int i = 0;
         boolean found = false;
         while (!found && i < (P).album_length){
-            if (StrComp((P).album_penyanyi[i].nama_album[0], AT)){ 
+            if (StrComp(&(P).album_penyanyi[i].nama_album[0], AT)){ 
                     found = true;
             }
             (P).album_penyanyi[i].penyanyi_id = IndexOfPenyanyi(*LP, P);

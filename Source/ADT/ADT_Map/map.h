@@ -61,4 +61,3 @@ void DeleteMapLagu(Album *A, Key K);
 void DeleteMapAlbum(Penyanyi *P, Key K);
 
 #endif
-
