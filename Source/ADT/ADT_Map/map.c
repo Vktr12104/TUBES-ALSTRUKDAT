@@ -178,3 +178,20 @@ int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P){
         return IDX_UNDEF;
     }
 }
+
+void displayMapAlbum(Album* mapAlbum) {
+    int i, j;
+
+    for (i = 0; mapAlbum[i].penyanyi_id != INT_UNDEF; i++) {
+        printf("Album %d:\n", i + 1);
+        printf("Nama Album: %s\n", mapAlbum[i].nama_album);
+
+        printf("Daftar Lagu:\n");
+        for (j = 0; j < mapAlbum[i].lagu_length; j++) {
+            printf("  Lagu %d: %s\n", j + 1, mapAlbum[i].album_lagu[j].nama_lagu);
+        }
+
+        printf("Penyanyi ID: %d\n", mapAlbum[i].penyanyi_id);
+        printf("\n");
+    }
+}

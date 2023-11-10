@@ -60,4 +60,6 @@ int IndexOfAlbum(Penyanyi P, Album A);
 
 int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P);
 
+void displayMapAlbum(Album* mapAlbum) ;
+
 #endif
