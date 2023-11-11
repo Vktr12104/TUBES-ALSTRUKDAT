@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "mesinkalimat.h"
 
-boolean EndKalimat;
-Kalimat CLine;
+boolean AkhirKalimat;
+Kalimat ComLine;
 Kalimat Input;
 Kalimat Command;
 
@@ -24,12 +24,12 @@ void Ignoreblanks()
     }
 }
 
-void IgnoreNewline()
+void IgnoreLineNew()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 {
-    while (currentChar == NEWLINE)
+    while (currentChar == LineNew)
     {
         ADV();
     }
@@ -38,14 +38,14 @@ void IgnoreNewline()
 void SalinKalimat() {
     ResetKalimat(); 
     int i = 0;
-    while ((currentChar != MARK) && (currentChar != NEWLINE) && (currentChar != EOF))
+    while ((currentChar != MARK) && (currentChar != LineNew) && (currentChar != EOF))
     {
-        CLine.TabLine[i] = currentChar;
+        ComLine.TabLine[i] = currentChar;
 
         i+= 1;
         ADV();
     }
-    CLine.Length = i;
+    ComLine.Length = i;
 }
 
 void SalinSatuKata() {
@@ -53,28 +53,28 @@ void SalinSatuKata() {
     int i = 0 ;
     while ((currentChar != BLANK) && (currentChar != MARK))
     {
-        CLine.TabLine[i] = currentChar;
+        ComLine.TabLine[i] = currentChar;
         i += 1;
         ADV();
     }
-    CLine.Length = i;
+    ComLine.Length = i;
 }
 
 void SalinRecordLoad() {
     ResetKalimat() ;
     int x = 0 ;
-    while ((currentChar != ';') && (currentChar != NEWLINE)) {
-        CLine.TabLine[x] = currentChar ;
+    while ((currentChar != ';') && (currentChar != LineNew)) {
+        ComLine.TabLine[x] = currentChar ;
         x ++ ;
         ADV();
     }
-    CLine.Length = x ;
+    ComLine.Length = x ;
 }
 
 void SalinInput() {
     ResetIn() ;
     int x = 0 ;
-    while ((currentChar != NEWLINE) && (currentChar != MARK) && (currentChar != EOF)) {
+    while ((currentChar != LineNew) && (currentChar != MARK) && (currentChar != EOF)) {
         Input.TabLine[x] = currentChar ;
         x++ ;
         ADV() ;
@@ -84,11 +84,11 @@ void SalinInput() {
 
 void STARTKALIMATFILE(char NamaFile[]) {
     STARTFILE(NamaFile);
-    IgnoreNewline();
+    IgnoreLineNew();
     if (currentChar == MARK2) {
-        EndKalimat = true;
+        AkhirKalimat = true;
     } else {
-        EndKalimat = false;
+        AkhirKalimat = false;
         SalinKalimat();
     }
 }
@@ -96,38 +96,38 @@ void STARTKALIMATFILE(char NamaFile[]) {
 void StartInput() {
     START() ;
     if (currentChar == ';') {
-        EndKalimat = true ;
-    } else {EndKalimat = false ;  SalinInput() ;}
+        AkhirKalimat = true ;
+    } else {AkhirKalimat = false ;  SalinInput() ;}
 }
 
 void ADVKALIMAT(){
-    IgnoreNewline();
+    IgnoreLineNew();
     Ignoreblanks();
     if (currentChar == MARK2) {
-        EndKalimat = true;
+        AkhirKalimat = true;
     } else {
-        EndKalimat = false;
+        AkhirKalimat = false;
         SalinKalimat();
     }
 }
 
 void ADVSATUKATA() {
     Ignoreblanks();
-    IgnoreNewline();
+    IgnoreLineNew();
     if (currentChar == BLANK) {
-        EndKalimat = true;
+        AkhirKalimat = true;
     } else {
-        EndKalimat = false;
+        AkhirKalimat = false;
         SalinSatuKata();
     }
 }
 
 void ADVRecord() {
-    Ignoreblanks() ; IgnoreNewline() ; IgnoreSemiColon();
+    Ignoreblanks() ; IgnoreLineNew() ; IgnoreSemiColon();
     if (currentChar == ';' || currentChar == '\n') {
-        EndKalimat = true ;
+        AkhirKalimat = true ;
     } else {
-        EndKalimat = false ;
+        AkhirKalimat = false ;
         SalinRecordLoad() ;
     }
 }
@@ -189,8 +189,8 @@ void ResetIn() {
 }
 
 void ResetKalimat() {
-    for (int i = 0; i < sizeof(CLine.TabLine); i++) {
-        CLine.TabLine[i] = '\0';
-        CLine.Length = 0;
+    for (int i = 0; i < sizeof(ComLine.TabLine); i++) {
+        ComLine.TabLine[i] = '\0';
+        ComLine.Length = 0;
     }
 }

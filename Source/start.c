@@ -11,24 +11,24 @@ void STARTREAD(ListPenyanyi * LP, char NamaFile []){
   Kalimat NamaAlbum;
   Kalimat NamaLagu;
 
-  int loop = CLine.TabLine[0] - 48;
+  int loop = ComLine.TabLine[0] - 48;
   printf("\nJumlah Penyanyi: %d\n", loop);
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
-    int album = CLine.TabLine[0] - 48;   
+    int album = ComLine.TabLine[0] - 48;   
     ADVKALIMAT();  
-    AddPenyanyi(LP, CLine);
+    AddPenyanyi(LP, ComLine);
     for (int j = 0; j < album; j++){
       ADVSATUKATA();
-      int lagu = CLine.TabLine[0] - 48;
+      int lagu = ComLine.TabLine[0] - 48;
 
       ADVKALIMAT();
 
-      AddAlbum(LP, CLine);
+      AddAlbum(LP, ComLine);
       for (int k = 0; k < lagu; k++)
       {
         ADVKALIMAT();
-        AddLagu(LP, CLine);    
+        AddLagu(LP, ComLine);    
       }
     }
 

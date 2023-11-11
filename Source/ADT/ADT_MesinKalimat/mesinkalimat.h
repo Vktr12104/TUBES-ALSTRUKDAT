@@ -1,12 +1,12 @@
 #ifndef __LINEMACHINE_H__
 #define __LINEMACHINE_H__
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "../ADT_MesinKarakter/mesinkarakter.h"
 #include "../ADT_Mesin-Kata/mesinkata.h"
 
 #define NMaks 450
-#define NEWLINE '\n'
+#define LineNew '\n'
 #define MARK2 '\0'
 
 typedef struct {
@@ -15,20 +15,32 @@ typedef struct {
 } Kalimat;
 
 /* State Mesin Kalimat */
-extern boolean EndKalimat;
-extern Kalimat CLine;
+extern boolean AkhirKalimat;
+extern Kalimat ComLine;
 extern Kalimat Input;
 
 void IgnoreSemiColon() ;
-void IgnoreNewline();
+
+void IgnoreLineNew();
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : currentChar sembarang
+   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+
 void Ignoreblanks();
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : currentChar sembarang
+   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
 void SalinKalimat();
+
 void SalinSatuKata();
+
 void SalinRecordLoad() ;
+
 void SalinInput() ;
 
 void STARTKALIMATFILE(char NamaFile[]);
+
 void StartInput () ;
 
 void ADVKALIMAT();

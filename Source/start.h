@@ -1,7 +1,7 @@
 
 
 #include <stdio.h>
-#include "../struc.h"
-#include "ADT_MesinKalimat/mesinkalimat.h"
+#include "ADT/struc.h"
+#include "ADT/ADT_MesinKalimat/mesinkalimat.h"
 
 void STARTREAD(ListPenyanyi * LP, char NamaFile []);
