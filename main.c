@@ -3,7 +3,6 @@
 #include "Source/ADT/ADT_Map/map.h"
 #include "Source/ADT/ADT_List/liststatis.h"
 #include "Source/start.h"
-#include "Source/ADT/ADT_MesinKalimat/mesinkalimat.h"
 
 #include <stdio.h>
 

@@ -26,14 +26,14 @@ void STARTREAD(ListPenyanyi * LP, char NamaFile []){
       lagu = currentWord.TabWord[0] - 48;
 
       ADVKALIMAT();
-      //displayWord(currentWord);
+      displayWord(currentWord);
 
       //AddAlbum(LP, CLine);
       //NamaAlbum = NamaAlbumNow(LP);
       for (int k = 0; k < lagu; k++)
       {
         ADVKALIMAT();
-        //displayWord(currentWord);
+        displayWord(currentWord);
         //AddLagu(LP, CLine);    
       }
     }
