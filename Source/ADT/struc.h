@@ -59,10 +59,7 @@ typedef struct {
 } Penyanyi;
 
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
-typedef struct {
-    Penyanyi penyanyi[MaxEl/20];
-    int penyanyi_length;
-} ListPenyanyi;
+
 
 /* Struktur Data Playlist yang memiliki Lagu [List Berkait] */
 /*  Setiap list sebagai pointer menuju masing-masing playlist memiliki:
