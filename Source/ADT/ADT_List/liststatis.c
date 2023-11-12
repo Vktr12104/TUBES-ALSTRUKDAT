@@ -1,46 +1,46 @@
 #include "liststatis.h"
 #include "../ADT_Set/boolean.h"
 
-List MakeList(){
-    List L;
+ListPenyanyi MakeListPenyanyi(){
+    ListPenyanyi L;
     int i;
     L.NEff = 0  ;
     return L;
 }
 
-boolean IsEmpty(List L){
+boolean IsEmpty(ListPenyanyi L){
     return L.NEff == 0;
 }
 
-ElType Get(List L, IdxType i){
+ElType Get(ListPenyanyi L, IdxType i){
     return L.A[i];
 }
 
-void Set(List *L, IdxType i, ElType v){
+void Set(ListPenyanyi *L, IdxType i, ElType v){
     L->A[i] = v;
 }
 
-int Length(List L){
+int Length(ListPenyanyi L){
     return L.NEff;
 }
 
-IdxType FirstIdx(List L){
+IdxType FirstIdx(ListPenyanyi L){
     return 0;
 }
 
-IdxType LastIdx(List L){
+IdxType LastIdx(ListPenyanyi L){
     return Length(L)-1;
 }
 
-boolean IsIdxValid (List L, IdxType i){
+boolean IsIdxValid (ListPenyanyi L, IdxType i){
     return(i>=FirstIdx(L) && i < MaxEl);
 }
 
-boolean IsIdxEff (List L, IdxType i){
+boolean IsIdxEff (ListPenyanyi L, IdxType i){
     return(i>=FirstIdx(L) && i<= LastIdx(L));
 }
 
-boolean Search(List L, ElType X){
+boolean Search(ListPenyanyi L, ElType X){
     boolean isFound = false;
     for (int i=0; i < L.NEff; i++){
         if (isWordEqual (X,L.A[i])) {isFound = true; break;}
@@ -48,11 +48,11 @@ boolean Search(List L, ElType X){
     return isFound;
 }
 
-void InsertFirst(List *L, ElType X){
+void InsertFirst(ListPenyanyi *L, ElType X){
     InsertAt(L,X,0);
 }
 
-void InsertAt(List *L, ElType X, IdxType i)
+void InsertAt(ListPenyanyi *L, ElType X, IdxType i)
 {
     int j;
     for (j = LastIdx(*L) + 1; j > i; j--)
@@ -63,15 +63,15 @@ void InsertAt(List *L, ElType X, IdxType i)
     L->NEff++;
 }
 
-void InsertLast(List *L, ElType X){
+void InsertLast(ListPenyanyi *L, ElType X){
     InsertAt(L, X, Length(*L));
 }
 
-void DeleteFirst(List *L) {
+void DeleteFirst(ListPenyanyi *L) {
     DeleteAt(L, 0);
 }
 
-void DeleteAt(List *L, IdxType i)
+void DeleteAt(ListPenyanyi *L, IdxType i)
 {
     int j;
     for (j = i; j < LastIdx(*L); j++)
@@ -81,12 +81,12 @@ void DeleteAt(List *L, IdxType i)
     L->NEff--;
 }
 
-void DeleteLast(List *L){
+void DeleteLast(ListPenyanyi *L){
     DeleteAt(L, LastIdx(*L));
 }
 
-List Concat(List L1, List L2){
-    List L = MakeList(L);
+ListPenyanyi Concat(ListPenyanyi L1, ListPenyanyi L2){
+    ListPenyanyi L = MakeListPenyanyi(L);
     int i;
     for (i = 0; i<Length(L1);i++)
     {
@@ -98,7 +98,7 @@ List Concat(List L1, List L2){
     return L;
 }
 
-void DisplayList(List L){
+void DisplayListPenyanyi(ListPenyanyi L){
     for (int i=0; i < L.NEff; i++){
         printf("   %d. ", (i+1));
         for (int j = 0; j < L.A[i].Length; j++){
