@@ -267,8 +267,78 @@ void assignWord(Word *w, char arr[], int len){
     }
     w->Length = len;
 }
+void Ignoreblanks()
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : currentChar sembarang
+   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+{
+    while (currentChar == BLANK)
+    {
+        ADV();
+    }
+}
 
-    boolean found = false;
+void IgnoreLineNew()
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : currentChar sembarang
+   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+{
+    while (currentChar == ENTER)
+    {
+        ADV();
+    }
+}
+
+
+void ADVSATUKATA() {
+    Ignoreblanks();
+    IgnoreLineNew();
+    if (currentChar == BLANK) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        SalinSatuKata();
+    }
+}
+
+void ADVKALIMAT(){
+    IgnoreLineNew();
+    Ignoreblanks();
+    if (currentChar == MARK2) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        SalinKalimat();
+    }
+}
+
+void SalinSatuKata() {
+    ResetKalimat();  
+    int i = 0 ;
+    while ((currentChar != BLANK) && (currentChar != MARK))
+    {
+        currentWord.TabWord[i] = currentChar;
+        i += 1;
+        ADV();
+    }
+    currentWord.Length = i;
+}
+
+void SalinKalimat() {
+    ResetKalimat(); 
     int i = 0;
+    while ((currentChar != MARK2) && (currentChar != ENTER) && (currentChar != EOF))
+    {
+        currentWord.TabWord[i] = currentChar;
+        i+= 1;
+        ADV();
+    }
+    currentWord.Length = i;
+}
 
-
+void ResetKalimat() {
+    for (int i = 0; i < sizeof(currentWord.TabWord); i++) {
+        currentWord.TabWord[i] = '\0';
+        currentWord.Length = 0;
+    }
+}
