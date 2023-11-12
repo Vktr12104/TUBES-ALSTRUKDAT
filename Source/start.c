@@ -1,39 +1,43 @@
 #include <stdio.h>
-#include "../ADT_Mesin-Kata/mesinkata.h"
-#include "../ADT_MesinKarakter/mesinkarakter.h"
-#include "../ADT_Map/map.h"
+#include "ADT/ADT_MesinKarakter/mesinkarakter.h"
+#include "ADT/ADT_Map/map.h"
 #include "start.h"
 
 void STARTREAD(ListPenyanyi * LP, char NamaFile []){
-  STARTKALIMATFILE("config.txt");
+  startWFile("text.txt");
 
-  Kalimat NamaPenyanyi;
-  Kalimat NamaAlbum;
-  Kalimat NamaLagu;
+  Word NamaPenyanyi;
+  Word NamaAlbum;
+  Word NamaLagu;
+  ListPenyanyi listmusisi;
 
-  int loop = ComLine.TabLine[0] - 48;
+
+  int loop = wordToInt(currentWord);
+  int album,lagu;
   printf("\nJumlah Penyanyi: %d\n", loop);
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
-    int album = ComLine.TabLine[0] - 48;   
+    album = currentWord.TabWord[0] - 48;   
     ADVKALIMAT();  
-    AddPenyanyi(LP, ComLine);
+    displayWord(currentWord);
+    InsertLast(&listmusisi, currentWord);
     for (int j = 0; j < album; j++){
       ADVSATUKATA();
-      int lagu = ComLine.TabLine[0] - 48;
+      lagu = currentWord.TabWord[0] - 48;
 
       ADVKALIMAT();
+      //displayWord(currentWord);
 
-      AddAlbum(LP, ComLine);
+      //AddAlbum(LP, CLine);
+      //NamaAlbum = NamaAlbumNow(LP);
       for (int k = 0; k < lagu; k++)
       {
         ADVKALIMAT();
-        AddLagu(LP, ComLine);    
+        //displayWord(currentWord);
+        //AddLagu(LP, CLine);    
       }
     }
-
   }
-
 }
 
 // int main(){
