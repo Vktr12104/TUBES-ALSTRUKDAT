@@ -15,7 +15,7 @@ void listdefault(ListPenyanyi input){
         STARTCOMMAND();
         char *comm = wordToString(currentCommand);
         Penyanyi thealbum;
-        // note : bisa lgsg for kalo mark semicolon = currentCommand g ada semicolon
+        // note : bisa langsung for kalo mark semicolon = currentCommand g ada semicolon
         for (int i = 0;i<input.penyanyi_length;i++){
             if (StrComp(comm,input.penyanyi[i].nama_penyanyi)){
                 thealbum = input.penyanyi[i];
