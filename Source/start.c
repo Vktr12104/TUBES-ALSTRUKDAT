@@ -10,6 +10,7 @@ void STARTREAD(ListPenyanyi * LP, char NamaFile []){
   Word NamaAlbum;
   Word NamaLagu;
   ListPenyanyi listmusisi;
+  int panjg;
 
 
   int loop = wordToInt(currentWord);
@@ -27,17 +28,19 @@ void STARTREAD(ListPenyanyi * LP, char NamaFile []){
 
       ADVKALIMAT();
       displayWord(currentWord);
-
       //AddAlbum(LP, CLine);
       //NamaAlbum = NamaAlbumNow(LP);
       for (int k = 0; k < lagu; k++)
       {
         ADVKALIMAT();
         displayWord(currentWord);
+        panjg = currentWord.Length;
+        printf("panjang lagu : %d\n",panjg);
         //AddLagu(LP, CLine);    
       }
     }
   }
+  // printf("panjang album : %d\n",panjg);
 }
 
 // int main(){
