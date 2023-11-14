@@ -10,6 +10,11 @@ typedef int Key;
 #define IDX_UNDEF -1
 #define INT_UNDEF -999
 #define Nil 0
+#define NMax 450
+#define BLANK ' '
+#define ENTER '\n'
+#define MARK '.'
+#define MARK2 '\0'
 
 /*  Akses Elemen Lagu  */
 #define LAGU_NAMA(L, i, j, k, l) (L).penyanyi[i].album_penyanyi[j].album_lagu[k].nama_lagu[l]
@@ -44,6 +49,13 @@ typedef struct {
     Title nama_lagu[MaxEl];
     int album_id;
 } Lagu;
+
+typedef struct
+{
+   char TabWord[NMax+1]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
+} Word;
+
 
 typedef struct {
     Title nama_album[MaxEl]; // Maksimal Panjang judul album 100 char
