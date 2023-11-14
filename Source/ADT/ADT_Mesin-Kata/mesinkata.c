@@ -242,6 +242,15 @@ int stringLength(char *str)
     return i;
 }
 
+int panjangStr(char *str) // yang diakhiri enter
+{
+    int i = 0;
+    while (str[i] != '\n')
+    {
+        i++;
+    }
+    return i;
+}
 boolean StrComp(char *str,char *str2){ 
     boolean cek=true;
     if (stringLength(str)!= stringLength(str2)){
