@@ -10,11 +10,6 @@ typedef int Key;
 #define IDX_UNDEF -1
 #define INT_UNDEF -999
 #define Nil 0
-#define NMax 450
-#define BLANK ' '
-#define ENTER '\n'
-#define MARK '.'
-#define MARK2 '\0'
 
 /*  Akses Elemen Lagu  */
 #define LAGU_NAMA(L, i, j, k, l) (L).penyanyi[i].album_penyanyi[j].album_lagu[k].nama_lagu[l]
@@ -42,19 +37,22 @@ typedef int Key;
 // Berfungsi untuk Menambah Playlist  (PLAY)
 
 
+#define jumlah_lagu(l) (l).jumlah_lagu
+
 /* STRUKTUR DATA */
 /*  Indeks lagu [0..lagu_length] merupakan key dari map album ke lagu dengan
     Nilai variabel nama_lagu merupakan value dari map Album -> Lagu */
 typedef struct {
-    Title nama_lagu[MaxEl];
+    Word nama_lagu;
     int album_id;
 } Lagu;
 
-typedef struct
-{
-   char TabWord[NMax+1]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
+typedef struct {
+	Lagu A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	int jumlah_lagu;
+} ListLagu;
+
+
 
 
 typedef struct {
