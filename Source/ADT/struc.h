@@ -37,13 +37,23 @@ typedef int Key;
 // Berfungsi untuk Menambah Playlist  (PLAY)
 
 
+#define jumlah_lagu(l) (l).jumlah_lagu
+
 /* STRUKTUR DATA */
 /*  Indeks lagu [0..lagu_length] merupakan key dari map album ke lagu dengan
     Nilai variabel nama_lagu merupakan value dari map Album -> Lagu */
 typedef struct {
-    Title nama_lagu[MaxEl];
+    Word nama_lagu;
     int album_id;
 } Lagu;
+
+typedef struct {
+	Lagu A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	int jumlah_lagu;
+} ListLagu;
+
+
+
 
 typedef struct {
     Title nama_album[MaxEl]; // Maksimal Panjang judul album 100 char
@@ -59,10 +69,7 @@ typedef struct {
 } Penyanyi;
 
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
-typedef struct {
-    Penyanyi penyanyi[MaxEl/20];
-    int penyanyi_length;
-} ListPenyanyi;
+
 
 /* Struktur Data Playlist yang memiliki Lagu [List Berkait] */
 /*  Setiap list sebagai pointer menuju masing-masing playlist memiliki:

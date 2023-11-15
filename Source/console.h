@@ -1,7 +1,7 @@
 #include "boolean.h"
 #include "ADT/ADT_List/listdinamis.h"
 #include "ADT/ADT_List/liststatis.h"
-#include "ADT/ADT_Map/"
+#include "ADT/ADT_Map/map.h"
 #include "ADT/ADT_Mesin-Kata/mesinkata.h"
 #include "ADT/ADT_MesinKarakter/mesinkarakter.h"
 #include "ADT/ADT_Queue/circular_queue.h"
@@ -42,7 +42,7 @@ void QueList(LaguPlaylist Lp, QueueLagu *Ql);
 /*I.S. List Pada Playlist sudah terdefinisi*/
 /*F.S. Memasukkan lagu pada playlist yang dipilih ke dalam antrian */
 
-void QueSwap(QueueLagu *Ql,lagu l,lagu l2);
+void QueSwap(QueueLagu *Ql,Lagu l,Lagu l2);
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Melakukan pertukaran lagu pada queue */
 

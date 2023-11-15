@@ -2,62 +2,76 @@
 #include "set.h"
 #include <stdlib.h>
 
+
+/*typedef struct {
+    Word nama_lagu;
+    int album_id;
+} Lagu;*/
 /* *** Konstruktor/Kreator *** */
 
+/*typedef struct {
+	Lagu A[MaxEl]; 
+	int NEff;
+} ListLagu;
+*/
 
-void CreateEmptyLagu(Lagu *S) {
-    int i;
-    for (i = 0; i < MaxEl; i++) {
-        (*S).nama_lagu[i] = '\0';  // Set each element to null character
-    }
-    (*S).album_id = INT_UNDEF;     // Set the album_id to undefined value
+void CreateEmptyListLagu(ListLagu *S) {
+    jumlah_lagu(*S) = 0;
+
 }
 
-boolean IsEmptyLagu(Lagu S) {
-    int i;
-    for (i = 0; i < MaxEl; i++) {
-        if (S.nama_lagu[i] != '\0') {
-            return false;  // If any element is not null, the set is not empty
-        }
-    }
-    return true;  // All elements are null, set is empty
+boolean IsEmptyListLagu(ListLagu W) {
+    return W.jumlah_lagu == 0;
 }
 
-boolean IsFullLagu(Lagu S) {
-    int i;
-    for (i = 0; i < MaxEl; i++) {
-        if (S.nama_lagu[i] == '\0') {
-            return false;  // If any element is null, the set is not full
-        }
-    }
-    return true;  // All elements are non-null, set is full
-}
 /* Mengirim true jika Lagu S penuh */
 /* ********** Operator Dasar Lagu ********* */
-void InsertLagu(Lagu *S, Title Elmt) {
-    // Check if Elmt is already a member of S
-    if (!IsMemberLagu(*S, Elmt)) {
-        int i = 0;
-
-        // Find the first available slot (null character) to insert Elmt
-        while ((*S).nama_lagu[i] != '\0') {
-            i++;
-        }
-
-        // Insert Elmt into the set
-        (*S).nama_lagu[i] = Elmt;
+void InsertListLagu(ListLagu *S, Word Elmt,int idalbum) {
+    // Insert Elmt into ListLagu if it is not already a member
+    int index = (S)->jumlah_lagu + 1;
+    if (!IsMemberLagu(*S, Elmt) && S->jumlah_lagu < MaxEl) {
+        Lagu newLagu;
+        newLagu.nama_lagu = Elmt;
+        // You might want to set other fields of newLagu if needed
+        S->A[index] = newLagu;
+    } else {
+        printf("Word is already a member or ListLagu is full. Cannot insert.\n");
     }
+    (S)->A[index].album_id = idalbum;
+    (S)->jumlah_lagu++;
 }
-boolean IsMemberLagu(Lagu S, Title Elmt) {
-    int i = 0;
-    while (S.nama_lagu[i] != '\0') {
-        if (S.nama_lagu[i] == Elmt) {
-            return true;  // Elmt is already a member
+
+boolean IsMemberLagu(ListLagu S, Word Elmt) {
+    for (int i = 0; i < S.jumlah_lagu; i++) {
+        if (isWordEqual(S.A[i].nama_lagu, Elmt)) {
+            return true;
+        }
+    }
+    return false;
+
+
+}
+
+void DisplayListLagu(ListLagu S, int idalbum)
+{
+    int i;
+    i = 1;
+    int j =1;
+    boolean check = false;
+    while((i<=S.jumlah_lagu)||(!check)){
+        if(S.A[i].album_id == idalbum){
+            printf("%d. ",j);
+            displayWord(S.A[i].nama_lagu);
+            j++;
+
+        }
+        else {
+            check =true;
         }
         i++;
     }
-    return false;  // Elmt is not a member
 }
+
 /*
 void DeleteLagu(Lagu *S, infotype Elmt) {
     int i, j;

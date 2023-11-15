@@ -8,14 +8,15 @@
 #include "../ADT_MesinKarakter/mesinkarakter.h"
 
 
-#define NMax 300
+#define NMax 450
 #define BLANK ' '
 #define ENTER '\n'
-#define MARK '.'
+#define MARK ';'
+#define MARK2 '\0'
 
 typedef struct
 {
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[NMax+1]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 
@@ -128,6 +129,18 @@ void CreateWord(Word *w);
 
 void assignWord(Word *w, char arr[], int len);
 
+void SalinSatuKata();
 
+void SalinKalimat();
+
+void ADVKALIMAT();
+
+void ADVSATUKATA();
+
+void Ignoreblanks();
+
+void IgnoreLineNew();
+
+void ResetKalimat() ;
 
 #endif
