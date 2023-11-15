@@ -14,6 +14,7 @@ void STARTREAD(ListPenyanyi * LP, ListLagu *lagu2,char NamaFile []){
   
 
 
+  
   int loop = wordToInt(currentWord);
   int album,lagu;
   int number =0;
