@@ -1,27 +1,29 @@
 #include <stdio.h>
-#include "ADT/ADT_MesinKarakter/mesinkarakter.h"
-#include "ADT/ADT_Map/map.h"
 #include "start.h"
 
-void STARTREAD(ListPenyanyi * LP, char NamaFile []){
+void STARTREAD(ListPenyanyi * LP, ListLagu *lagu2,char NamaFile []){
   startWFile("text.txt");
 
   Word NamaPenyanyi;
   Word NamaAlbum;
   Word NamaLagu;
-  ListPenyanyi listmusisi;
   int panjg;
+
+  CreateEmptyListLagu(&*lagu2);
+  *LP = MakeListPenyanyi();
+  
 
 
   int loop = wordToInt(currentWord);
   int album,lagu;
+  int number =0;
   printf("\nJumlah Penyanyi: %d\n", loop);
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
     album = currentWord.TabWord[0] - 48;   
     ADVKALIMAT();  
     displayWord(currentWord);
-    InsertLast(&listmusisi, currentWord);
+    InsertLast(&*LP, currentWord);
     for (int j = 0; j < album; j++){
       ADVSATUKATA();
       lagu = currentWord.TabWord[0] - 48;
@@ -36,8 +38,10 @@ void STARTREAD(ListPenyanyi * LP, char NamaFile []){
         displayWord(currentWord);
         panjg = currentWord.Length;
         printf("panjang lagu : %d\n",panjg);
+        InsertListLagu(&*lagu2,currentWord,number);
         //AddLagu(LP, CLine);    
       }
+      number++;
     }
   }
   // printf("panjang album : %d\n",panjg);
