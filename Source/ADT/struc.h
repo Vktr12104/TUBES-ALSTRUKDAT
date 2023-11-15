@@ -58,7 +58,7 @@ typedef struct {
 typedef struct {
     Title nama_album[MaxEl]; // Maksimal Panjang judul album 100 char
     Lagu album_lagu[MaxEl/5]; // Banyak Lagu dalam album sebanyak 20 
-    int lagu_length; 
+    int lagu_length;
     int penyanyi_id;
 } Album;
 
