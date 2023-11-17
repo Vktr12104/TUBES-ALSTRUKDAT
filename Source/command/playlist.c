@@ -20,6 +20,37 @@ void playlist_add (ListPlaylist *input) {
     STARTCOMMAND();
     char comm1 = wordToString(currentCommand);
 }
+
+
+void MoveLagu(ListPlaylist l) {
+    STARTCOMMAND();
+    int x = wordToInt(currentCommand);
+    STARTCOMMAND();
+    int y = wordToInt(currentCommand);
+    Address p = First(lp->playlist[x].playlist_user); // Gunakan pointer lp
+
+    if (x >= l.playlistSize) {
+        printf("Tidak ada playlist dengan ID %d.", x);
+    } else {
+        int sum = 0;
+
+        // Periksa apakah playlist kosong atau tidak
+        if (p == Nil) {
+            printf("Playlist %s kosong.", l.playlist[x]);
+        } else {
+            while (sum != y && p != Nil) {
+                sum++;
+                p = Next(p);
+            }
+            if (sum == y) {
+                DelP(&lp->playlist[x].playlist_user, Info(p)); // Gunakan pointer p->info
+                printf("Lagu “%s” oleh “%s” telah dihapus dari playlist “%s”!", Info(p),l.playlist[x].playlist_user[y].Penyanyi,l.playlist[x]);
+            } else {
+                printf("Tidak ada lagu dengan urutan %d di playlist %s!", y, l.playlist[x]);
+            }
+        }
+    }
+}
 /*/
     Penyanyi pilihan_penyanyi;
     for (int i = 0;i<PLPenyanyi.penyanyi_length;i++){
