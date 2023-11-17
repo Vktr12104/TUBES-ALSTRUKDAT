@@ -35,7 +35,7 @@ void InsertSetLagu(SetLagu *S, Word Elmt,int idalbum) {
         // You might want to set other fields of newLagu if needed
         S->A[index] = newLagu;
     } else {
-        printf("Word is already a member or SetLagu is full. Cannot insert.\n");
+        return;
     }
     (S)->A[index].album_id = idalbum;
     (S)->jumlah_lagu++;
