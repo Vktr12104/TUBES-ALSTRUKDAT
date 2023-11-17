@@ -44,11 +44,6 @@ List MakeList();
 boolean IsEmpty(List L);
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
 
-/* *** Menghasilkan sebuah elemen *** */
-ElType Get(List L, IdxType i);
-/* Prekondisi : list tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
-/* Mengirimkan elemen list yang ke-i */
-
 /* *** Selektor SET : Mengubah nilai list dan elemen list *** */
 void Set(List *L, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */

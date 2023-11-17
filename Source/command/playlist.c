@@ -3,7 +3,7 @@
 #include "../ADT/struc.h"
 
 
-void playlist_create (ListPlaylist *input1){
+void CreatePlayList(ListPlaylist *input1){
     printf ("Masukkan nama playlist yang ingin dibuat : \n");
     STARTCOMMAND();
     input1.playlistSize++;

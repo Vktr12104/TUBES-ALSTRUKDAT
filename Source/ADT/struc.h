@@ -2,6 +2,7 @@
 #define structure_H
 #include "boolean.h"
 #include <stdio.h>
+#include "ADT_Mesin-Kata/mesinkata.h" 
 
 typedef char Title;
 typedef int Key;
