@@ -13,26 +13,26 @@
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyListLagu(ListLagu *S);
+void CreateEmptySetLagu(SetLagu *S);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
 
-boolean IsEmptyListLagu(ListLagu W);
+boolean IsEmptySetLagu(SetLagu W);
 /* Mengirim true jika Set S kosong*/
 
 /* ********** Operator Dasar Lagu ********* */
-void InsertListLagu(ListLagu *S, Word Elmt,int idalbum);
+void InsertSetLagu(SetLagu *S, Word Elmt,int idalbum);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-boolean IsMemberLagu(ListLagu S, Word Elmt);
-/* True jika Elmt sudah member dari ListLagu*/
+boolean IsMemberLagu(SetLagu S, Word Elmt);
+/* True jika Elmt sudah member dari SetLagu*/
 
-void DisplayListLagu(ListLagu S, int idalbum);
+void DisplaySetLagu(SetLagu S, int idalbum);
 
 #endif

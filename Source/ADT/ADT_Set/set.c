@@ -12,22 +12,22 @@
 /*typedef struct {
 	Lagu A[MaxEl]; 
 	int NEff;
-} ListLagu;
+} SetLagu;
 */
 
-void CreateEmptyListLagu(ListLagu *S) {
+void CreateEmptySetLagu(SetLagu *S) {
     jumlah_lagu(*S) = 0;
 
 }
 
-boolean IsEmptyListLagu(ListLagu W) {
+boolean IsEmptySetLagu(SetLagu W) {
     return W.jumlah_lagu == 0;
 }
 
 /* Mengirim true jika Lagu S penuh */
 /* ********** Operator Dasar Lagu ********* */
-void InsertListLagu(ListLagu *S, Word Elmt,int idalbum) {
-    // Insert Elmt into ListLagu if it is not already a member
+void InsertSetLagu(SetLagu *S, Word Elmt,int idalbum) {
+    // Insert Elmt into SetLagu if it is not already a member
     int index = (S)->jumlah_lagu + 1;
     if (!IsMemberLagu(*S, Elmt) && S->jumlah_lagu < MaxEl) {
         Lagu newLagu;
@@ -35,13 +35,13 @@ void InsertListLagu(ListLagu *S, Word Elmt,int idalbum) {
         // You might want to set other fields of newLagu if needed
         S->A[index] = newLagu;
     } else {
-        printf("Word is already a member or ListLagu is full. Cannot insert.\n");
+        printf("Word is already a member or SetLagu is full. Cannot insert.\n");
     }
     (S)->A[index].album_id = idalbum;
     (S)->jumlah_lagu++;
 }
 
-boolean IsMemberLagu(ListLagu S, Word Elmt) {
+boolean IsMemberLagu(SetLagu S, Word Elmt) {
     for (int i = 0; i < S.jumlah_lagu; i++) {
         if (isWordEqual(S.A[i].nama_lagu, Elmt)) {
             return true;
@@ -52,7 +52,7 @@ boolean IsMemberLagu(ListLagu S, Word Elmt) {
 
 }
 
-void DisplayListLagu(ListLagu S, int idalbum)
+void DisplaySetLagu(SetLagu S, int idalbum)
 {
     int i;
     i = 1;

@@ -50,7 +50,7 @@ typedef struct {
 typedef struct {
 	Lagu A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
 	int jumlah_lagu;
-} ListLagu;
+} SetLagu; 
 
 
 

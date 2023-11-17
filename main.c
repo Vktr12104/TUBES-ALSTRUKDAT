@@ -10,10 +10,10 @@
 int main(){
     char namaFile[] = "text.txt";
     ListPenyanyi listmusisi3;
-    ListLagu lagu2;
+    SetLagu lagu2;
     STARTREAD(&listmusisi3,&lagu2,namaFile);
     DisplayListPenyanyi(listmusisi3);
-    DisplayListLagu(lagu2,4);
+    DisplaySetLagu(lagu2,4);
 
     
 

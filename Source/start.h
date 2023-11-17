@@ -8,4 +8,4 @@
 #include "ADT/struc.h"
 
 
-void STARTREAD(ListPenyanyi * LP, ListLagu *lagu, char NamaFile []);
+void STARTREAD(ListPenyanyi * LP, SetLagu *lagu, char NamaFile []);

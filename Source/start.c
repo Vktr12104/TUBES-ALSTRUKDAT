@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "start.h"
 
-void STARTREAD(ListPenyanyi * LP, ListLagu *lagu2,char NamaFile []){
+void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,char NamaFile []){
   startWFile("text.txt");
 
   Word NamaPenyanyi;
@@ -9,7 +9,7 @@ void STARTREAD(ListPenyanyi * LP, ListLagu *lagu2,char NamaFile []){
   Word NamaLagu;
   int panjg;
 
-  CreateEmptyListLagu(&*lagu2);
+  CreateEmptySetLagu(&*lagu2);
   *LP = MakeListPenyanyi();
   
 
@@ -39,7 +39,7 @@ void STARTREAD(ListPenyanyi * LP, ListLagu *lagu2,char NamaFile []){
         displayWord(currentWord);
         panjg = currentWord.Length;
         printf("panjang lagu : %d\n",panjg);
-        InsertListLagu(&*lagu2,currentWord,number);
+        InsertSetLagu(&*lagu2,currentWord,number);
         //AddLagu(LP, CLine);    
       }
       number++;
