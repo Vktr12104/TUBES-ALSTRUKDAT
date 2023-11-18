@@ -35,4 +35,5 @@ boolean IsMemberLagu(SetLagu S, Word Elmt);
 
 void DisplaySetLagu(SetLagu S, int idalbum);
 
+
 #endif

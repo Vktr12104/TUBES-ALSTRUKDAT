@@ -62,6 +62,7 @@ void DisplaySetLagu(SetLagu S, int idalbum)
         if(S.A[i].album_id == idalbum){
             printf("%d. ",j);
             displayWord(S.A[i].nama_lagu);
+            printf("\n");
             j++;
 
         }
@@ -71,6 +72,7 @@ void DisplaySetLagu(SetLagu S, int idalbum)
         i++;
     }
 }
+
 
 /*
 void DeleteLagu(Lagu *S, infotype Elmt) {
