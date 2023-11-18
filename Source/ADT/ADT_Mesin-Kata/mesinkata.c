@@ -217,7 +217,6 @@ void displayWord(Word w)
     for(i = 0; i<w.Length;i++){
         printf("%c", w.TabWord[i]);
     }
-    printf("\n");
 }
 /* Menampilkan kata  w */
 
