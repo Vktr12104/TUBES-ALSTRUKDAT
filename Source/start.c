@@ -1,6 +1,6 @@
 #include "start.h"
 
-void STARTREAD(ListPenyanyi * LP, SetLagu *lagu, char NamaFile []){
+void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,char NamaFile []){
   startWFile("text.txt");
   //MapAlbum mapAl;
   Word NamaPenyanyi;

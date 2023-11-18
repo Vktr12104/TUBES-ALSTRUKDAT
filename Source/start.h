@@ -9,6 +9,6 @@
 #include "ADT/ADT_Map/map.h"
 #include "ADT/struc.h"
 
-void STARTREAD(ListPenyanyi * LP, SetLagu *lagu, char NamaFile []);
+void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,char NamaFile []);
 
 #endif
