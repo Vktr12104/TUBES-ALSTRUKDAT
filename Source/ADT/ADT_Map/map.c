@@ -50,11 +50,10 @@ void InsertMapAlbum(MapAlbum *P,valuetype idpenyanyi,Word AT){
 
 
 void displayMapAlbum(MapAlbum P, int idpenyanyi) {
-    // Iterasi melalui setiap elemen Album dalam MapAlbum
     int j=1;
     for(int i = 1; i<= P.count;i++){
         if(P.Elements[i].penyanyi_id==idpenyanyi){
-            printf("   %d. ",j);
+            printf("%d. ",j);
             displayWord(P.Elements[i].nama_album);
             printf("\n");
             j++;
@@ -63,32 +62,28 @@ void displayMapAlbum(MapAlbum P, int idpenyanyi) {
     
 }
 
-int albumtoidpenyanyi(ListPenyanyi P,Word nama){
-    int i,index;
-    for (i=0;i<P.NEff;i++){
-        if(isWordEqual(nama,P.A[i])){
-            index=i;
-        }
-        else {
-            return Nil;
+int albumtoidpenyanyi(ListPenyanyi P, Word nama) {
+    int i, index;
+
+    for (i = 0; i < P.NEff; i++) {
+        if (isWordEqual(nama, P.A[i])) {
+            index = i;
+            return index; 
         }
     }
-    return index;
 }
 
 boolean IsMemberMapAlbum(MapAlbum P, Word AT){
-    // Iterasi melalui setiap elemen Album dalam MapAlbum
     if(IsEmptyMapAlbum(P)){
         return false;
     }
     else{
         for (int i = 0; i < P.count; i++) {
-            // Membandingkan nama album dengan nilai AT
             if (isWordEqual(P.Elements[i].nama_album, AT)) {
-                return true; // Jika ditemukan, kembalikan true
+                return true;
             }
         }
-        return false; // Jika tidak ditemukan, kembalikan false
+        return false;
     }
 }
 
