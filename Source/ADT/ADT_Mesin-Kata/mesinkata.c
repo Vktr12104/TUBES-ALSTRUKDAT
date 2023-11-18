@@ -153,7 +153,7 @@ void ADVCOMMAND () {
 void CopyCommand () {
     int i;
     i = 0;
-    while ((currentChar != BLANK) && (currentChar != ENTER)) {
+    while ((currentChar != MARK) && (currentChar != ENTER)) {
         if (i < NMax) {
             currentCommand.TabWord[i] = currentChar;
             i++;
