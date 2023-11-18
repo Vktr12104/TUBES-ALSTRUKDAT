@@ -60,7 +60,7 @@ void DisplaySetLagu(SetLagu S, int idalbum)
     boolean check = false;
     while((i<=S.jumlah_lagu)||(!check)){
         if(S.A[i].album_id == idalbum){
-            printf("%d. ",j);
+            printf("   %d. ",j);
             displayWord(S.A[i].nama_lagu);
             printf("\n");
             j++;
