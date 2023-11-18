@@ -11,11 +11,12 @@ int main(){
     char namaFile[] = "text.txt";
     ListPenyanyi listmusisi3;
     SetLagu lagu2;
-    STARTREAD(&listmusisi3,&lagu2,namaFile);
+    MapAlbum m2;
+    STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
     DisplayListPenyanyi(listmusisi3);
-    DisplaySetLagu(lagu2,4);
-    listdefault(listmusisi3,lagu2);
-
+    DisplaySetLagu(lagu2,5);
+    listdefault(listmusisi3,lagu2,m2);
+    //displayMapAlbum(m2);
     
 
 
