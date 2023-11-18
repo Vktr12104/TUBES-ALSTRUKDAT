@@ -6,6 +6,7 @@
 
 typedef char Title;
 typedef int Key;
+typedef int valuetype;
 
 #define MaxEl 100
 #define IDX_UNDEF -1
@@ -57,11 +58,15 @@ typedef struct {
 
 
 typedef struct {
-    Title nama_album[MaxEl]; // Maksimal Panjang judul album 100 char
-    Lagu album_lagu[MaxEl/5]; // Banyak Lagu dalam album sebanyak 20 
-    int lagu_length;
-    int penyanyi_id;
+    Key album_id;
+    valuetype penyanyi_id;
+    Word nama_album;
 } Album;
+
+typedef struct {
+    Album Elements[MaxEl];
+    int count;
+} MapAlbum;
 
 typedef struct {
     Title nama_penyanyi[MaxEl]; // Panjang nama penyanyi dibatasi 100 char

@@ -1,65 +1,62 @@
 #ifndef map_H
 #define map_H
+#include "../ADT_List/liststatis.h"
+#include "../ADT_Mesin-Kata/mesinkata.h"
 #include "../struc.h"
 
-/* MODUL Map
-Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
+
+
+/*
+typedef struct {
+    Title nama_album[MaxEl]; // Maksimal Panjang judul album 100 char
+    SetLagu album_lagu; // Banyak Lagu dalam album sebanyak 20 
+    int lagu_length;
+    int penyanyi_id;
+} MapAlbum;
 */
 
 /* Definisi Map M kosong : M.Count = Nil */
 /* M.Count = jumlah element Map */
 /* M.Elements = tempat penyimpanan element Map */
 
-/* ********* Prototype ********* */
-/* Membuat Album kosong (A.lagu_length = Nil) sebagai Map dari Lagu */
-void CreateMapLagu(Album* A);
 
-/* Membuat Penyanyi kosong (P.album_length = Nil) sebagai Map dari Album */
-void CreateMapAlbum(Penyanyi* P);
+/* Membuat Lagu kosong (P.album_length = Nil) sebagai Map dari Album */
+void CreateMapAlbum(MapAlbum *P);
 
-/* Mengirim true jika lagu Album A kosong (A.lagu_length = Nil) */
-boolean IsEmptyMapLagu(Album A);
 
 /* Mengirim true jika album Penyanyi P kosong (P.album_length = Nil) */
-boolean IsEmptyMapAlbum(Penyanyi P);
+boolean IsEmptyMapAlbum(MapAlbum P);
 
-/* Mengirim true jika lagu Album A penuh (A.lagu_length = MaxEl) */
-boolean IsFullMapLagu(Album A);
 
 /* Mengirim true jika album Penyanyi P penuh (P.album_length = MaxEl) */
-boolean IsFullMapAlbum(Penyanyi P);
-
-/* Mengembalikan true jika Key K adalah member dari Album A */
-boolean IsMemberMapLagu(Album A, Key K);
+//boolean IsFullMapAlbum(Penyanyi P);
 
 /* Mengembalikan true jika Key K adalah member dari Penyanyi P */
-boolean IsMemberMapAlbum(Penyanyi P, Key K);
+boolean IsMemberMapAlbum(MapAlbum P, Word AT);
 
 /* ### Operator Dasar Map ### */
 
 
-/* Mengembalikan nilai value Lagu dengan Key K dari Album A */
-Lagu ValueMapLagu(Album A, Key K);
+
+
 
 /* Mengembalikan nilai value Album dengan Key K dari Penyanyi P */
-Album ValueMapAlbum(Penyanyi P, Key K);
+//MapAlbum ValueMapAlbum(Penyanyi P, Key K);
 
-
-
-/* Menghapus array of character (Title) ST sebagai value elemen Album A dengan Key K. */
-void DeleteMapLagu(Album *A, Key K);
 
 /* Menghapus array of character (Title) AT sebagai value elemen Penyanyi P dengan Key K. */
-void DeleteMapAlbum(Penyanyi *P, Key K);
+//void DeleteMapAlbum(Penyanyi *P, Key K);
 
-void InsertMapAlbum(ListPenyanyi* LP, Penyanyi P, Title AT);
+void InsertMapAlbum(MapAlbum *P,valuetype idpenyanyi,Word AT);
 
-void InsertMapLagu(Penyanyi* P, Album* A, Title* ST);
 
-int IndexOfAlbum(Penyanyi P, Album A);
+//int IndexOfAlbum(Penyanyi P, MapAlbum A);
 
-int IndexOfPenyanyi(ListPenyanyi LP, Penyanyi P);
+void displayMapAlbum(MapAlbum P,int idpenyanyi) ;
 
-void displayMapAlbum(Album* mapAlbum) ;
+int albumtoidpenyanyi(ListPenyanyi P,Word nama);
+
+int laguAlbumID(Word input,MapAlbum P);
+
 
 #endif
