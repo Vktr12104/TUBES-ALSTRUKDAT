@@ -9,7 +9,7 @@
 #include "../ADT_Mesin-Kata/mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "ADT/struc.h"
+#include "../struc.h"
 #include "../ADT_LinkedList/listb.h"
 
 /* Kamus Umum */
