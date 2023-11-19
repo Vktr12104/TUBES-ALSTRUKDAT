@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "ADT_Mesin-Kata/mesinkata.h" 
 
-typedef char Title;
+typedef Word Title;
 typedef int Key;
 typedef int valuetype;
 
