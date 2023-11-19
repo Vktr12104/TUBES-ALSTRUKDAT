@@ -141,4 +141,6 @@ void Konkat1(listBerkait *L1, listBerkait *L2, listBerkait *L3);
 
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
+boolean IsMember(listBerkait S, Word Elmt);
+
 #endif
