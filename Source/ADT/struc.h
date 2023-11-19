@@ -90,7 +90,7 @@ typedef struct {
 
 typedef struct {
     NamaPlaylist* playlist[10];
-    int playlistSize;
+    size_t playlistSize;
 } ListPlaylist;
 
 typedef struct {
