@@ -46,7 +46,7 @@ void CCreateQueue (QueueLagu * Q){
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu) {
+void Cenqueue(QueueLagu *Q, char *penyanyi,  char *album,  char *lagu) {
     if (CIsEmpty(*Q)) {
         CIDX_TAIL(*Q)++;
     } else {
@@ -55,23 +55,23 @@ void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu) {
         } else {
             CIDX_TAIL(*Q)++;
         }
-    }
-    CTAIL(*Q).penyanyi=penyanyi;
-    CTAIL(*Q).idxalbum=album;
-    CTAIL(*Q).idxlagu=lagu;
+    }CTAIL(*Q).Penyanyi_playlist=penyanyi;
+    CTAIL(*Q).album_playlist=album;
+    CTAIL(*Q).lagu_playlist=lagu;
+
 }
 
-void Cdequeue(QueueLagu *Q,int *penyanyi,Key *album,int *lagu) {
-    *penyanyi=CHEAD(*Q).penyanyi;
-    *album=CHEAD(*Q).idxalbum;
-    *lagu=CHEAD(*Q).idxlagu;
-    if (CIDX_HEAD(*Q) == CIDX_TAIL(*Q)) {
-        CIDX_HEAD(*Q) = CIDX_TAIL(*Q) = IDX_UNDEF;
+void Cdequeue(QueueLagu *Q, char *penyanyi, char *album, char *lagu) {
+    penyanyi=CTAIL(*Q).Penyanyi_playlist;
+    album=CTAIL(*Q).album_playlist;
+    lagu=CTAIL(*Q).lagu_playlist;
+    if (Q->idxHead == Q->idxTail) {
+        Q->idxHead = Q->idxTail = IDX_UNDEF;
     } else {
-        if (CIDX_HEAD(*Q) == IDX_MAX) {
-            CIDX_HEAD(*Q) = 0;
+        if (Q->idxHead == IDX_MAX) {
+            Q->idxHead = 0;
         } else {
-            CIDX_HEAD(*Q)++;
+            Q->idxHead++;
         }
     }
 }
@@ -87,9 +87,9 @@ void displayQueue(QueueLagu Q) {
     printf("[");
     if (!CIsEmpty(Q)) {
         for (int i = CIDX_HEAD(Q); i < CIDX_HEAD(Q) + CLength(Q); i++) {
-            printf("%d\n", Q.Isi[i % (MaxEl+1)].penyanyi);
-            printf("%d\n", Q.Isi[i % (MaxEl+1)].idxalbum);
-            printf("%d\n", Q.Isi[i % (MaxEl+1)].idxlagu);
+            printf("%s", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist);
+            printf("%s", Q.Isi[i % (MaxEl+1)].album_playlist);
+            printf("%s\n", Q.Isi[i % (MaxEl+1)].lagu_playlist);
             if (i % (IDX_MAX + 1) != CIDX_TAIL(Q)) {
                 printf(", ");
             }
@@ -113,3 +113,32 @@ void displayQueue(QueueLagu Q) {
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
 
+int main() {
+    QueueLagu myQueue;
+    char penyanyi[50], album[50], lagu[50];
+
+    // Inisialisasi QueueLagu
+    CCreateQueue(&myQueue);
+
+    // Enqueue data
+    Cenqueue(&myQueue, "BLACKPINK", "BORN PINK", "ABC");
+    Cenqueue(&myQueue, "Another Artist", "Another Album", "XYZ");
+
+    // Display Queue
+    displayQueue(myQueue);
+
+    // Dequeue data
+    Cdequeue(&myQueue, penyanyi, album, lagu);
+    printf("Dequeued: (%s, %s, %s)\n", penyanyi, album, lagu);
+
+    // Display Queue after dequeue
+    displayQueue(myQueue);
+
+    // Enqueue more data
+    Cenqueue(&myQueue, "New Artist", "New Album", "123");
+
+    // Display Queue after enqueuing more data
+    displayQueue(myQueue);
+
+    return 0;
+}

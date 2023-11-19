@@ -12,7 +12,6 @@
 
 /* Definisi tipe elemen dan indeks pada CQueue */
 typedef int ElType;
-typedef int IdxType;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah CQueue, maka akses elemen : */
@@ -39,13 +38,13 @@ void CCreateQueue (QueueLagu * Q);
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu);
+void Cenqueue(QueueLagu *Q, char *penyanyi,  char *album,  char *lagu) ;
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-void Cdequeue(QueueLagu *Q,int *penyanyi,Key *album,int *lagu);
+void Cdequeue(QueueLagu *Q, char *penyanyi, char *album, char *lagu) ;
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. mengembalikan nilai Q pada idxHead;
