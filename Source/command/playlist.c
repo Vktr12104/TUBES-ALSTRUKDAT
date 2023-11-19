@@ -3,6 +3,8 @@
 #include "../ADT/struc.h"
 #include "../ADT/ADT_LinkedList/listb.h"
 #include "../ADT/ADT_Mesin-Kata/mesinkata.h"
+
+
 void CreatePlayList() {
     printf("Masukkan nama playlist yang ingin dibuat : \n");
     STARTCOMMAND();  
@@ -51,7 +53,7 @@ void playlist_add (listBerkait *input, ListPenyanyi lp, MapAlbum m2,SetLagu S) {
 
     printf("Daftar Playlist Pengguna : \n");
     for(int i=0;i<list_dinamis.NEff;i++){
-        printf("%d. %s\n",i+1,list_dinamis.A->NamaPlaylist);
+        printf("%d. %s\n",i+1,list_dinamis.A[i]->NamaPlaylist);
     }print("Masukkan ID Playlist yang dipilih :\n");
     STARTCOMMAND();
     int x=wordToInt(currentCommand);
@@ -126,6 +128,19 @@ void SwapLagu(){
     }
 } 
 
-void DelPlayList(){
-    
-}
+void DelPlayList() {
+    printf("Daftar Playlist Pengguna :\n");
+    for (int i = 0; i < list_dinamis.NEff; i++) {
+        printf("%d. %s\n", i + 1, list_dinamis.A[i]->NamaPlaylist);
+    }
+    printf("Masukkan ID Playlist yang dipilih:\n");
+    STARTCOMMAND();
+    int x = wordToInt(currentCommand);
+
+    if (x <= 0 || x > list_dinamis.NEff) {
+        printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", x);
+    } else {
+        printf("Playlist ID %d dengan judul \"%s\" berhasil dihapus.\n", x, list_dinamis.A[x - 1]->NamaPlaylist);
+        DeleteAt(&list_dinamis, x - 1);
+    }
+}// CEK ERROR PADA LIST DINAMIS mana 
