@@ -1,111 +1,88 @@
 #include "listdinamis.h"
 
 /* ********** KONSTRUKTOR ********** */
+/* Konstruktor: create list kosong */
 List MakeList() {
-	List L;
-	L.A = (ElType*) malloc(MaxEl * sizeof(ElType));
-	L.NEff = 0;
-	L.Max = MaxEl;
-	return L;
+    List L;
+    L.A = (listBerkait*)malloc(MaxEl * sizeof(listBerkait));
+    L.NEff = 0;
+    L.Max = MaxEl;
+    return L;
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
+/* *** Test list kosong *** */
 boolean IsEmpty(List L) {
-	return (L.NEff == 0);
+    return L.NEff == 0;
 }
 
 /* ********** SELEKTOR ********** */
+/* *** Banyaknya elemen *** */
 int Length(List L) {
-	return L.NEff;
+    return L.NEff;
 }
 
+/* *** Selektor INDEKS *** */
 IdxType FirstIdx(List L) {
-	return 0;
+    return 0;
 }
 
 IdxType LastIdx(List L) {
-	return L.NEff - 1;
+    return L.NEff - 1;
 }
 
 /* ********** Test Indeks yang valid ********** */
 boolean IsIdxValid(List L, IdxType i) {
-    return (i >= 0 && i < MaxEl);
+    return (i >= 0) && (i < L.Max);
 }
 
 boolean IsIdxEff(List L, IdxType i) {
-    return (i >= 0 && i < L.NEff);
+    return (i >= 0) && (i < L.NEff);
 }
 
 /* ********** Operasi-operasi ********** */
-void InsertFirst(List *L, ElType X) {
-	if (IsFull(*L)) {
-		// Alokasikan memori baru untuk list
-		ElType *newA = (ElType*) malloc(2 * L->Max * sizeof(ElType));
-		// Salin elemen dari list lama ke list baru
-		for (int i = 0; i < L->NEff; i++) {
-			newA[i] = L->A[i];
-		}
-		// Alokasikan memori lama
-		free(L->A);
-		// Atur nilai variabel list
-		L->A = newA;
-		L->Max *= 2;
-	}
-	// Masukkan elemen X ke awal list
-	for (int i = L->NEff; i > 0; i--) {
-		L->A[i] = L->A[i - 1];
-	}
-	L->A[0] = X;
-	L->NEff++;
+boolean IsMemberdinamis(List L, listBerkait X) {
+    int i;
+    for (i = 0; i < L.NEff; i++) {
+        if (StrComp(X.NamaPlaylist,L.A[i].NamaPlaylist)) {
+            return true;
+        }
+    }
+    return false;
 }
 
-void InsertAt(List *L, ElType X, IdxType i) {
-	if (IsFull(*L)) {
-		// Alokasikan memori baru untuk list
-		ElType *newA = (ElType*) malloc(2 * L->Max * sizeof(ElType));
-		// Salin elemen dari list lama ke list baru
-		for (int j = 0; j < L->NEff; j++) {
-			newA[j] = L->A[j];
-		}
-		// Alokasikan memori lama
-		free(L->A);
-		// Atur nilai variabel list
-		L->A = newA;
-		L->Max *= 2;
-	}
-	if (IsIdxValid(*L, i)) {
-		// Geser elemen dari indeks i ke atas
-		for (int j = L->NEff; j > i; j--) {
-			L->A[j] = L->A[j - 1];
-		}
-		// Masukkan elemen X ke indeks i
-		L->A[i] = X;
-		L->NEff++;
-	}
+void InsertFirst(List *L, listBerkait X) {
+    if (L->NEff < L->Max) {
+        int i;
+        for (i = L->NEff; i > 0; i--) {
+            L->A[i] = L->A[i - 1];
+        }
+        L->A[0] = X;
+        L->NEff++;
+    }
 }
 
-void InsertLast(List *L, ElType X) {
-	if (IsFull(*L)) {
-		// Alokasikan memori baru untuk list
-		ElType *newA = (ElType*) malloc(2 * L->Max * sizeof(ElType));
-		// Salin elemen dari list lama ke list baru
-		for (int i = 0; i < L->NEff; i++) {
-			newA[i] = L->A[i];
-		}
-		// Alokasikan memori lama
-		free(L->A);
-		// Atur nilai variabel list
-		L->A = newA;
-		L->Max *= 2;
-	}
-	// Masukkan elemen X ke akhir list
-	L->A[L->NEff] = X;
-	L->NEff;
+void InsertAt(List *L, listBerkait X, IdxType i) {
+    if (L->NEff < L->Max && IsIdxEff(*L, i)) {
+        int j;
+        for (j = L->NEff; j > i; j--) {
+            L->A[j] = L->A[j - 1];
+        }
+        L->A[i] = X;
+        L->NEff++;
+    }
+}
+
+void InsertLast(List *L, listBerkait X) {
+    if (L->NEff < L->Max) {
+        L->A[L->NEff] = X;
+        L->NEff++;
+    }
 }
 
 void DeleteFirst(List *L) {
-    IdxType i;
     if (!IsEmpty(*L)) {
+        int i;
         for (i = 0; i < L->NEff - 1; i++) {
             L->A[i] = L->A[i + 1];
         }
@@ -114,8 +91,8 @@ void DeleteFirst(List *L) {
 }
 
 void DeleteAt(List *L, IdxType i) {
-    IdxType j;
     if (!IsEmpty(*L) && IsIdxEff(*L, i)) {
+        int j;
         for (j = i; j < L->NEff - 1; j++) {
             L->A[j] = L->A[j + 1];
         }
