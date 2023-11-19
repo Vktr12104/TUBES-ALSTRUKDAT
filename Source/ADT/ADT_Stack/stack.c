@@ -19,24 +19,29 @@ boolean IsHistEmpty(HistoriLagu S){
 /*  
 Menghasilkan True jika Stack kosong, dan False jika Stack tidak kosong
 */
-void PushLagu(HistoriLagu *S, Lagu L) {
+void PushLagu(HistoriLagu *S, char *lagu, char *album, char *artis) {
     if (S->idxTop < MaxEl - 1) {
         S->idxTop++;
-        S->hist_lagu[S->idxTop] = L;
+        S->hist_lagu[S->idxTop].lagu_playlist = lagu;
+        S->hist_lagu[S->idxTop].album_playlist = album;
+        S->hist_lagu[S->idxTop].Penyanyi_playlist = artis;
         S->count++;
     } else {
         // Tumpukan penuh, tidak dapat menambahkan lagi
         printf("Tumpukan penuh. Tidak dapat menambahkan lagi.\n");
     }
 }
+
 /*
 I.S. Sembarang, P terdefinisi
 F.S. Menempatkan P pada Top dari S (History lagu)
 */
 
-void PopLagu(HistoriLagu *S, Lagu *L) {
+void PopLagu(HistoriLagu *S, char **lagu, char **album, char **artis) {
     if (S->idxTop >= 0) {
-        *L = S->hist_lagu[S->idxTop];
+        *lagu = S->hist_lagu[S->idxTop].lagu_playlist;
+        *album = S->hist_lagu[S->idxTop].album_playlist;
+        *artis = S->hist_lagu[S->idxTop].Penyanyi_playlist;
         S->idxTop--;
         S->count--;
     } else {
@@ -56,7 +61,7 @@ void Viewhist(HistoriLagu S) {
         printf("Daftar Lagu dalam HistoriLagu:\n");
         printf("[");
         for (int i = 0; i <= S.idxTop; i++) {
-            printf("(%s, %d)", S.hist_lagu[i].nama_lagu, S.hist_lagu[i].album_id);
+            printf("(%s, %d)", S.hist_lagu[i].lagu_playlist, S.hist_lagu[i].album_playlist);
             if (i < S.idxTop) {
                 printf(", ");
             }
