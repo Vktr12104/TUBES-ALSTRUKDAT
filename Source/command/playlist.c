@@ -3,33 +3,51 @@
 #include "../ADT/struc.h"
 #include "../ADT/ADT_LinkedList/listb.h"
 
-void CreatePlayList(ListPlaylist input1) {
+void CreatePlayList(ListPlaylist *input1) {
     printf("Masukkan nama playlist yang ingin dibuat : \n");
     STARTCOMMAND();  
-    
-    input1.playlist[input1.playlistSize].isi = 0;
-
-        for (int i = 0; i < currentCommand.Length && currentCommand.TabWord[i] != '\0'; ++i) {
-            input1.playlist[input1.playlistSize].playlist_nama[i] = currentCommand.TabWord[i];
-        }
-        input1.playlist[input1.playlistSize].playlist_nama[currentCommand.Length] = '\0';
-        input1.playlistSize++;
-    
-}
-
-void playlist_add (ListPlaylist *input) {
-    ListPenyanyi PLPenyanyi;
-    printf("Daftar Penyanyi :\n");
-    for (int i = 0;i<PLPenyanyi.;i++){
-        printf("%d. %s\n",i+1,PLPenyanyi.penyanyi_list[i].nama_penyanyi);
+    if (currentCommand.Length<3){
+        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.");
+    }else{
+        *input1.NamaPlayList=currentCommand;
+        *input1.idxPlaylist++;
     }
-    printf("Masukkan Nama Penyanyi yang dipilih : ");
-    STARTCOMMAND();
-    char comm1 = wordToString(currentCommand);
-
 }
 
-void MoveLagu(ListPlaylist lp) {
+void playlist_add (ListPlaylist *input,ListPenyanyi lp, MapAlbum m2,SetLagu S) {
+    printf("Daftar Penyanyi:\n");
+    DisplayListPenyanyi(lp);
+    
+    printf("Masukkan Nama Penyanyi: ");
+    STARTCOMMAND();
+    char *comm=wordToString(currentCommand);
+    int idxpenyanyi=albumtoidpenyanyi(lp,currentCommand);
+
+    printf("Daftar Album oleh %s:\n",comm);
+    displayMapAlbum(m2,idxpenyanyi);
+
+    printf("Masukkan Nama Album yang dipilih: ");
+    STARTCOMMAND();
+    char *comm1=wordToString(currentCommand);
+    int idxalbum=laguAlbumID(currentCommand,m2);
+    
+    printf("Daftar Lagu Album %s oleh %s\n : ",comm1,comm);
+    DisplaySetLagu(S,idxalbum);
+    
+    printf("Masukkan ID Lagu yang dipilih: ");
+    STARTCOMMAND();
+    int idxlagu=wordToInt(currentCommand);
+    Word namalagu=namalagufromalbum(S,idxalbum,idxlagu);
+
+    printf("Daftar Playlist Pengguna : \n");
+    for(int i=0;i<input->idxPlaylist;i++){
+        printf("%d. %s\n",i+1,input->NamaPlayList);
+    }print("Masukkan ID Playlist yang dipilih :\n");
+    STARTCOMMAND();
+    
+}
+
+/*void MoveLagu(ListPlaylist lp) {
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
     STARTCOMMAND();
@@ -55,11 +73,7 @@ void MoveLagu(ListPlaylist lp) {
             }
         }
     }
-}
-void MoveLagu(ListPlaylist *lp){
-
-}
-
+}*/
 
 /*
     Penyanyi pilihan_penyanyi;
