@@ -42,14 +42,19 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     }
 }
 
-void QueList(LaguPlaylist Lp, QueueLagu *Ql){
+void QueList(ListPlaylist Lp, QueueLagu *Ql){
     printf("Masukkan ID PlayList :");
     STARTCOMMAND();
-    char *comm = wordToInt(currentCommand);
-    
-    
-    
+    int x = wordToInt(currentCommand);
+    if (x>Lp.playlistSize){
+        printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n")
+    }else{
+        for (int i=0;i<Lp.playlist->isi;i++){
+            Cenqueue(Ql,Lp.playlist[x]->playlist_user[i].Penyanyi_playlist,Lp.playlist[x]->playlist_user[i].album_playlist,Lp.playlist[x]->playlist_user[i].lagu_playlist);
+        }
+    }
 }
+    
 
 /*I.S. List Pada Playlist sudah terdefinisi*/
 /*F.S. Memasukkan lagu pada playlist yang dipilih ke dalam antrian */
