@@ -2,7 +2,7 @@
 #include "Source/ADT/ADT_MesinKarakter/mesinkarakter.h"
 // #include "Source/ADT/ADT_Map/map.h"
 #include "Source/ADT/ADT_List/liststatis.h"
-#include "Source/start.h"
+#include "Source/command/start.h"
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
 #include <stdio.h>
