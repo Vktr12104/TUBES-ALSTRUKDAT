@@ -21,7 +21,7 @@
 #define ElType Word
 
 typedef struct {
-	listBerkait* A;  /* Memori tempat penyimpanan elemen (container) */
+	ListPlaylist *A;  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
 	int Max;
 } List;
