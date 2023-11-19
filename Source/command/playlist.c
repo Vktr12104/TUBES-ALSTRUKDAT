@@ -15,35 +15,39 @@ void CreatePlayList(ListPlaylist *input1) {
 }
 
 void playlist_add (ListPlaylist *input,ListPenyanyi lp, MapAlbum m2,SetLagu S) {
+    Isi_Que IQ ;
     printf("Daftar Penyanyi:\n");
     DisplayListPenyanyi(lp);
     
     printf("Masukkan Nama Penyanyi: ");
     STARTCOMMAND();
-    char *comm=wordToString(currentCommand);
+    IQ.Penyanyi_playlist=wordToString(currentCommand);
     int idxpenyanyi=albumtoidpenyanyi(lp,currentCommand);
 
-    printf("Daftar Album oleh %s:\n",comm);
+    printf("Daftar Album oleh %s:\n",IQ.Penyanyi_playlist);
     displayMapAlbum(m2,idxpenyanyi);
 
     printf("Masukkan Nama Album yang dipilih: ");
     STARTCOMMAND();
-    char *comm1=wordToString(currentCommand);
+    IQ.album_playlist=wordToString(currentCommand);
     int idxalbum=laguAlbumID(currentCommand,m2);
     
-    printf("Daftar Lagu Album %s oleh %s\n : ",comm1,comm);
+    printf("Daftar Lagu Album %s oleh %s\n : ",IQ.album_playlist,IQ.Penyanyi_playlist);
     DisplaySetLagu(S,idxalbum);
     
     printf("Masukkan ID Lagu yang dipilih: ");
     STARTCOMMAND();
     int idxlagu=wordToInt(currentCommand);
-    Word namalagu=namalagufromalbum(S,idxalbum,idxlagu);
+    IQ.lagu_playlist=wordToString(namalagufromalbum(S,idxalbum,idxlagu));
 
     printf("Daftar Playlist Pengguna : \n");
-    for(int i=0;i<input->idxPlaylist;i++){
-        printf("%d. %s\n",i+1,input->NamaPlayList);
+    for(int i=0;i<input->playlist->playlist_nama;i++){
+        printf("%d. %s\n",i+1,input->playlist->playlist_nama);
     }print("Masukkan ID Playlist yang dipilih :\n");
     STARTCOMMAND();
+
+
+    InsVLast();
     
 }
 

@@ -15,5 +15,5 @@
 
 
 void CreatePlayList (ListPlaylist *input1);
-void playlist_add (ListPlaylist *input1);
+void playlist_add (ListPlaylist *input,ListPenyanyi lp, MapAlbum m2,SetLagu S);
 #endif
