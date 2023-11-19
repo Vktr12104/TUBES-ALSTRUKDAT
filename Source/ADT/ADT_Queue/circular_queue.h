@@ -39,7 +39,7 @@ void CCreateQueue (QueueLagu * Q);
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu)
+void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
