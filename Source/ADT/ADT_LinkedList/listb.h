@@ -14,7 +14,7 @@
 typedef char* infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {
-    isi_playlist infoplaylist;
+    Isi_Que infoplaylist;
     address next;
 } ElmtList;
 typedef struct {
@@ -41,7 +41,7 @@ void CreateEmpty(listBerkait *L);
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi(isi_playlist X);
+address Alokasi(Isi_Que X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P) = X, Next(P) = Nil */
@@ -52,29 +52,29 @@ void Dealokasi(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Searchlistb(listBerkait L, isi_playlist X);
+address Searchlistb(listBerkait L, Isi_Que X);
 /* Mencari apakah ada elemen list dengan info(P) = X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst(listBerkait *L, isi_playlist X);
+void InsVFirst(listBerkait *L, Isi_Que X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast(listBerkait *L, isi_playlist X);
+void InsVLast(listBerkait *L, Isi_Que X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S. = F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst(listBerkait *L, isi_playlist *X);
+void DelVFirst(listBerkait *L, Isi_Que *X);
 /* I.S. List L tidak kosong */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /* dan alamat elemen pertama di-dealokasi */
-void DelVLast(listBerkait *L, isi_playlist *X);
+void DelVLast(listBerkait *L, Isi_Que *X);
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /* dan alamat elemen terakhir di-dealokasi */
@@ -98,7 +98,7 @@ void DelFirst(listBerkait *L, address *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /* Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP(listBerkait *L, isi_playlist X);
+void DelP(listBerkait *L, Isi_Que X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list ber-address P, dengan info(P) = X */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -141,6 +141,6 @@ void Konkat1(listBerkait *L1, listBerkait *L2, listBerkait *L3);
 
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
-boolean IsMember(listBerkait S, Word Elmt);
+boolean IsMember(listBerkait S, char* Elmt);
 
 #endif
