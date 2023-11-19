@@ -46,22 +46,22 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     }
 }
 
-/*void QueList(List *playlists, QueueLagu *Ql) {
+void QueList(ListD list_dinamis, QueueLagu *Ql) {
     printf("Masukkan ID PlayList : ");
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
 
-    if (x >= playlists->NEff) {
+    if (x >= list_dinamis.NEff) {
         printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n");
     } else {
-        ListPlaylist ply = playlists->A[x];
-        address P = ply.First;
+        listBerkait ply = list_dinamis.A[x];
+        address P = First(ply);
         while (P != NULL) {
-            Cenqueue(Ql, P->Penyanyi_playlist, P->album_playlist, P->lagu_playlist);
-            P = P->next;
-        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlayList.TabWord    );
+            Cenqueue(Ql,P->infoplaylist.Penyanyi_playlist, P->infoplaylist.album_playlist,P->infoplaylist.lagu_playlist);
+            P=Next(P);
+        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlaylist);
     }
-}*/
+}
     
 
 /*I.S. List Pada Playlist sudah terdefinisi*/
