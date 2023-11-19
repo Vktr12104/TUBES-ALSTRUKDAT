@@ -21,11 +21,12 @@
 #define ElType Word
 
 typedef struct {
-	ListPlaylist *A;  /* Memori tempat penyimpanan elemen (container) */
+	listBerkait *A;  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
 	int Max;
-} List;
+} ListD;
 
+extern ListD list_dinamis
 #define list(i) L.A[i]
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */
