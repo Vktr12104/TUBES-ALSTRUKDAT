@@ -73,24 +73,33 @@ typedef struct {
 
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
 
-typedef struct tElmtlist *address;
-typedef struct tElmtlist { 
-	int lagu_playlist;
-    int album_playlist;
-    int Penyanyi_playlist;
-    address next;
+typedef struct {
+    Word lagu_playlist;
+    Title album_playlist[MaxEl];
+    Title Penyanyi_playlist[MaxEl];
 } isi_playlist;
 
 typedef struct {
-    address First;
-    Word NamaPlayList;
-    int idxPlaylist;
+    Word lagu_playlist;
+    Title album_playlist[MaxEl];
+    Title Penyanyi_playlist[MaxEl];
+} contoh_struc;
+
+typedef struct {
+    Title playlist_nama[MaxEl];
+    isi_playlist playlist_user[MaxEl];
+    int isi;
+} NamaPlaylist; // Meninjau nama playlist (List Playlist)
+
+typedef struct {
+    NamaPlaylist* playlist;
+    size_t playlistSize;
 } ListPlaylist;
 
 typedef struct {
-    int penyanyi;
-    Key idxalbum;
-    int idxlagu;
+    char *lagu_playlist;
+    char *album_playlist;
+    char *Penyanyi_playlist;
 } Isi_Que;
 
 typedef struct {
@@ -102,7 +111,7 @@ typedef struct {
 // Data Struct yang digunakan untuk antrian pada  queue lagu (Queue lagu & PLAY)
 
 typedef struct {
-    Lagu hist_lagu[MaxEl];
+    Isi_Que hist_lagu[MaxEl];
     int idxTop;
     int count;
 } HistoriLagu;
