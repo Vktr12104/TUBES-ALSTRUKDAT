@@ -12,10 +12,12 @@ int main(){
     ListPenyanyi listmusisi3;
     SetLagu lagu2;
     MapAlbum m2;
+    ListPlaylist listlagu3;
     STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
     DisplayListPenyanyi(listmusisi3);
     DisplaySetLagu(lagu2,5);
     listdefault(listmusisi3,lagu2,m2);
+    listplaylist(listlagu3);
     //displayMapAlbum(m2);
     
 

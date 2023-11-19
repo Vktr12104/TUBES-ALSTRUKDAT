@@ -4,6 +4,7 @@
 #include "ADT/ADT_Mesin-Kata/mesinkata.h"
 #include "ADT/ADT_Queue/queue.h"
 #include "ADT/ADT_Queue/circular_queue.h"
+#include "ADT/ADT_List/liststatis.h"
 
 void QueSong(ListPenyanyi lp, QueueLagu *Ql) {
     QueueLagu Q;
