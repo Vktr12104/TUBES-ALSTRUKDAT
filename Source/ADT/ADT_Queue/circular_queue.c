@@ -87,9 +87,7 @@ void displayQueue(QueueLagu Q) {
     printf("[");
     if (!CIsEmpty(Q)) {
         for (int i = CIDX_HEAD(Q); i < CIDX_HEAD(Q) + CLength(Q); i++) {
-            printf("%s", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist);
-            printf("%s", Q.Isi[i % (MaxEl+1)].album_playlist);
-            printf("%s\n", Q.Isi[i % (MaxEl+1)].lagu_playlist);
+            printf("%s- %s- %s\n", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
             if (i % (IDX_MAX + 1) != CIDX_TAIL(Q)) {
                 printf(", ");
             }
@@ -112,33 +110,3 @@ void displayQueue(QueueLagu Q) {
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
-
-int main() {
-    QueueLagu myQueue;
-    char penyanyi[50], album[50], lagu[50];
-
-    // Inisialisasi QueueLagu
-    CCreateQueue(&myQueue);
-
-    // Enqueue data
-    Cenqueue(&myQueue, "BLACKPINK", "BORN PINK", "ABC");
-    Cenqueue(&myQueue, "Another Artist", "Another Album", "XYZ");
-
-    // Display Queue
-    displayQueue(myQueue);
-
-    // Dequeue data
-    Cdequeue(&myQueue, penyanyi, album, lagu);
-    printf("Dequeued: (%s, %s, %s)\n", penyanyi, album, lagu);
-
-    // Display Queue after dequeue
-    displayQueue(myQueue);
-
-    // Enqueue more data
-    Cenqueue(&myQueue, "New Artist", "New Album", "123");
-
-    // Display Queue after enqueuing more data
-    displayQueue(myQueue);
-
-    return 0;
-}
