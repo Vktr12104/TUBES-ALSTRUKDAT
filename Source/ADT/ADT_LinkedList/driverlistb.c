@@ -2,60 +2,56 @@
 #include <string.h>
 #include "listb.h"
 #include "../ADT_Set/boolean.h"
-
 int main() {
-    List L1, L2, L3;
-    char input[50]; // Assuming a maximum string length of 49 characters
+    listBerkait L1, L2, L3;
+    isi_playlist lagu1, lagu2, lagu3;
 
-    // Initialize the lists
+    // Inisialisasi lagu
+    lagu1.lagu_playlist.TabWord[0] = 'S';
+    lagu1.lagu_playlist.TabWord[1] = 'o';
+    lagu1.lagu_playlist.TabWord[2] = 'n';
+    lagu1.lagu_playlist.TabWord[3] = 'g';
+    lagu1.lagu_playlist.Length = 4;
+
+    lagu2.lagu_playlist.TabWord[0] = 'M';
+    lagu2.lagu_playlist.TabWord[1] = 'y';
+    lagu2.lagu_playlist.TabWord[2] = 'W';
+    lagu2.lagu_playlist.TabWord[3] = 'a';
+    lagu2.lagu_playlist.TabWord[4] = 'y';
+    lagu2.lagu_playlist.Length = 5;
+
+    lagu3.lagu_playlist.TabWord[0] = 'H';
+    lagu3.lagu_playlist.TabWord[1] = 'e';
+    lagu3.lagu_playlist.TabWord[2] = 'l';
+    lagu3.lagu_playlist.TabWord[3] = 'l';
+    lagu3.lagu_playlist.TabWord[4] = 'o';
+    lagu3.lagu_playlist.Length = 5;
+
+    // Inisialisasi list
     CreateEmpty(&L1);
     CreateEmpty(&L2);
     CreateEmpty(&L3);
 
-    // Insert some strings into L1 and L2
-    printf("Enter strings for L1 (type 'end' to stop):\n");
-    while (1) {
-        scanf("%s", input);
-        if (strcmp(input, "end") == 0) {
-            break;
-        }
-        InsVLast(&L1, input);
-    }
+    // Menambahkan lagu ke list
+    InsVLast(&L1, lagu1);
+    InsVLast(&L1, lagu2);
 
-    printf("Enter strings for L2 (type 'end' to stop):\n");
-    while (1) {
-        scanf("%s", input);
-        if (strcmp(input, "end") == 0) {
-            break;
-        }
-        InsVLast(&L2, input);
-    }
+    InsVLast(&L2, lagu3);
 
-    // Display L1 and L2
-    printf("L1: ");
+    // Menampilkan isi list
+    printf("Isi List 1: ");
     PrintInfo(L1);
     printf("\n");
 
-    printf("L2: ");
+    printf("Isi List 2: ");
     PrintInfo(L2);
     printf("\n");
 
-    // Test the InversList function
-    InversList(&L1);
-    InversList(&L2);
-
-    printf("Inversed L1: ");
-    PrintInfo(L1);
-    printf("\n");
-
-    printf("Inversed L2: ");
-    PrintInfo(L2);
-    printf("\n");
-
-    // Concatenate L1 and L2 into L3
+    // Menggabungkan dua list
     Konkat1(&L1, &L2, &L3);
 
-    printf("L3 (Concatenated L1 and L2): ");
+    // Menampilkan hasil penggabungan
+    printf("Isi List Setelah Penggabungan: ");
     PrintInfo(L3);
     printf("\n");
 
