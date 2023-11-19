@@ -7,6 +7,8 @@
 #include "ADT/ADT_List/liststatis.h"
 #include "ADT/ADT_Map/map.h"
 #include "ADT_Set/set.h"
+#include "ADT/ADT_LinkedList/listb.h"
+#include "ADT/ADT_List/listdinamis.h"
 
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     QueueLagu Q;
@@ -43,17 +45,23 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     }
 }
 
-void QueList(ListPlaylist Lp, QueueLagu *Ql) {
+void QueList(List *playlists, QueueLagu *Ql) {
     printf("Masukkan ID PlayList : ");
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
 
-    if (x >= Lp.playlistSize) {
+    if (x >= playlists->NEff) {
         printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n");
     } else {
-        
+        ListPlaylist ply = playlists->A[x];
+        address P = ply.First;
+        while (P != NULL) {
+            Cenqueue(Ql, P->Penyanyi_playlist, P->album_playlist, P->lagu_playlist);
+            P = P->next;
+        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlayList.TabWord);
     }
 }
+
     
 
 /*I.S. List Pada Playlist sudah terdefinisi*/
