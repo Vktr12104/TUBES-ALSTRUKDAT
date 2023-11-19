@@ -31,7 +31,7 @@ typedef struct {
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty(listBerkait L);
+boolean IsEmptylistb(listBerkait L);
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
@@ -51,7 +51,7 @@ void Dealokasi(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search(listBerkait L, isi_playlist X);
+address Searchlistb(listBerkait L, isi_playlist X);
 /* Mencari apakah ada elemen list dengan info(P) = X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
@@ -80,14 +80,14 @@ void DelVLast(listBerkait *L, isi_playlist *X);
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst(listBerkait *L, address P);
+void InsertFirstlistb(listBerkait *L, address P);
 /* I.S. Sembarang, P sudah dialokasi */
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
 void InsertAfter(listBerkait *L, address P, address Prec);
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /* P sudah dialokasi */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast(listBerkait *L, address P);
+void InsertLastlistb(listBerkait *L, address P);
 /* I.S. Sembarang, P sudah dialokasi */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 

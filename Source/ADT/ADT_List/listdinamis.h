@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ADT/struc.h"
+#include "../ADT_LinkedList/listb.h"
 
 /* Kamus Umum */
 #define MaxEl 100
@@ -20,7 +21,7 @@
 #define ElType Word
 
 typedef struct {
-	ElType *A;  /* Memori tempat penyimpanan elemen (container) */
+	listBerkait A;  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
 	int Max;
 } List;

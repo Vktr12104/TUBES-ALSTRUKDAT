@@ -4,7 +4,7 @@
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (listBerkait L) {
+boolean IsEmptylistb (listBerkait L) {
     if (First(L) == NULL) {
         return true;
     }
@@ -43,7 +43,7 @@ void Dealokasi (address *P) {
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (listBerkait L, isi_playlist X) {
+address Searchlistb (listBerkait L, isi_playlist X) {
     address P;
     boolean found;
 
@@ -114,7 +114,7 @@ void DelVLast (listBerkait *L, isi_playlist *X) {
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (listBerkait *L, address P) {
+void InsertFirstlistb (listBerkait *L, address P) {
     Next(P) = First(*L);
     First(*L) = P;
 }
@@ -127,7 +127,7 @@ void InsertAfter (listBerkait *L, address P, address Prec) {
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (listBerkait *L, address P) {
+void InsertLastlistb (listBerkait *L, address P) {
     if (IsEmpty(*L)){ // empty list
         Next(P) = NULL;
         First(*L) = P;
