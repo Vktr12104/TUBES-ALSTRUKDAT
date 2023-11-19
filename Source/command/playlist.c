@@ -1,57 +1,70 @@
 #include <stdio.h>
 #include "playlist.h"
 #include "../ADT/struc.h"
+#include "../ADT/ADT_LinkedList/listb.h"
 
+void CreatePlayList(ListPlaylist input1) {
+    printf("Masukkan nama playlist yang ingin dibuat : \n");
+    STARTCOMMAND();  
+    if (input1.playlistSize < MaxEl) {
+       
+        input1.playlist[input1.playlistSize].isi = 0;
 
-void CreatePlayList(ListPlaylist *input1){
-    printf ("Masukkan nama playlist yang ingin dibuat : \n");
-    STARTCOMMAND();
-    input1.playlistSize++;
-    input1.playlist[input1.playlistSize].playlist_nama=currentCommand;
-    input1.playlist[input1.playlistSize].list=Nil;
+        for (int i = 0; i < currentCommand.Length && currentCommand.TabWord[i] != '\0'; ++i) {
+            input1.playlist[input1.playlistSize].playlist_nama[i] = currentCommand.TabWord[i];
+        }
+        input1.playlist[input1.playlistSize].playlist_nama[currentCommand.Length] = '\0';
+        input1.playlistSize++;
+    } else {
+        printf("Playlist sudah penuh, tidak dapat membuat playlist baru.\n");
+    }
 }
+
 void playlist_add (ListPlaylist *input) {
     ListPenyanyi PLPenyanyi;
     printf("Daftar Penyanyi :\n");
-    for (int i = 0;i<PLPlaylist.NEff;i++){
-        printf("%d. %s\n",i+1,PLPenyanyi.A[i]);
+    for (int i = 0;i<PLPenyanyi.penyanyi_length;i++){
+        printf("%d. %s\n",i+1,PLPenyanyi.penyanyi_list[i].nama_penyanyi);
     }
     printf("Masukkan Nama Penyanyi yang dipilih : ");
     STARTCOMMAND();
     char comm1 = wordToString(currentCommand);
+
 }
 
-
-void MoveLagu(ListPlaylist l) {
+void MoveLagu(ListPlaylist lp) {
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
     STARTCOMMAND();
     int y = wordToInt(currentCommand);
-    Address p = First(lp->playlist[x].playlist_user); // Gunakan pointer lp
 
-    if (x >= l.playlistSize) {
+    if (x >= lp.playlistSize || x < 0) {
         printf("Tidak ada playlist dengan ID %d.", x);
     } else {
+        address p= First(lp.playlist[x]->playlist_user);
         int sum = 0;
-
-        // Periksa apakah playlist kosong atau tidak
-        if (p == Nil) {
-            printf("Playlist %s kosong.", l.playlist[x]);
+        if (lp.playlist->isi== Nil) {
+            printf("Playlist %s kosong.", lp.playlist[x].playlist_nama);
         } else {
             while (sum != y && p != Nil) {
                 sum++;
                 p = Next(p);
             }
             if (sum == y) {
-                DelP(&lp->playlist[x].playlist_user, Info(p)); // Gunakan pointer p->info
-                printf("Lagu “%s” oleh “%s” telah dihapus dari playlist “%s”!", Info(p),l.playlist[x].playlist_user[y].Penyanyi,l.playlist[x]);
+                DelP(&lp.playlist[x].playlist_user, Info(p)); 
+                printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari playlist \"%s\"!", p->info.lagu_playlist, p->info.Penyanyi_playlist, lp.playlist[x].playlist_nama);
             } else {
-                printf("Tidak ada lagu dengan urutan %d di playlist %s!", y, l.playlist[x]);
+                printf("Tidak ada lagu dengan urutan %d di playlist %s!", y, lp.playlist[x].playlist_nama);
             }
         }
     }
 }
-/*/
+void MoveLagu(ListPlaylist *lp){
+    
+}
+
+
+/*
     Penyanyi pilihan_penyanyi;
     for (int i = 0;i<PLPenyanyi.penyanyi_length;i++){
         if (StrComp(comm1,PLPenyanyi.penyanyi_list[i].nama_penyanyi)){
@@ -115,37 +128,4 @@ void MoveLagu(ListPlaylist l) {
         }
     }
 }
-
-
-void playlist_swap
-void playlist remove
-void playlist delete
-
-typedef struct {
-    Word lagu_playlist;
-    Title album_playlist[MaxEL];
-    Title Penyanyi_playlist[MaxEl];
-} isi_playlist;
-
-typedef struct {
-    Title playlist_nama[MaxEl];
-    isi_playlist playlist_user[MaxEl];
-    int isi_playlist;
-} NamaPlaylist; // Meninjau nama playlist (List Playlist)
-
-typedef struct {
-    NamaPlaylist* playlist;
-    size_t playlistSize;
-} ListPlaylist;
-
-
-
-
-
-
-
-
-typedef struct {
-    Penyanyi penyanyi_list[MaxEl];
-    int penyanyi_length;
-} ListPenyanyi;
+*/

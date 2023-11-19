@@ -80,25 +80,24 @@ typedef struct {
 /* Struktur Data Playlist yang memiliki Lagu [List Berkait] */
 /*  Setiap list sebagai pointer menuju masing-masing playlist memiliki:
     1) playlist_nama dan 2) list (pointer) */
-typedef struct tPlaylist* Address;
-typedef struct tPlaylist {
-    Lagu lagu_playlist;
-    Address next;
-} LaguPlaylist; // Berfungsi untuk memutar lagu pada Playlist (PLAY)
-
-// Meninjau lagu yang terdapat pada playlist
+typedef struct {
+    Word lagu_playlist;
+    Title album_playlist[MaxEL];
+    Title Penyanyi_playlist[MaxEl];
+} isi_playlist;
 typedef struct {
     Title playlist_nama[MaxEl];
-    Address list;
+    isi_playlist playlist_user[MaxEl];
+    int isi;
 } NamaPlaylist; // Meninjau nama playlist (List Playlist)
-
-/* Struktur Data List Playlist yang memiliki Playlist (yang memiliki Lagu) [List Dinamis] */
-/* playlistSize pertama kali diinisialisasi dengan nilai (MaxEl/20) */
 typedef struct {
     NamaPlaylist* playlist;
     size_t playlistSize;
 } ListPlaylist;
-/* ### Struktur Data ListPlaylist ### */
+typedef struct {
+    Penyanyi penyanyi_list[MaxEl];
+    int penyanyi_length;
+} ListPenyanyi;
 typedef struct {
     Lagu lagu_queue[MaxEl];
     int idxHead;
