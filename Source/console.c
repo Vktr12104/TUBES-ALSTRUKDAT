@@ -34,24 +34,24 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     printf("Masukkan ID Lagu yang dipilih: ");
     STARTCOMMAND();
     int idxlagu=wordToInt(currentCommand);
+    Word namalagu=namalagufromalbum(S,idxalbum,idxlagu);
     if (!isFull(*Ql)){
         prinf("Queue Lagu Penuh!\n");
     }else{
         Cenqueue(&Q,idxpenyanyi,idxalbum,idxlagu);
-        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n", comm2, comm);
+        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n", namalagu, comm);
     }
 }
 
-void QueList(ListPlaylist Lp, QueueLagu *Ql){
-    printf("Masukkan ID PlayList :");
+void QueList(ListPlaylist Lp, QueueLagu *Ql) {
+    printf("Masukkan ID PlayList : ");
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
-    if (x>Lp.playlistSize){
-        printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n")
-    }else{
-        for (int i=0;i<Lp.playlist->isi;i++){
-            Cenqueue(Ql,Lp.playlist[x]->playlist_user[i].Penyanyi_playlist,Lp.playlist[x]->playlist_user[i].album_playlist,Lp.playlist[x]->playlist_user[i].lagu_playlist);
-        }
+
+    if (x >= Lp.playlistSize) {
+        printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n");
+    } else {
+        
     }
 }
     
