@@ -9,6 +9,7 @@
 #include "../ADT_Mesin-Kata/mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "ADT/struc.h"
 
 /* Kamus Umum */
 #define MaxEl 100
@@ -24,7 +25,7 @@ typedef struct {
 	int Max;
 } List;
 
-#define List(i) L.A[i]
+#define list(i) L.A[i]
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */
 /* Jika L adalah List, cara deklarasi dan akses: */
@@ -93,9 +94,9 @@ void InsertLast(List *L, ElType X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-void DeleteFirst(List *L);
-/* I.S. L terdefinisi, tidak kosong. */
-/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
+// void DeleteFirst(List *L);
+// /* I.S. L terdefinisi, tidak kosong. */
+// /* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
 
-void DeleteAt(List *L, IdxType i);
+// void DeleteAt(List *L, IdxType i);
 #endif
