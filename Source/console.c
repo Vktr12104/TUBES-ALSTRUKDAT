@@ -128,6 +128,15 @@ void QueMove(QueueLagu *Q){
         printf("Lagu dengan urutan ke %d tidak ada.", x);
     } else {
         int i = 0;
+        while (!isEmpty(*Q)) {
+            Cdequeue(Q, Penyanyitemp, albumtemp, lagutemp);
+            if (i + 1 != x) {
+                Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
+            }
+            i++;
+        }
+    }
+    *Q = Qtemp;
 }
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
