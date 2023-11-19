@@ -78,19 +78,21 @@ typedef struct {
 /*  Setiap list sebagai pointer menuju masing-masing playlist memiliki:
     1) playlist_nama dan 2) list (pointer) */
 typedef struct {
-    Word lagu_playlist;
-    Title album_playlist[MaxEl];
-    Title Penyanyi_playlist[MaxEl];
+    int lagu_playlist;
+    Key album_playlist;
+    int Penyanyi_playlist;
 } isi_playlist;
 typedef struct {
     Title playlist_nama[MaxEl];
-    isi_playlist playlist_user[MaxEl];
-    int isi;
+    isi_playlist playlist_user[MaxEl]; // detail setiap lagu 
+    int isi; // Isi lagunya 
 } NamaPlaylist; // Meninjau nama playlist (List Playlist)
+
 typedef struct {
-    NamaPlaylist* playlist;
-    size_t playlistSize;
+    NamaPlaylist* playlist[10];
+    int playlistSize;
 } ListPlaylist;
+
 typedef struct {
     int penyanyi;
     Key idxalbum;
