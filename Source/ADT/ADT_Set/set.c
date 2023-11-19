@@ -73,6 +73,31 @@ void DisplaySetLagu(SetLagu S, int idalbum)
     }
 }
 
+int CountLaguByAlbumID(SetLagu *setLagu, int targetAlbumID) {
+    int count = 0;
+
+    for (int i = 0; i < setLagu->jumlah_lagu; ++i) {
+        if (setLagu->A[i].album_id == targetAlbumID) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+Word namalagufromalbum (SetLagu p2,int albumid, int lagukeberapa){
+    int count = 0;
+
+    for (int i = 0; i < p2.jumlah_lagu; ++i) {
+        if (p2.A[i].album_id == albumid) {
+            count++;
+            if (count == lagukeberapa) {
+                return p2.A[i].nama_lagu;
+            }
+        }
+        
+    }
+}
 
 /*
 void DeleteLagu(Lagu *S, infotype Elmt) {

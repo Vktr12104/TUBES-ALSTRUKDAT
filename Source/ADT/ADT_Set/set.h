@@ -36,5 +36,10 @@ boolean IsMemberLagu(SetLagu S, Word Elmt);
 void DisplaySetLagu(SetLagu S, int idalbum);
 /* Mendisplay SetLagu*/
 
+Word namalagufromalbum (SetLagu p2,int albumid, int lagukeberapa);
+// menghasilkan nama lagu dari input albumid dan urutan nya
+
+int CountLaguByAlbumID(SetLagu *setLagu, int targetAlbumID) ;
+// menghasilkan jumlah lagu yang ada di album tersebut
 
 #endif
