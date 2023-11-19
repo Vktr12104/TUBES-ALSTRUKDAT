@@ -14,10 +14,6 @@ boolean IsEmpty(List L) {
 	return (L.NEff == 0);
 }
 
-boolean IsFull(List L) {
-	return (L.NEff == L.Max);
-}
-
 /* ********** SELEKTOR ********** */
 int Length(List L) {
 	return L.NEff;
@@ -31,11 +27,13 @@ IdxType LastIdx(List L) {
 	return L.NEff - 1;
 }
 
-/* ********** Selektor SET : Mengubah nilai list dan elemen list *** */
-void Set(List *L, IdxType i, ElType v) {
-	if (IsIdxEff(*L, i)) {
-		L->A[i] = v;
-	}
+/* ********** Test Indeks yang valid ********** */
+boolean IsIdxValid(List L, IdxType i) {
+    return (i >= 0 && i < MaxEl);
+}
+
+boolean IsIdxEff(List L, IdxType i) {
+    return (i >= 0 && i < L.NEff);
 }
 
 /* ********** Operasi-operasi ********** */
@@ -103,4 +101,24 @@ void InsertLast(List *L, ElType X) {
 	// Masukkan elemen X ke akhir list
 	L->A[L->NEff] = X;
 	L->NEff;
+}
+
+void DeleteFirst(List *L) {
+    IdxType i;
+    if (!IsEmpty(*L)) {
+        for (i = 0; i < L->NEff - 1; i++) {
+            L->A[i] = L->A[i + 1];
+        }
+        L->NEff--;
+    }
+}
+
+void DeleteAt(List *L, IdxType i) {
+    IdxType j;
+    if (!IsEmpty(*L) && IsIdxEff(*L, i)) {
+        for (j = i; j < L->NEff - 1; j++) {
+            L->A[j] = L->A[j + 1];
+        }
+        L->NEff--;
+    }
 }

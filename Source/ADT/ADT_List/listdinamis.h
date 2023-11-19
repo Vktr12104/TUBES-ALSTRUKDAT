@@ -94,9 +94,9 @@ void InsertLast(List *L, ElType X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-// void DeleteFirst(List *L);
-// /* I.S. L terdefinisi, tidak kosong. */
-// /* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
+void DeleteFirst(List *L);
+/* I.S. L terdefinisi, tidak kosong. */
+/* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
 
-// void DeleteAt(List *L, IdxType i);
+void DeleteAt(List *L, IdxType i);
 #endif
