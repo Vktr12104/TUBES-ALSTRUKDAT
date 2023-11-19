@@ -73,17 +73,14 @@ typedef struct {
 
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
 
-
-/* Struktur Data Playlist yang memiliki Lagu [List Berkait] */
-/*  Setiap list sebagai pointer menuju masing-masing playlist memiliki:
-    1) playlist_nama dan 2) list (pointer) */
-typedef tElmtlist *address;
-typedef struct tElmtlist{
-    int lagu_playlist;
+typedef struct tElmtlist *address;
+typedef struct tElmtlist { 
+	int lagu_playlist;
     int album_playlist;
     int Penyanyi_playlist;
     address next;
 } isi_playlist;
+
 typedef struct {
     address First;
     Word NamaPlayList;
