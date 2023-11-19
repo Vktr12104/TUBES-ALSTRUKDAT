@@ -88,7 +88,8 @@ boolean IsMemberMapAlbum(MapAlbum P, Word AT){
 }
 
 int laguAlbumID(Word input,MapAlbum P){
-    int i,index;
+    int i;
+    int index=0;
     for (i=1;i<=P.count;i++){
         if(isWordEqual(input,P.Elements[i].nama_album)){
             index=i;

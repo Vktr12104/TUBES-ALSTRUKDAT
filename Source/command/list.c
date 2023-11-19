@@ -33,8 +33,9 @@ void listdefault(ListPenyanyi input1, SetLagu input3, MapAlbum input2) {
             STARTCOMMAND();
             Word cur = currentCommand;
             int id = laguAlbumID(cur, input2);
+            
 
-            if (id < 0) {
+            if (id <= 0) {
                 printf("Album %s tidak ditemukan. Silakan coba lagi.\n", wordToString(cur));
                 return;
             }
