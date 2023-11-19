@@ -19,6 +19,7 @@ typedef struct tElmtlist {
 } ElmtList;
 typedef struct {
     address First;
+    Title NamaPlaylist[MaxEl];
 } listBerkait;
 
 /* Definisi list: */

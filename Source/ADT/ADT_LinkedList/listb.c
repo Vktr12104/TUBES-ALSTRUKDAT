@@ -82,7 +82,7 @@ void InsVLast (listBerkait *L, isi_playlist X) {
 
     P = Alokasi(X);
     if (P != NULL) {
-        InsertLast(L,P);
+        InsertLastlistb(L,P);
     }
 }
 /* I.S. L mungkin kosong */
@@ -128,7 +128,7 @@ void InsertAfter (listBerkait *L, address P, address Prec) {
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
 void InsertLastlistb (listBerkait *L, address P) {
-    if (IsEmpty(*L)){ // empty list
+    if (IsEmptylistb(*L)){ // empty list
         Next(P) = NULL;
         First(*L) = P;
     }
@@ -156,7 +156,7 @@ void DelFirst (listBerkait *L, address *P) {
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
 void DelP (listBerkait *L, isi_playlist X) {
-    address P = Search(*L, X);
+    address P = Searchlistb(*L, X);
 
     if (P != NULL){   // Found
         address prec = First(*L);
@@ -232,7 +232,7 @@ void DelAfter (listBerkait *L, address *Pdel, address Prec) {
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfo(listBerkait L) {
     printf("[");
-    if (!IsEmpty(L)) {
+    if (!IsEmptylistb(L)) {
         address CP = First(L);
         do {
             printf("%.*s", Info(CP).lagu_playlist.Length, Info(CP).lagu_playlist.TabWord);
@@ -289,7 +289,7 @@ void InversList (listBerkait *L) {
 void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
     CreateEmpty(L3);
 
-    if (!(IsEmpty(*L1))){
+    if (!(IsEmptylistb(*L1))){
         First(*L3) = First(*L1);
 
         address last1 = First(*L1);

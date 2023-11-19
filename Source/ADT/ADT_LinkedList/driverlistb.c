@@ -65,7 +65,7 @@ int main() {
     printf("\n");
 
     // Mencari lagu "dream" di playlist ketiga
-    address foundSong = Search(playlist3, dream);
+    address foundSong = Searchlistb(playlist3, dream);
     if (foundSong != NULL) {
         printf("Lagu 'dream' ditemukan di playlist 3.\n");
     } else {
