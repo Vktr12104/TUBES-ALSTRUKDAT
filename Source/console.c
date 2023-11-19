@@ -171,7 +171,24 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
 /*F.S. Jika keadaan belum memutar lagu tetapi sudah ada que maka akan memuta lagu pada que, Jika sedang memutar lagu 
 maka lagu akan dimasukkan pada History Lagu dan memutar lagu pada queue*/
 void SongPrev(HistoriLagu *HS){
-    
+    QueueLagu Qtemp;
+    char *lagutemp,*albumtemp,*penyanyitemp;
+    CreateQueue(&Qtemp);
+    if(IsHistEmpty(*HS)){
+        printf("History kosong, memutar kembali lagu\n");
+        printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
+    }else{
+        Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
+        while(!isEmpty(*Q)){
+            Cdequeue(&Q,penyanyitemp,albumtemp,lagutemp);
+            Cenqueue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
+        }while(isEmpty(Qtemp)){
+            Cdequeue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
+            Cenqueue(&Q,penyanyitemp,albumtemp,lagutemp);
+        }Pop(HS, (&current)->penyanyi, (&current)->album, (&current)->lagu);
+        printf("Memutar lagu sebelumnya\n");
+        printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
+    }
 }
 /*I.S. History  pada lagu sudah terdefinisi  */
 /*F.S Memutar lagu pada history lagu, jika belum ada dan baru memutar laguu yang diputar maka lagu 
