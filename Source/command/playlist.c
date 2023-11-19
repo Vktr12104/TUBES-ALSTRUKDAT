@@ -6,24 +6,21 @@
 void CreatePlayList(ListPlaylist input1) {
     printf("Masukkan nama playlist yang ingin dibuat : \n");
     STARTCOMMAND();  
-    if (input1.playlistSize < MaxEl) {
-       
-        input1.playlist[input1.playlistSize].isi = 0;
+    
+    input1.playlist[input1.playlistSize].isi = 0;
 
         for (int i = 0; i < currentCommand.Length && currentCommand.TabWord[i] != '\0'; ++i) {
             input1.playlist[input1.playlistSize].playlist_nama[i] = currentCommand.TabWord[i];
         }
         input1.playlist[input1.playlistSize].playlist_nama[currentCommand.Length] = '\0';
         input1.playlistSize++;
-    } else {
-        printf("Playlist sudah penuh, tidak dapat membuat playlist baru.\n");
-    }
+    
 }
 
 void playlist_add (ListPlaylist *input) {
     ListPenyanyi PLPenyanyi;
     printf("Daftar Penyanyi :\n");
-    for (int i = 0;i<PLPenyanyi.penyanyi_length;i++){
+    for (int i = 0;i<PLPenyanyi.;i++){
         printf("%d. %s\n",i+1,PLPenyanyi.penyanyi_list[i].nama_penyanyi);
     }
     printf("Masukkan Nama Penyanyi yang dipilih : ");
@@ -60,7 +57,7 @@ void MoveLagu(ListPlaylist lp) {
     }
 }
 void MoveLagu(ListPlaylist *lp){
-    
+
 }
 
 

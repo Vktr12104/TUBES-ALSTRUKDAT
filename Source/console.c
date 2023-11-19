@@ -58,7 +58,7 @@ void QueList(List *playlists, QueueLagu *Ql) {
         while (P != NULL) {
             Cenqueue(Ql, P->Penyanyi_playlist, P->album_playlist, P->lagu_playlist);
             P = P->next;
-        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlayList.TabWord);
+        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlayList.TabWord    );
     }
 }
 

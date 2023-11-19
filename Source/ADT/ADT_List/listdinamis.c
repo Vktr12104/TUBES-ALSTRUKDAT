@@ -4,7 +4,7 @@
 /* Konstruktor: create list kosong */
 List MakeList() {
     List L;
-    L.A = (listBerkait*)malloc(MaxEl * sizeof(listBerkait));
+    L.A = (ListPlaylist*)malloc(MaxEl * sizeof(ListPlaylist));
     L.NEff = 0;
     L.Max = MaxEl;
     return L;
@@ -41,17 +41,17 @@ boolean IsIdxEff(List L, IdxType i) {
 }
 
 /* ********** Operasi-operasi ********** */
-boolean IsMemberdinamis(List L, listBerkait X) {
+boolean IsMemberdinamis(List L, ListPlaylist X) {
     int i;
     for (i = 0; i < L.NEff; i++) {
-        if (StrComp(X.NamaPlaylist,L.A[i].NamaPlaylist)) {
+        if (isWordEqual(X.NamaPlayList,L.A[i].NamaPlayList)) {
             return true;
         }
     }
     return false;
 }
 
-void InsertFirst(List *L, listBerkait X) {
+void InsertFirst(List *L, ListPlaylist X) {
     if (L->NEff < L->Max) {
         int i;
         for (i = L->NEff; i > 0; i--) {
@@ -62,7 +62,7 @@ void InsertFirst(List *L, listBerkait X) {
     }
 }
 
-void InsertAt(List *L, listBerkait X, IdxType i) {
+void InsertAt(List *L, ListPlaylist X, IdxType i) {
     if (L->NEff < L->Max && IsIdxEff(*L, i)) {
         int j;
         for (j = L->NEff; j > i; j--) {
@@ -73,7 +73,7 @@ void InsertAt(List *L, listBerkait X, IdxType i) {
     }
 }
 
-void InsertLast(List *L, listBerkait X) {
+void InsertLast(List *L, ListPlaylist X) {
     if (L->NEff < L->Max) {
         L->A[L->NEff] = X;
         L->NEff++;
