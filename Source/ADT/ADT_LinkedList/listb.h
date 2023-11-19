@@ -9,9 +9,7 @@
 #include "../ADT_Set/boolean.h"
 #include "../ADT_Mesin-Kata/mesinkata.h"
 #include <stdio.h>
-#include "../ADT/struc.h"
-
-#define Nil NULL
+#include "../struc.h"
 
 typedef char* infotype;
 typedef struct tElmtlist *address;
