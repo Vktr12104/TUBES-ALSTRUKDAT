@@ -34,7 +34,7 @@ void CreateEmpty(listBerkait *L);
 /* I.S. sembarang */
 /* F.S. Terbentuk list kosong */
 
-	@@ -52,95 +52,95 @@ void Dealokasi(address *P);
+void Dealokasi(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
