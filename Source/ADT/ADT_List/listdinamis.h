@@ -73,20 +73,20 @@ boolean IsIdxEff (List L, IdxType i);
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
 /* ********** Operasi-operasi ********** */
-boolean IsMemberdinamis(List L, listBerkait X);
+boolean IsMemberdinamis(List L, ListPlaylist X);
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-void InsertFirst(List *L, listBerkait X);
+void InsertFirst(List *L, ListPlaylist X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen pertama L. */
 
-void InsertAt(List *L, listBerkait X, IdxType i);
+void InsertAt(List *L, ListPlaylist X, IdxType i);
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
-void InsertLast(List *L, listBerkait X);
+void InsertLast(List *L, ListPlaylist X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
