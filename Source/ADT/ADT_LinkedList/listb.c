@@ -22,7 +22,7 @@ void CreateEmpty (listBerkait *L) {
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi (isi_playlist X) {
+address Alokasi (Isi_Que X) {
     address P;
     P = (ElmtList *) malloc(sizeof(ElmtList));
     if (P!= NULL) {
@@ -43,14 +43,14 @@ void Dealokasi (address *P) {
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Searchlistb (listBerkait L, isi_playlist X) {
+address Searchlistb (listBerkait L, Isi_Que X) {
     address P;
     boolean found;
 
     P = First(L);
     found = false;
     while ((P != NULL) && (!found)) {
-        if (Info(P).lagu_playlist.TabWord == X.lagu_playlist.TabWord) {
+        if (StrComp(P->infoplaylist.lagu_playlist,X.lagu_playlist)) {
             found = true;
         }
         else {
@@ -65,7 +65,7 @@ address Searchlistb (listBerkait L, isi_playlist X) {
 
 /****************** PRIMITIF BERDASARKAN NULLAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (listBerkait *L, isi_playlist X) {
+void InsVFirst (listBerkait *L, Isi_Que X) {
     address P;
 
     P = Alokasi(X);
@@ -77,7 +77,7 @@ void InsVFirst (listBerkait *L, isi_playlist X) {
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan NULLai X jika alokasi berhasil */
-void InsVLast (listBerkait *L, isi_playlist X) {
+void InsVLast (listBerkait *L, Isi_Que X) {
     address P;
 
     P = Alokasi(X);
@@ -91,7 +91,7 @@ void InsVLast (listBerkait *L, isi_playlist X) {
 /* berNULLai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (listBerkait *L, isi_playlist *X) {
+void DelVFirst (listBerkait *L, Isi_Que *X) {
     address P;
 
     DelFirst(L, &P);
@@ -101,7 +101,7 @@ void DelVFirst (listBerkait *L, isi_playlist *X) {
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: NULLai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
-void DelVLast (listBerkait *L, isi_playlist *X) {
+void DelVLast (listBerkait *L, Isi_Que *X) {
     address P;
 
     DelLast(L, &P);
@@ -155,7 +155,7 @@ void DelFirst (listBerkait *L, address *P) {
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (listBerkait *L, isi_playlist X) {
+void DelP (listBerkait *L, Isi_Que X) {
     address P = Searchlistb(*L, X);
 
     if (P != NULL){   // Found
@@ -235,7 +235,7 @@ void PrintInfo(listBerkait L) {
     if (!IsEmptylistb(L)) {
         address CP = First(L);
         do {
-            printf("%.*s", Info(CP).lagu_playlist.Length, Info(CP).lagu_playlist.TabWord);
+            printf("%.*s", Info(CP).lagu_playlist, Info(CP).lagu_playlist);
             CP = Next(CP);
             if (CP != NULL) {
                 printf(",");
@@ -314,13 +314,13 @@ void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
-boolean IsMember(listBerkait S, Word Elmt)
+boolean IsMember(listBerkait S, char* Elmt)
 /* Mengembalikan true jika Elmt adalah member dari S */
 {
     boolean found = false;
     address P = First(S);
     while (P!=Nil){
-        if (isWordEqual(Info(P).lagu_playlist,Elmt)){
+        if (StrComp(Info(P).lagu_playlist,Elmt)){
             found = true;
             break;
         }
