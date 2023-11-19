@@ -2,7 +2,7 @@
 #include "playlist.h"
 #include "../ADT/struc.h"
 #include "../ADT/ADT_LinkedList/listb.h"
-
+#include "../ADT/ADT_Mesin-Kata/mesinkata.h"
 void CreatePlayList() {
     printf("Masukkan nama playlist yang ingin dibuat : \n");
     STARTCOMMAND();  
@@ -89,4 +89,43 @@ void MoveLagu() {
     }
 }
 
+void SwapLagu(){
+    STARTCOMMAND();
+    int x=wordToInt(currentCommand);
+    STARTCOMMAND();
+    int y=wordToInt(currentCommand);
+    STARTCOMMAND();
+    int z=wordToInt(currentCommand);
+    int sum=0;
+    Isi_Que ytemp,ztemp;
+    if (x>list_dinamis.NEff){
+        printf("Tidak ada playlist dengan playlist ID %d",x);
+    }else{
+        listBerkait ply = list_dinamis.A[x];
+        address P = First(ply);
+        int count=NbElmt(ply);
+        if (y>count || z>count){
+            if(y>count){
+                printf("Tidak ada lagu dengan urutan %d di playlist %s",y,ply.NamaPlaylist);
+            }else {
+                printf("Tidak ada lagu dengan urutan %d di playlist %s",z,ply.NamaPlaylist);
+            }
+        }else{
+            while(P!=Nil){
+                sum++;
+                if(sum==y){
+                    ytemp=P->infoplaylist;
+                }else if(sum==z){
+                    ztemp=P->infoplaylist;
+                }P=Next(P);
+            }DelP(&ply,ytemp.lagu_playlist);
+            //InsertAfter(); // perbaiki InsertAt
+            DelP(&ply,ztemp.lagu_playlist);
+            //InsertAt();// perbaikin InsertAfter & InsertAt
+        }
+    }
+} 
 
+void DelPlayList(){
+    
+}
