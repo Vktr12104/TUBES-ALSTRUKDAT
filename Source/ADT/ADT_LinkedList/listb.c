@@ -22,11 +22,13 @@ void CreateEmpty (listBerkait *L) {
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi (Isi_Que X) {
+address Alokasi (char *penyanyi, char *album, char *lagu) {
     address P;
     P = (ElmtList *) malloc(sizeof(ElmtList));
     if (P!= NULL) {
-        Info(P) = X;
+        P->infoplaylist.Penyanyi_playlist=*penyanyi;
+        P->infoplaylist.album_playlist=*album;
+        P->infoplaylist.lagu_playlist=*lagu;
         Next(P) = NULL;
     }
     return P;
@@ -43,14 +45,14 @@ void Dealokasi (address *P) {
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Searchlistb (listBerkait L, Isi_Que X) {
+address Searchlistb (listBerkait L, char *kata) {
     address P;
     boolean found;
 
     P = First(L);
     found = false;
     while ((P != NULL) && (!found)) {
-        if (StrComp(P->infoplaylist.lagu_playlist,X.lagu_playlist)) {
+        if (StrComp(P->infoplaylist.lagu_playlist,kata)) {
             found = true;
         }
         else {
@@ -65,10 +67,9 @@ address Searchlistb (listBerkait L, Isi_Que X) {
 
 /****************** PRIMITIF BERDASARKAN NULLAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (listBerkait *L, Isi_Que X) {
+void InsVFirst (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) {
     address P;
-
-    P = Alokasi(X);
+    P = Alokasi(penyanyi,album,lagu);
     if (P != NULL) {
         Next(P) = First(*L);
         First(*L) = P;
@@ -77,11 +78,10 @@ void InsVFirst (listBerkait *L, Isi_Que X) {
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan NULLai X jika alokasi berhasil */
-void InsVLast (listBerkait *L, Isi_Que X) {
+void InsVLast (listBerkait *L, char *penyanyi,  char *album,  char *lagu) {
     address P;
-
-    P = Alokasi(X);
-    if (P != NULL) {
+    P = Alokasi(penyanyi,album,lagu);
+    if (P != NULL) {  
         InsertLastlistb(L,P);
     }
 }
@@ -155,8 +155,8 @@ void DelFirst (listBerkait *L, address *P) {
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (listBerkait *L, Isi_Que X) {
-    address P = Searchlistb(*L, X);
+void DelP (listBerkait *L, char *lagu) {
+    address P = Searchlistb(*L, lagu);
 
     if (P != NULL){   // Found
         address prec = First(*L);

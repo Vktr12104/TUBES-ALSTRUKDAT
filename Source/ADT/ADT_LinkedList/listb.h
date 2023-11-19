@@ -38,18 +38,18 @@ void Dealokasi(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Searchlistb(listBerkait L, Isi_Que X);
+address Searchlistb (listBerkait L, char *kata) ;
 /* Mencari apakah ada elemen list dengan info(P) = X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst(listBerkait *L, Isi_Que X);
+void InsVFirst (listBerkait *L,char *penyanyi,  char *album,  char *lagu );
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast(listBerkait *L, Isi_Que X);
+void InsVLast (listBerkait *L, char *penyanyi,  char *album,  char *lagu) ;
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -84,7 +84,7 @@ void DelFirst(listBerkait *L, address *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /* Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP(listBerkait *L, Isi_Que X);
+void DelP (listBerkait *L, char *lagu);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list ber-address P, dengan info(P) = X */
 /* Maka P dihapus dari list dan di-dealokasi */
