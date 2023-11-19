@@ -230,27 +230,21 @@ void DelAfter (listBerkait *L, address *Pdel, address Prec) {
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo (listBerkait L) {
+void PrintInfo(listBerkait L) {
     printf("[");
-    if (!IsEmpty(L)){
-
+    if (!IsEmpty(L)) {
         address CP = First(L);
-
-        do{
-
-            printf("%d",Info(CP));
+        do {
+            printf("%.*s", Info(CP).lagu_playlist.Length, Info(CP).lagu_playlist.TabWord);
             CP = Next(CP);
-
-            if (CP != NULL){ // last element no ','
+            if (CP != NULL) {
                 printf(",");
             }
-
         } while (CP != NULL);
-
     }
-
     printf("]");
 }
+
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen berNULLai 1, 20, 30 akan dicetak: [1,20,30] */
