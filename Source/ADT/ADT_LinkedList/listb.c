@@ -313,3 +313,18 @@ void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
 /* Konkatenasi dua buah list : L1 dan L2    */
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
+
+boolean IsMember(listBerkait S, Word Elmt)
+/* Mengembalikan true jika Elmt adalah member dari S */
+{
+    boolean found = false;
+    address P = First(S);
+    while (P!=Nil){
+        if (isWordEqual(Info(P).lagu_playlist,Elmt)){
+            found = true;
+            break;
+        }
+        P = Next(P);
+    }
+    return found;
+}
