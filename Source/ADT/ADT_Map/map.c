@@ -53,7 +53,7 @@ void displayMapAlbum(MapAlbum P, int idpenyanyi) {
     int j=1;
     for(int i = 1; i<= P.count;i++){
         if(P.Elements[i].penyanyi_id==idpenyanyi){
-            printf("%d. ",j);
+            printf("   %d. ",j);
             displayWord(P.Elements[i].nama_album);
             printf("\n");
             j++;
