@@ -80,12 +80,6 @@ typedef struct {
 } isi_playlist;
 
 typedef struct {
-    Word lagu_playlist;
-    Title album_playlist[MaxEl];
-    Title Penyanyi_playlist[MaxEl];
-} contoh_struc;
-
-typedef struct {
     Title playlist_nama[MaxEl];
     isi_playlist playlist_user[MaxEl];
     int isi;
