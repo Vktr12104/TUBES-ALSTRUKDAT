@@ -5,65 +5,42 @@
 #include "ADT/ADT_Queue/queue.h"
 #include "ADT/ADT_Queue/circular_queue.h"
 #include "ADT/ADT_List/liststatis.h"
+#include "ADT/ADT_Map/map.h"
+#include "ADT_Set/set.h"
 
-void QueSong(ListPenyanyi lp, QueueLagu *Ql) {
+void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     QueueLagu Q;
-    CreateQueue(&Q);
+    CreateQueue(&Q);\
 
     printf("Daftar Penyanyi:\n");
-    for (int i = 0; i < lp.penyanyi_length; i++) {
-        printf("%d. %s\n", i + 1, lp.penyanyi[i].nama_penyanyi);
-    }
+    DisplayListPenyanyi(lp);
 
     printf("Masukkan Nama Penyanyi: ");
     STARTCOMMAND();
-    char *comm = wordToString(currentCommand);
+    char *comm=wordToString(currentCommand);
+    int idxpenyanyi=albumtoidpenyanyi(lp,currentCommand);
 
-    Penyanyi P;
-    for (int i = 0; i < lp.penyanyi_length; i++) {
-        if (StrComp(comm, lp.penyanyi[i].nama_penyanyi) == 0) {
-            P = lp.penyanyi[i];
-            break;
-        }
-    }
-
-    printf("Daftar Album oleh %s:\n", comm);
-    for (int i = 0; i < P.album_length; i++) {
-        printf("%d. %s\n", i + 1, P.album_penyanyi[i].nama_album);
-    }
+    printf("Daftar Album oleh %s:\n",comm);
+    displayMapAlbum(m2,idxpenyanyi);
 
     printf("Masukkan Nama Album yang dipilih: ");
     STARTCOMMAND();
-    char *comm1 = wordToString(currentCommand);
-
-    Album get;
-    for (int i = 0; i < P.album_length; i++) {
-        if (StrComp(comm1, P.album_penyanyi[i].nama_album) == 0) {
-            get = P.album_penyanyi[i];
-            break;
-        }
-    }
-
-    printf("Daftar Lagu Album %s oleh %s:\n", comm1, comm);
-    for (int i = 0; i < get.lagu_length; i++) {
-        printf("%d. %s\n", i + 1, get.album_lagu[i].nama_lagu);
-    }
+    char *comm1=wordToString(currentCommand);
+    int idxalbum=laguAlbumID(currentCommand,m2);
+    
+    printf("Daftar Lagu Album %s oleh %s\n : ",comm1,comm);
+    DisplaySetLagu(S,idxalbum);
 
     printf("Masukkan ID Lagu yang dipilih: ");
     STARTCOMMAND();
-    char *comm2 = wordToString(currentCommand);
-
-    Lagu lg;
-    for (int i = 0; i < get.lagu_length; i++) {
-        if (StrComp(comm2, get.album_lagu[i].album_id) == 0) {
-            lg = get.album_lagu[i];
-            break;
-        }
+    int idxlagu=wordToInt(currentCommand);
+    if (!isFull(*Ql)){
+        prinf("Queue Lagu Penuh!\n");
+    }else{
+        Cenqueue(&Q,idxpenyanyi,idxalbum,idxlagu);
+        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n", comm2, comm);
     }
-    enqueue(&Q, lg);
-    printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n", comm2, comm);
 }
-
 
 void QueList(LaguPlaylist Lp, QueueLagu *Ql){
     printf("Masukkan ID PlayList :");
@@ -79,7 +56,9 @@ void QueList(LaguPlaylist Lp, QueueLagu *Ql){
 
 void QueSwap(QueueLagu *q) {
     QueueLagu Qtemp;
-    Lagu temp1, temp2;
+    int idxtemp,idxtemp1,idxtemp2;
+    int idxpenyanyi1,idxalbum1,idxlagu1;
+    int idxpenyanyi2,idxalbum2,idxlagu2;
     CreateQueue(&Qtemp);
 
     STARTCOMMAND();
@@ -89,32 +68,37 @@ void QueSwap(QueueLagu *q) {
 
     int i = 0;
     while (!isEmpty(*q)) {
-        Lagu item = Cdequeue(q);
+        Cdequeue(q,&idxtemp,&idxtemp1,&idxtemp2);
         if (i == x) {
-            temp1 = item;
+            idxpenyanyi1=idxtemp;
+            idxalbum1=idxtemp1;
+            idxlagu1=idxtemp2;
         }
 
         if (i == y) {
-            temp2 = item;
+            idxpenyanyi2=idxtemp;
+            idxalbum2=idxtemp1;
+            idxlagu2=idxtemp2;
         }
 
-        Cenqueue(&Qtemp, item);
+        Cenqueue(&Qtemp,idxtemp,idxtemp1,idxtemp2);
         i++;
     }
 
     int j = 0;
     while (!isEmpty(Qtemp)) {
-        Lagu item = Cdequeue(&Qtemp);
-
+        Cdequeue(&Qtemp,&idxtemp,&idxtemp1,&idxtemp2);
         if (j == x) {
-            item = temp2;
+            idxtemp=idxpenyanyi2;
+            idxtemp1=idxalbum2;
+            idxtemp2=idxlagu2;
         }
-
         if (j == y) {
-            item = temp1;
+            idxtemp=idxpenyanyi1;
+            idxtemp1=idxalbum1;
+            idxtemp2=idxlagu1;
         }
-
-        Cenqueue(q, item);
+        Cenqueue(q,idxtemp,idxtemp1,idxtemp2);
         j++;
     }
 }
@@ -123,6 +107,7 @@ void QueSwap(QueueLagu *q) {
 void QueMove(QueueLagu *Q){
     QueueLagu Qtemp;
     CreateQueue(&Qtemp);
+    int idxtemp,idxtemp1,idxtemp2;
     STARTCOMMAND();
     int x= wordToInt(currentCommand);
     if(x>CLength(*Q)){
@@ -130,9 +115,9 @@ void QueMove(QueueLagu *Q){
     }else{
         while(!isEmpty(*Q)){
             int i=0;
-            Lagu item=Cdequeue(Q);
+            Cdequeue(Q,&idxtemp,&idxtemp1,&idxtemp2);
             if (i+1!=x){
-                Cenqueue(&Qtemp,item);
+                Cenqueue(&Qtemp,idxtemp,idxtemp1,idxtemp2);
             }i++;
         }
     }*Q=Qtemp;
@@ -141,9 +126,9 @@ void QueMove(QueueLagu *Q){
 /*F.S. Menghapus Que pada urutan tertentu*/
 
 void QueClear(QueueLagu *Q) {
-    Lagu l;
+    int idxtemp,idxtemp1,idxtemp2;
     while (!isEmpty(*Q)) {
-        dequeue(Q, &l); 
+        Cdequeue(Q,&idxtemp,&idxtemp1,&idxtemp2);
     }
 }
 
