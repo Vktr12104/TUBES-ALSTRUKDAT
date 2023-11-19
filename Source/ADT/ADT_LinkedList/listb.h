@@ -18,7 +18,7 @@ typedef struct tElmtlist *address;
 typedef struct tElmtlist {
     isi_playlist infoplaylist;
     address next;
-} ElmtListBerkait;
+} ElmtList;
 typedef struct {
     address First;
 } listBerkait;
@@ -27,7 +27,7 @@ typedef struct {
 /* List kosong: First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list: jika addressnya Last, maka Next(Last) = Nil */
-#define Info(P) (P)->info
+#define Info(P) (P)->infoplaylist
 #define Next(P) (P)->next
 #define First(L) ((L).First)
 
@@ -42,7 +42,7 @@ void CreateEmpty(listBerkait *L);
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi(infotype X);
+address Alokasi(isi_playlist X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P) = X, Next(P) = Nil */
@@ -53,29 +53,29 @@ void Dealokasi(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search(listBerkait L, infotype X);
+address Search(listBerkait L, isi_playlist X);
 /* Mencari apakah ada elemen list dengan info(P) = X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst(listBerkait *L, infotype X);
+void InsVFirst(listBerkait *L, isi_playlist X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast(listBerkait *L, infotype X);
+void InsVLast(listBerkait *L, isi_playlist X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S. = F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst(listBerkait *L, infotype *X);
+void DelVFirst(listBerkait *L, isi_playlist *X);
 /* I.S. List L tidak kosong */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /* dan alamat elemen pertama di-dealokasi */
-void DelVLast(listBerkait *L, infotype *X);
+void DelVLast(listBerkait *L, isi_playlist *X);
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /* dan alamat elemen terakhir di-dealokasi */
@@ -99,7 +99,7 @@ void DelFirst(listBerkait *L, address *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /* Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP(listBerkait *L, infotype X);
+void DelP(listBerkait *L, isi_playlist X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list ber-address P, dengan info(P) = X */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -125,16 +125,6 @@ void PrintInfo(listBerkait L);
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 int NbElmt(listBerkait L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
-
-/*** Prekondisi untuk Max/Min/rata-rata: List tidak kosong ***/
-address AdrMax(listBerkait L);
-/* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
-infotype Min(listBerkait L);
-/* Mengirimkan nilai info(P) yang minimum */
-address AdrMin(listBerkait L);
-/* Mengirimkan address P, dengan info(P) yang bernilai minimum */
-float Average(listBerkait L);
-/* Mengirimkan nilai rata-rata info(P) */
 
 /****************** PROSES TERHADAP LIST ******************/
 
