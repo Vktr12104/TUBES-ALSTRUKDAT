@@ -82,7 +82,7 @@ typedef struct {
     1) playlist_nama dan 2) list (pointer) */
 typedef struct {
     Word lagu_playlist;
-    Title album_playlist[MaxEL];
+    Title album_playlist[MaxEl];
     Title Penyanyi_playlist[MaxEl];
 } isi_playlist;
 typedef struct {
@@ -94,10 +94,10 @@ typedef struct {
     NamaPlaylist* playlist;
     size_t playlistSize;
 } ListPlaylist;
-typedef struct {
+/*typedef struct {
     Penyanyi penyanyi_list[MaxEl];
     int penyanyi_length;
-} ListPenyanyi;
+} ListPenyanyi;*/
 typedef struct {
     Lagu lagu_queue[MaxEl];
     int idxHead;
