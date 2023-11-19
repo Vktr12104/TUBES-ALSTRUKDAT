@@ -18,8 +18,8 @@ typedef int IdxType;
 /* Jika q adalah CQueue, maka akses elemen : */
 #define CIDX_HEAD(q) (q).idxHead
 #define CIDX_TAIL(q) (q).idxTail
-#define     CHEAD(q) (q).lagu_queue[(q).idxHead]
-#define     CTAIL(q) (q).lagu_queue[(q).idxTail]
+#define     CHEAD(q) (q).Isi[(q).idxHead]
+#define     CTAIL(q) (q).Isi[(q).idxTail]
 
 /* ********* Prototype ********* */
 boolean CIsEmpty (QueueLagu Q);
@@ -39,13 +39,13 @@ void CCreateQueue (QueueLagu * Q);
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue (QueueLagu * Q, Lagu X);
+void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-Lagu Cdequeue (QueueLagu * Q);
+void Cdequeue(QueueLagu *Q,int *penyanyi,Key *album,int *lagu);
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. mengembalikan nilai Q pada idxHead;

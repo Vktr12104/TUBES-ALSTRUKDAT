@@ -46,9 +46,9 @@ void CCreateQueue (QueueLagu * Q){
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void Cenqueue(QueueLagu *Q, Lagu X) {
+void Cenqueue(QueueLagu *Q,int penyanyi,Key album,int lagu) {
     if (CIsEmpty(*Q)) {
-        CIDX_HEAD(*Q) = CIDX_TAIL(*Q) = 0;
+        CIDX_TAIL(*Q)++;
     } else {
         if (CIDX_TAIL(*Q) == IDX_MAX) {
             CIDX_TAIL(*Q) = 0;
@@ -56,12 +56,15 @@ void Cenqueue(QueueLagu *Q, Lagu X) {
             CIDX_TAIL(*Q)++;
         }
     }
-    CTAIL(*Q) = X;
+    CTAIL(*Q).penyanyi=penyanyi;
+    CTAIL(*Q).idxalbum=album;
+    CTAIL(*Q).idxlagu=lagu;
 }
 
-Lagu Cdequeue(QueueLagu *Q) {
-    Lagu val;
-    val =(*Q).lagu_queue[(*Q).idxHead];
+void Cdequeue(QueueLagu *Q,int *penyanyi,Key *album,int *lagu) {
+    *penyanyi=CHEAD(*Q).penyanyi;
+    *album=CHEAD(*Q).idxalbum;
+    *lagu=CHEAD(*Q).idxlagu;
     if (CIDX_HEAD(*Q) == CIDX_TAIL(*Q)) {
         CIDX_HEAD(*Q) = CIDX_TAIL(*Q) = IDX_UNDEF;
     } else {
@@ -71,7 +74,6 @@ Lagu Cdequeue(QueueLagu *Q) {
             CIDX_HEAD(*Q)++;
         }
     }
-    return val;
 }
 
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
@@ -85,8 +87,9 @@ void displayQueue(QueueLagu Q) {
     printf("[");
     if (!CIsEmpty(Q)) {
         for (int i = CIDX_HEAD(Q); i < CIDX_HEAD(Q) + CLength(Q); i++) {
-            Lagu currentLagu = Q.lagu_queue[i % (IDX_MAX + 1)];
-            printf("(%s, %d)", currentLagu.nama_lagu, currentLagu.album_id);
+            printf("%d\n", Q.Isi[i % (MaxEl+1)].penyanyi);
+            printf("%d\n", Q.Isi[i % (MaxEl+1)].idxalbum);
+            printf("%d\n", Q.Isi[i % (MaxEl+1)].idxlagu);
             if (i % (IDX_MAX + 1) != CIDX_TAIL(Q)) {
                 printf(", ");
             }
@@ -109,31 +112,4 @@ void displayQueue(QueueLagu Q) {
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
-
-int main() {
-    QueueLagu q;
-    Lagu lagu1 = {"Lagu 1", 101};
-    Lagu lagu2 = {"Lagu 2", 102};
-    Lagu lagu3 = {"Lagu 3", 103};
-
-    CCreateQueue(&q); 
-
-    printf("Is Queue Empty: %s\n", CIsEmpty(q) ? "True" : "False");
-
-    Cenqueue(&q, lagu1);
-    Cenqueue(&q, lagu2);
-    Cenqueue(&q, lagu3);
-
-    printf("Is Queue Empty: %s\n", CIsEmpty(q) ? "True" : "False");
-    printf("Is Queue Full: %s\n", CIsFull(q) ? "True" : "False");
-    printf("Queue Length: %d\n", CLength(q));
-
-    printf("Isi Queue: ");
-    displayQueue(q);
-
-    Lagu ambil = Cdequeue(&q);
-    printf("Popped Lagu: Nama Lagu = %s, Album ID = %d\n", ambil.nama_lagu, ambil.album_id);
-    displayQueue(q);
-    return 0;
-}
 

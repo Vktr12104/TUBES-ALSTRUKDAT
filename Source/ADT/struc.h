@@ -54,9 +54,6 @@ typedef struct {
 	int jumlah_lagu;
 } SetLagu; 
 
-
-
-
 typedef struct {
     Key album_id;
     valuetype penyanyi_id;
@@ -94,12 +91,14 @@ typedef struct {
     NamaPlaylist* playlist;
     size_t playlistSize;
 } ListPlaylist;
-/*typedef struct {
-    Penyanyi penyanyi_list[MaxEl];
-    int penyanyi_length;
-} ListPenyanyi;*/
 typedef struct {
-    Lagu lagu_queue[MaxEl];
+    int penyanyi;
+    Key idxalbum;
+    int idxlagu;
+} Isi_Que;
+
+typedef struct {
+    Isi_Que Isi[MaxEl+1];
     int idxHead;
     int idxTail;
 } QueueLagu;
