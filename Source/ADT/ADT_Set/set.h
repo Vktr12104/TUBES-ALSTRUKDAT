@@ -6,16 +6,16 @@
 # include "../struc.h"
 
 
-/* Definisi Set S kosong : S.Count = Nil */
-/* S.Count = jumlah element Set */
-/* S.Elements = tempat penyimpanan element Set */
+/* Definisi SetLagu S kosong : S.jumlah_lagu = 0 */
+/* S.jumlah_lagu = jumlah element Set */
+/* S.Elements = tempat penyimpanan element Lagu */
 
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
 void CreateEmptySetLagu(SetLagu *S);
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
+/* F.S. Membuat sebuah SetLagu S kosong berkapasitas MaxEl */
 
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -34,6 +34,7 @@ boolean IsMemberLagu(SetLagu S, Word Elmt);
 /* True jika Elmt sudah member dari SetLagu*/
 
 void DisplaySetLagu(SetLagu S, int idalbum);
+/* Mendisplay SetLagu*/
 
 
 #endif
