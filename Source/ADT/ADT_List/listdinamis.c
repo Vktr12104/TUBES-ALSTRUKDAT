@@ -44,7 +44,7 @@ boolean IsIdxEff(List L, IdxType i) {
 boolean IsMemberdinamis(List L, ListPlaylist X) {
     int i;
     for (i = 0; i < L.NEff; i++) {
-        if (isWordEqual(X.NamaPlayList,L.A[i].NamaPlayList)) {
+        if (StrComp(X.playlist->playlist_nama,L.A[i].playlist->playlist_nama)) {
             return true;
         }
     }
