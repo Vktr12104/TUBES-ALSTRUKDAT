@@ -45,3 +45,24 @@ void advTerminal(){
     retval = fscanf(pita,"%c", &currentChar);
     EOP = (currentChar == ENTER);
 }
+
+void StartWrite(char * FileName) {
+    pita = fopen(FileName, "w");
+}
+
+void AdvWrite(char cc) {
+    fprintf(pita, "%c", cc);
+}
+void AdvWriteBlank() {
+    fprintf(pita, "%c", BLANK);
+}
+void AdvWriteMark() {
+    fprintf(pita, "%c", MARK);
+}
+void AdvWriteNewLine() {
+    fprintf(pita, "%c", ENTER);
+}
+
+void EndWrite() {
+    fclose(pita);
+}
