@@ -6,15 +6,12 @@
 #include "ADT/ADT_Queue/circular_queue.h"
 #include "ADT/ADT_List/liststatis.h"
 #include "ADT/ADT_Map/map.h"
-#include "ADT_Set/set.h"
+#include "ADT/ADT_Set/set.h"
 #include "ADT/ADT_LinkedList/listb.h"
 #include "ADT/ADT_List/listdinamis.h"
 #include "ADT/ADT_Stack/stack.h"
 
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
-    QueueLagu Q;
-    CreateQueue(&Q);
-
     printf("Daftar Penyanyi:\n");
     DisplayListPenyanyi(lp);
 
@@ -39,11 +36,12 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     int idxlagu=wordToInt(currentCommand);
     Word namalagu=namalagufromalbum(S,idxalbum,idxlagu);
     char *comm3=wordToString(namalagu);
-    if (!isFull(*Ql)){
-        prinf("Queue Lagu Penuh!\n");
+    if (CIsFull(*Ql)){
+        printf("Queue Lagu Penuh!\n");
     }else{
+        printf("Berhasil masuk\n");
         Cenqueue(Ql,comm,comm1,comm3);
-        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n", namalagu, comm);
+        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
     }
 }
 
@@ -70,66 +68,74 @@ void QueList(ListD list_dinamis, QueueLagu *Ql) {
 
 void QueSwap(QueueLagu *q) {
     QueueLagu Qtemp;
-    char *penyanyi1,*album1,*lagu1;
-    char *penyanyi2,*album2,*lagu2;
-    char *Penyanyitemp,*albumtemp,*lagutemp;
-    CreateQueue(&Qtemp);
+    char *penyanyi1, *album1, *lagu1;
+    char *penyanyi2, *album2, *lagu2;
+    char *Penyanyitemp, *albumtemp, *lagutemp;
+    CCreateQueue(&Qtemp);
 
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
     STARTCOMMAND();
     int y = wordToInt(currentCommand);
+    if (x > q->idxTail && y > q->idxTail) {
+        if (x > q->idxTail) {
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", x);
+        } else {
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", y);
+        }
+    } else {
+        int i = 0;
+        while (!CIsEmpty(*q)) {
+            Cdequeue(q, Penyanyitemp, albumtemp, lagutemp);
+            if (i == x) {
+                *penyanyi1 = *Penyanyitemp;
+                *album1 = *albumtemp;
+                *lagu1 = *lagutemp;
+            }
 
-    int i = 0;
-    while (!isEmpty(*q)) {
-        Cdequeue(q,Penyanyitemp,albumtemp,lagutemp);
-        if (i == x) {
-            *penyanyi1=*Penyanyitemp;
-            *album1=*albumtemp;
-            *lagu1=*lagutemp;
+            if (i == y) {
+                *penyanyi2 = *Penyanyitemp;
+                *album2 = *albumtemp;
+                *lagu2 = *lagutemp;
+            }
+
+            Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
+            i++;
         }
 
-        if (i == y) {
-            *penyanyi2=*Penyanyitemp;
-            *album2=*albumtemp;
-            *lagu2=*lagutemp;
-        }
-
-        Cenqueue(&Qtemp,*Penyanyitemp,*albumtemp,*lagutemp);
-        i++;
-    }
-
-    int j = 0;
-    while (!isEmpty(Qtemp)) {
-        Cdequeue(&Qtemp,Penyanyitemp,albumtemp,lagutemp);
-        if (j == x) {
-            *Penyanyitemp=*penyanyi2;
-            *albumtemp=*album2;
-            *lagutemp=*lagu2;
-        }
-        if (j == y) {
-            *Penyanyitemp=*penyanyi1;
-            *albumtemp=*album1;
-            *lagutemp=*lagu1;
-        }
-        Cenqueue(q,Penyanyitemp,albumtemp,lagutemp);
-        j++;
+        int j = 0;
+        while (!CIsEmpty(Qtemp)) {
+            Cdequeue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
+            if (j == x) {
+                *Penyanyitemp = *penyanyi2;
+                *albumtemp = *album2;
+                *lagutemp = *lagu2;
+            }
+            if (j == y) {
+                *Penyanyitemp = *penyanyi1;
+                *albumtemp = *album1;
+                *lagutemp = *lagu1;
+            }
+            Cenqueue(q, Penyanyitemp, albumtemp, lagutemp);
+            j++;
+        }printf("Lagu %s berhasil ditukar dengan %s \n",lagu1,lagu2);
     }
 }
+
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Melakukan pertukaran lagu pada queue */
 void QueMove(QueueLagu *Q){
     QueueLagu Qtemp;
-    CreateQueue(&Qtemp);
+    CCreateQueue(&Qtemp);
     char *Penyanyitemp, *albumtemp, *lagutemp;
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
     
     if (x > CLength(*Q)) {
-        printf("Lagu dengan urutan ke %d tidak ada.", x);
+        printf("Lagu dengan urutan ke %d tidak ada.\n", x);
     } else {
         int i = 0;
-        while (!isEmpty(*Q)) {
+        while (!CIsEmpty(*Q)) {
             Cdequeue(Q, Penyanyitemp, albumtemp, lagutemp);
             if (i + 1 != x) {
                 Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
@@ -145,14 +151,14 @@ void QueMove(QueueLagu *Q){
 
 void QueClear(QueueLagu *Q) {
     char *Penyanyitemp,*albumtemp,*lagutemp;
-    while (!isEmpty(*Q)) {
+    while (!CIsEmpty(*Q)) {
         Cdequeue(Q,Penyanyitemp,albumtemp,lagutemp);
-    }
+    }printf("Queue berhasil dikosongkan");
 }
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Menghapus semua lagu pada queue*/    
-void SongNext(HistoriLagu *HS, QueueLagu *Q){
+/*void SongNext(HistoriLagu *HS, QueueLagu *Q){
     boolean isNotPlaying=true; 
     if(isNotPlaying && isEmpty(*Q)){
         printf("Queue kosong dan tidak ada lagu yang sedang dimainkan");
@@ -170,7 +176,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
 /*I.S. Antrian pada lagu sudah terdefinisi  */
 /*F.S. Jika keadaan belum memutar lagu tetapi sudah ada que maka akan memuta lagu pada que, Jika sedang memutar lagu 
 maka lagu akan dimasukkan pada History Lagu dan memutar lagu pada queue*/
-void SongPrev(HistoriLagu *HS){
+/*void SongPrev(HistoriLagu *HS,){
     QueueLagu Qtemp;
     char *lagutemp,*albumtemp,*penyanyitemp;
     CreateQueue(&Qtemp);
