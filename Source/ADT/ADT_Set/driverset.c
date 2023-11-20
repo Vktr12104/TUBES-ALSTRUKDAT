@@ -1,47 +1,57 @@
 #include <stdio.h>
 #include "set.h"
-#include "boolean.h"
 
 int main() {
-    Lagu mySet;
-    CreateEmptyLagu(&mySet);
+    SetLagu laguSet;
+    CreateEmptySetLagu(&laguSet);
 
-    // Menambahkan beberapa elemen ke Set
-    InsertLagu(&mySet, "Lagu 1");
-    InsertLagu(&mySet, "Lagu 2");
-    InsertLagu(&mySet, "Lagu 3");
-    DisplayLagu(mySet);
-    printf("jumlah lagu %d\n", mySet.count);
-    // Mengecek apakah Set kosong
-    if (IsEmptyLagu(mySet)) {
-        printf("Set kosong.\n");
+    // Testing IsEmptySetLagu
+    if (IsEmptySetLagu(laguSet)) {
+        printf("SetLagu is empty.\n");
     } else {
-        printf("Set tidak kosong.\n");
+        printf("SetLagu is not empty.\n");
+    }
+    Word lagu1;
+    lagu1.TabWord[0] = 'L';
+    lagu1.TabWord[1] = 'A';
+    lagu1.TabWord[2] = 'G';
+    lagu1.TabWord[3] = 'U';
+    lagu1.Length = 4;
+
+
+    Word lagu2;
+    lagu2.TabWord[0] = 'B';
+    lagu2.TabWord[1] = 'A';
+    lagu2.TabWord[2] = 'R';
+    lagu2.TabWord[3] = 'U';
+    lagu2.Length = 4;
+
+    // Testing InsertSetLagu
+    InsertSetLagu(&laguSet, lagu1, 1);
+    InsertSetLagu(&laguSet, lagu2, 1);
+
+
+    // Testing DisplaySetLagu
+    printf("Songs in album 1:\n");
+    DisplaySetLagu(laguSet, 1);
+
+    printf("album id: %d\n",laguSet.A[1].album_id);
+
+    // Testing IsMemberLagu
+    if (IsMemberLagu(laguSet, lagu1)) {
+        printf("Lagu1 is a member of the SetLagu.\n");
+    } else {
+        printf("Lagu1 is not a member of the SetLagu.\n");
     }
 
-    // Mengecek apakah Set penuh
-    if (IsFullLagu(mySet)) {
-        printf("Set penuh.\n");
-    } else {
-        printf("Set tidak penuh.\n");
-    }
+    // Testing namalagufromalbum
+    Word hasil = namalagufromalbum(laguSet,1,2);
+    printf("Nama lagu from album 1, lagu ke-1: ");
+    displayWord(hasil);
+    printf("\n");
 
-    // Mengecek keanggotaan elemen
-    if (IsMemberLagu(mySet, "Lagu 2")) {
-        printf("Lagu 2 adalah anggota Set.\n");
-    } else {
-        printf("Lagu 2 bukan anggota Set.\n");
-    }
-
-    // Menghapus elemen dari Set
-    DeleteLagu(&mySet, "Lagu 2");
-
-    // Mengecek apakah elemen telah dihapus
-    if (IsMemberLagu(mySet, "Lagu 2")) {
-        printf("Lagu 2 adalah anggota Set.\n");
-    } else {
-        printf("Lagu 2 bukan anggota Set.\n");
-    }
+    // Testing CountLaguByAlbumID
+    printf("Number of songs in album 1: %d\n", CountLaguByAlbumID(&laguSet, 1));
 
     return 0;
 }
