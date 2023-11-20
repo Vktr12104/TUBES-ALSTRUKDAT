@@ -11,6 +11,7 @@
 #include "ADT/ADT_List/listdinamis.h"
 #include "ADT/ADT_Stack/stack.h"
 
+
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     printf("Daftar Penyanyi:\n");
     DisplayListPenyanyi(lp);
@@ -158,18 +159,18 @@ void QueClear(QueueLagu *Q) {
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Menghapus semua lagu pada queue*/    
-/*void SongNext(HistoriLagu *HS, QueueLagu *Q){
+void SongNext(HistoriLagu *HS, QueueLagu *Q){
     boolean isNotPlaying=true; 
-    if(isNotPlaying && isEmpty(*Q)){
-        printf("Queue kosong dan tidak ada lagu yang sedang dimainkan");
-    }else if(isEmpty(*Q)) {
+    if(isNotPlaying && CIsEmpty(*Q)){
+        printf("Queue kosong dan tidak ada lagu yang sedang dimainkan\n");
+    }else if(CIsEmpty(*Q)) {
         printf("Queue kosong, memutar kembali lagu\n");
         printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
     }else{
-        PushLagu(HS,current.lagu,current.album,current.lagu);
-        Cdequeue(Q,(&current)->penyanyi, (&current)->album, (&current)->lagu);
+        PushLagu(HS,current.lagu,current.album,current.penyanyi);
+        Cdequeue(Q,current.lagu,current.album,current.penyanyi);
         printf("Memutar lagu selanjutnya\n");
-        printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
+        printf("\"%s\" oleh \"%s\"",current.lagu,current.lagu);
     }
 }
 
