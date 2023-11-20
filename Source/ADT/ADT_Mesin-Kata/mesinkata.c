@@ -361,3 +361,33 @@ void PasteWord(Word source, Word * dest) {
         (*dest).Length++;
     }
 }
+
+Word takewordsemicolon(Word command, int colon){
+    Word w;
+    int i = 0;
+    int j = 0;
+
+    while (j != colon-1 && i < command.Length){
+        if (command.TabWord[i] == ';'){
+            j++;
+        i++;
+        if (i == command.Length){
+            j++;
+        }
+        }
+        boolean chek = false;
+        int length = 0;
+        while (i < command.Length && !chek){
+            if(command.TabWord[i] == ';'){
+                chek = true;
+            }
+            else{
+                w.TabWord[length] = command.TabWord[i];
+                length++;
+                i++;
+            }
+        }
+        w.Length = length;
+        return w;
+    }
+}

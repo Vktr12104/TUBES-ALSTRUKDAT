@@ -145,4 +145,6 @@ void ResetKalimat() ;
 
 void PasteWord(Word source, Word * dest);
 
+Word takewordsemicolon(Word command, int colon);
+
 #endif
