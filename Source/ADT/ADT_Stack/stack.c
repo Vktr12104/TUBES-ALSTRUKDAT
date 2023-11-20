@@ -37,11 +37,12 @@ I.S. Sembarang, P terdefinisi
 F.S. Menempatkan P pada Top dari S (History lagu)
 */
 
-void PopLagu(HistoriLagu *S, char **lagu, char **album, char **artis) {
+void PopLagu(HistoriLagu *S, char *lagu, char *album, char *artis) {
     if (S->idxTop >= 0) {
-        *lagu = S->hist_lagu[S->idxTop].lagu_playlist;
-        *album = S->hist_lagu[S->idxTop].album_playlist;
-        *artis = S->hist_lagu[S->idxTop].Penyanyi_playlist;
+        // Mengakses elemen-elemen dari struktur dengan operator panah (->)
+        *lagu = *S->hist_lagu[S->idxTop].lagu_playlist;
+        *album = *S->hist_lagu[S->idxTop].album_playlist;
+        *artis = *S->hist_lagu[S->idxTop].Penyanyi_playlist;
         S->idxTop--;
         S->count--;
     } else {
