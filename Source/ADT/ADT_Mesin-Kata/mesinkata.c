@@ -352,3 +352,12 @@ void ResetKalimat() {
         currentWord.Length = 0;
     }
 }
+
+void PasteWord(Word source, Word * dest) {
+    (*dest).Length = 0;
+
+    for (int i = 0; i < source.Length; i++) {
+        (*dest).TabWord[i] = source.TabWord[i];
+        (*dest).Length++;
+    }
+}

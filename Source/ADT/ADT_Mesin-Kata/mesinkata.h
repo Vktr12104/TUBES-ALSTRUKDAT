@@ -143,4 +143,6 @@ void IgnoreLineNew();
 
 void ResetKalimat() ;
 
+void PasteWord(Word source, Word * dest);
+
 #endif
