@@ -23,6 +23,7 @@ void QueList(ListD list_dinamis, QueueLagu *Ql) ;
 void QueMove(QueueLagu *Q);
 void QueClear(QueueLagu *Q);
 void SongNext(HistoriLagu *HS, QueueLagu *Q);
+void SongPrev(HistoriLagu *HS,QueueLagu *Q);
 
 
 #endif
