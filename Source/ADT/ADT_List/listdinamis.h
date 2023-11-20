@@ -20,9 +20,9 @@
 #define IdxType int
 
 typedef struct {
-	listBerkait *A;  /* Memori tempat penyimpanan elemen (container) */
-	int NEff;
-	int Max;
+ listBerkait A;  /*Memori tempat penyimpanan elemen (container) */
+ int NEff;
+ int Max;
 } ListD;
 
 extern ListD list_dinamis ;
@@ -37,37 +37,38 @@ extern ListD list_dinamis ;
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor: create list kosong */
-ListD MakeList();
+ListD MakeListD();
 /* I.S. sembarang */
 /* F.S. Terbentuk list L kosong dengan kapasitas MaxEl */
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean IsEmpty(ListD L);
+boolean IsEmptyListD(ListD L) ;
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-int Length(ListD L);
+int LengthListD(ListD L);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
 
 /* *** Selektor INDEKS *** */
-IdxType FirstIdx(ListD L);
+IdxType FirstIdxListD(ListD L);
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen pertama */
 
-IdxType LastIdx(ListD L);
+IdxType LastIdxListD(ListD L) ;
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid (ListD L, IdxType i);
+boolean IsIdxValidListD (ListD L, IdxType i);
 /* Prekondisi : i sembarang */
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
 /* yaitu antara indeks yang terdefinisi untuk container*/
 
-boolean IsIdxEff (ListD L, IdxType i);
+
+boolean IsIdxEffListD (ListD L, IdxType i);
 /* Prekondisi : i sembarang*/
 /* Mengirimkan true jika i adalah indeks yang valid utk list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
@@ -78,21 +79,21 @@ boolean IsMemberdinamis(ListD L, ListPlaylist X);
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-void InsertFirst(ListD *L, Word nama);
+void InsertFirstListD(ListD *L, Word nama);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen pertama L. */
 
-void InsertAt(ListD *L, Word nama, IdxType i) ;
+void InsertAtListD(ListD *L, Word nama, IdxType i) ;
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
-void InsertLast(ListD *L, Word nama );
+void InsertLastListD(ListD *L, Word nama ) ;
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-void DeleteFirst(ListD *L);
+void DeleteFirstListD(ListD *L);
 /* I.S. L terdefinisi, tidak kosong. */
 /* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
 
-void DeleteAt(ListD *L, IdxType i);
+void DeleteAtListD(ListD *L, IdxType i);
 #endif
