@@ -18,7 +18,6 @@
 
 /* Definisi elemen dan koleksi objek */
 #define IdxType int
-#define ElType Word
 
 typedef struct {
 	listBerkait *A;  /* Memori tempat penyimpanan elemen (container) */
