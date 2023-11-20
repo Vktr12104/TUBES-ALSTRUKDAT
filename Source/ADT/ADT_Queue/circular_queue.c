@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> 
 #include "circular_queue.h"
 #include "../boolean.h"
 
@@ -36,10 +37,11 @@ int CLength (QueueLagu Q){
 /* Mengirimkan banyaknya elemen Q, 0 jika kosong */
 
 /* *** Kreator *** */
-void CCreateQueue (QueueLagu * Q){
-    CIDX_HEAD(*Q)=IDX_UNDEF;
-    CIDX_TAIL(*Q)=IDX_UNDEF;
+void CCreateQueue(QueueLagu *Q) {
+    CIDX_HEAD(*Q) = IDX_UNDEF;
+    CIDX_TAIL(*Q) = IDX_UNDEF;
 }
+
 /* I.S. sembarang */
 /* F.S. mengembalikan Q kosong dengan kondisi sbb: */
 /* - idxHead=IDX_UNDEF; */
@@ -48,33 +50,42 @@ void CCreateQueue (QueueLagu * Q){
 /* *** Primitif Add/Delete *** */
 void Cenqueue(QueueLagu *Q, char *penyanyi,  char *album,  char *lagu) {
     if (CIsEmpty(*Q)) {
-        CIDX_TAIL(*Q)++;
+        CIDX_HEAD(*Q)=0;
+        CIDX_TAIL(*Q)=0;
     } else {
         if (CIDX_TAIL(*Q) == IDX_MAX) {
             CIDX_TAIL(*Q) = 0;
         } else {
             CIDX_TAIL(*Q)++;
         }
-    }CTAIL(*Q).Penyanyi_playlist=penyanyi;
-    CTAIL(*Q).album_playlist=album;
+    } CTAIL(*Q).Penyanyi_playlist=penyanyi;
     CTAIL(*Q).lagu_playlist=lagu;
+    CTAIL(*Q).album_playlist=album;
 
 }
-
 void Cdequeue(QueueLagu *Q, char *penyanyi, char *album, char *lagu) {
-    penyanyi=CTAIL(*Q).Penyanyi_playlist;
-    album=CTAIL(*Q).album_playlist;
-    lagu=CTAIL(*Q).lagu_playlist;
-    if (Q->idxHead == Q->idxTail) {
-        Q->idxHead = Q->idxTail = IDX_UNDEF;
+    if (CIsEmpty(*Q)) {
+        // Queue kosong, tidak ada yang dapat di-dequeue
+        penyanyi = album = lagu = NULL;
     } else {
-        if (Q->idxHead == IDX_MAX) {
-            Q->idxHead = 0;
+        // Ambil nilai dari elemen yang akan di-dequeue
+        penyanyi = CTAIL(*Q).Penyanyi_playlist;
+        album = CTAIL(*Q).album_playlist;
+        lagu = CTAIL(*Q).lagu_playlist;
+
+        // Atur ulang idxHead dan idxTail jika diperlukan
+        if (Q->idxHead == Q->idxTail) {
+            Q->idxHead = Q->idxTail = IDX_UNDEF;
         } else {
-            Q->idxHead++;
+            if (Q->idxHead == IDX_MAX) {
+                Q->idxHead = 0;
+            } else {
+                Q->idxHead++;
+            }
         }
     }
 }
+
 
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
@@ -87,7 +98,7 @@ void displayQueue(QueueLagu Q) {
     printf("[");
     if (!CIsEmpty(Q)) {
         for (int i = CIDX_HEAD(Q); i < CIDX_HEAD(Q) + CLength(Q); i++) {
-            printf("%s- %s- %s\n", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
+            printf("(%s- %s- %s)", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
             if (i % (IDX_MAX + 1) != CIDX_TAIL(Q)) {
                 printf(", ");
             }
@@ -110,3 +121,30 @@ void displayQueue(QueueLagu Q) {
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
+
+
+/*int main() {
+    QueueLagu Q;
+    CCreateQueue(&Q);
+    Cenqueue(&Q, "Adele", "21", "Rolling in the Deep");
+    Cenqueue(&Q, "Ed Sheeran", "haha", "Shape of You");
+    Cenqueue(&Q, "Taylor Swift", "1989", "Blank Space");
+
+    printf("Is Queue Empty? %s\n", CIsEmpty(Q) ? "Yes" : "No");
+    printf("Is Queue Full? %s\n", CIsFull(Q) ? "Yes" : "No");
+    printf("Queue Length: %d\n", CLength(Q));
+
+    printf("Queue Contents:\n");
+    displayQueue(Q);
+
+    char penyanyiDequeue[50], albumDequeue[50], laguDequeue[50];
+    Cdequeue(&Q, penyanyiDequeue, albumDequeue, laguDequeue);
+    printf("Dequeued Element: %s - %s - %s\n", penyanyiDequeue, albumDequeue, laguDequeue);
+
+    printf("Updated Queue Length: %d\n", CLength(Q));
+
+    printf("Queue Contents after Dequeue:\n");
+    displayQueue(Q);
+
+    return 0;
+}*/
