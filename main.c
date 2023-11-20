@@ -50,6 +50,8 @@ int main(){
 
         }else if(StrComp(currentCommand.TabWord,"SONG NEXT")){
             SongNext(&HS,&Q);
+        }else if(StrComp(currentCommand.TabWord,"SONG PREVIOUS")){
+            SongPrev(&HS,&Q);
         }
     }
     //DisplayListPenyanyi(listmusisi3);
