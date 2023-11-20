@@ -92,9 +92,14 @@ typedef struct {
 } QueueLagu;
 
 // Data Struct yang digunakan untuk antrian pada  queue lagu (Queue lagu & PLAY)
+typedef struct {
+    char *lagu_playlist;
+    char *album_playlist;
+    char *Penyanyi_playlist;
+} Isi_Stack;
 
 typedef struct {
-    Isi_Que hist_lagu[MaxEl];
+    Isi_Stack hist_lagu[MaxEl];
     int idxTop;
     int count;
 } HistoriLagu;
