@@ -13,7 +13,7 @@ void QUIT() {
         file.Length = currentCommand.Length;
 
         for (int i=0; i<currentCommand.Length; i++){
-            file.content[i] = currentWord.TabWord[i];
+            file.TabWord[i] = currentWord.TabWord[i];
         }
 
         SAVE(file);

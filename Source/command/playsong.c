@@ -1,6 +1,6 @@
 #include "playsong.h"
 
-void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma) {
+void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriLagu* Hl) {
     printf("Daftar Penyanyi :\n");
     DisplayListPenyanyi(lp);
 
@@ -34,4 +34,10 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma) {
     displayWord(namalagu);
     printf (" oleh ");
     displayWord(namapenyanyi);
+
+    (*Ql).idxHead=NULL;
+    (*Ql).idxTail=NULL;
+
+    (*Hl).idxTop=NULL;
+    (*Hl).count=0;
 }
