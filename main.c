@@ -5,6 +5,7 @@
 #include "Source/command/start.h"
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
+#include "Source/ADT/boolean.h"
 #include <stdio.h>
 
 int main(){
@@ -13,13 +14,22 @@ int main(){
     SetLagu lagu2;
     MapAlbum m2;
     ListPlaylist listlagu3;
-    STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
-    DisplayListPenyanyi(listmusisi3);
-    DisplaySetLagu(lagu2,5);
-    displayMapAlbum(m2,0);
-    displayMapAlbum(m2,1);
-    listdefault(listmusisi3,lagu2,m2);
-    listplaylist(listlagu3);
+    boolean quit = false;
+    while(!quit){
+        printf(">> ");
+        STARTCOMMAND();
+        if(StrComp(currentCommand.TabWord, "START")){
+            STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
+        }
+    }
+    //DisplayListPenyanyi(listmusisi3);
+    //DisplaySetLagu(lagu2,5);
+    //displayMapAlbum(m2,0);
+    //displayMapAlbum(m2,1);
+    //listdefault(listmusisi3,lagu2,m2);
+
+
+
 
 
     return 0;
