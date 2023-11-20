@@ -35,9 +35,10 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     printf (" oleh ");
     displayWord(namapenyanyi);
 
-    (*Ql).idxHead=NULL;
-    (*Ql).idxTail=NULL;
 
-    (*Hl).idxTop=NULL;
-    (*Hl).count=0;
+    QueClear(&Ql);
+    while ((*Hl).idxTop>=0) {
+        (*Hl).idxTop--;
+        (*Hl).count--;
+    }
 }
