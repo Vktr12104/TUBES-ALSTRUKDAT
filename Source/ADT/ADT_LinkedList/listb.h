@@ -5,7 +5,7 @@
 #include "../ADT_Mesin-Kata/mesinkata.h"
 #include <stdio.h>
 #include "../struc.h"
-
+    
 typedef char* infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {
@@ -14,7 +14,7 @@ typedef struct tElmtlist {
 } ElmtList;
 typedef struct {
     address First;
-    Title NamaPlaylist;
+    Title NamaPlaylist[MaxEl];
 } listBerkait;
 
 /* Definisi list: */
