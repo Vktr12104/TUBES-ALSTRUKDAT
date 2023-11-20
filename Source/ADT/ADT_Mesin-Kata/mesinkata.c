@@ -122,6 +122,8 @@ void advNewline(){
           currentChar karakter pertama sesudah karakter terakhir kata */
 
 void STARTCOMMAND () {
+    Word empty = {"",0};
+    currentCommand = empty;
     START();
     IgnoreBlanks();
     if (currentChar == ENTER) {

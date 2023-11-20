@@ -15,11 +15,23 @@ int main(){
     MapAlbum m2;
     ListPlaylist listlagu3;
     boolean quit = false;
+    boolean start = false;
     while(!quit){
         printf(">> ");
         STARTCOMMAND();
+        displayWord(currentCommand);
         if(StrComp(currentCommand.TabWord, "START")){
             STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
+            start = true; // untuk menandakan sudah pernah distart
+        }
+        else if (StrComp(currentCommand.TabWord,"LIST DEFAULT")){
+            if(start == true){
+                listdefault(listmusisi3,lagu2,m2);
+            }
+            else{
+                printf("Command tidak bisa dieksekusi!\n");
+
+            }
         }
     }
     //DisplayListPenyanyi(listmusisi3);
