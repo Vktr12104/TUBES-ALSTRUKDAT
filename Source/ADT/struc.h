@@ -80,17 +80,6 @@ typedef struct {
 } isi_playlist;
 
 typedef struct {
-    Title playlist_nama[MaxEl];
-    isi_playlist playlist_user[MaxEl];
-    int isi;
-} NamaPlaylist; // Meninjau nama playlist (List Playlist)
-
-typedef struct {
-    NamaPlaylist* playlist;
-    size_t playlistSize;
-} ListPlaylist;
-
-typedef struct {
     char *lagu_playlist;
     char *album_playlist;
     char *Penyanyi_playlist;
