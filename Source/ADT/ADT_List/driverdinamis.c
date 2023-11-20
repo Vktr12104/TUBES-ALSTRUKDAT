@@ -1,39 +1,40 @@
 #include "listdinamis.h"
+#include <stdio.h>
 
 int main() {
-    // Deklarasi list
-    List myList = MakeList();
+    ListD playlist = MakeListD();
 
-    // Menambahkan beberapa elemen ke dalam list
-    ListPlaylist playlist1, playlist2, playlist3;
-    // Inisialisasi playlist1, playlist2, playlist3
+    Word playlistName1 = {"My Playlist 1"};
+    Word playlistName2 = {"My Playlist 2"};
+    Word playlistName3 = {"My Playlist 3"};
 
-    InsertFirst(&myList, playlist1);
-    InsertLast(&myList, playlist2);
-    InsertAt(&myList, playlist3, 1);
+    InsertFirstListD(&playlist, playlistName1);
+    InsertLastListD(&playlist, playlistName2);
+    InsertAtListD(&playlist, playlistName3, 2);
 
-    // Menampilkan isi list
-    printf("Isi List:\n");
-    int i;
-    for (i = 0; i < Length(myList); i++) {
-        // Tampilkan elemen-elemen playlist
-        printf("Playlist %d:\n", i + 1);
-        // Tampilkan detil playlist seperti NamaPlaylist, idxPlaylist, dll.
+    printf("Length of the playlist: %d\n", LengthListD(playlist));
+
+    // Displaying playlist names
+    for (IdxType i = FirstIdxListD(playlist); i <= LastIdxListD(playlist); i++) {
+        printf("Playlist %d: %s\n", i, playlist.A[i - 1].NamaPlaylist);
     }
 
-    // Menghapus elemen pertama dan menampilkan isi list setelah penghapusan
-    DeleteFirst(&myList);
-    printf("\nSetelah Menghapus Elemen Pertama:\n");
-    for (i = 0; i < Length(myList); i++) {
-        // Tampilkan elemen-elemen playlist setelah penghapusan
+    // Testing IsMemberdinamis
+    listBerkait playlistToCheck;
+    playlistToCheck.NamaPlaylist = playlistName2;
+    if (IsMemberdinamis(playlist, playlistToCheck)) {
+        printf("%s is a member of the playlist.\n", playlistName2);
+    } else {
+        printf("%s is not a member of the playlist.\n", playlistName2);
     }
 
-    // Menghapus elemen pada indeks tertentu dan menampilkan isi list setelah penghapusan
-    IdxType indexToDelete = 1;
-    DeleteAt(&myList, indexToDelete);
-    printf("\nSetelah Menghapus Elemen pada Indeks %d:\n", indexToDelete);
-    for (i = 0; i < Length(myList); i++) {
-        // Tampilkan elemen-elemen playlist setelah penghapusan
+    // Deleting first playlist
+    DeleteFirstListD(&playlist);
+
+    // Displaying playlist names after deletion
+    printf("\nAfter deleting the first playlist:\n");
+    for (IdxType i = FirstIdxListD(playlist); i <= LastIdxListD(playlist); i++) {
+        printf("Playlist %d: %s\n", i, playlist.A[i - 1].NamaPlaylist);
     }
 
     return 0;

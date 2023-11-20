@@ -12,6 +12,7 @@
 #include "../struc.h"
 #include "../ADT_LinkedList/listb.h"
 
+
 /* Kamus Umum */
 #define MaxEl 100
 #define InvalidIdx -1  /* Indeks tak terdefinisi */
@@ -20,7 +21,7 @@
 #define IdxType int
 
 typedef struct {
- listBerkait A;  /*Memori tempat penyimpanan elemen (container) */
+ listBerkait* A;  /*Memori tempat penyimpanan elemen (container) */
  int NEff;
  int Max;
 } ListD;
@@ -74,7 +75,7 @@ boolean IsIdxEffListD (ListD L, IdxType i);
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
 /* ********** Operasi-operasi ********** */
-boolean IsMemberdinamis(ListD L, ListPlaylist X);
+boolean IsMemberdinamis(ListD L, listBerkait X);
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
