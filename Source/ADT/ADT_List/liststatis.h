@@ -15,10 +15,10 @@
 
 /* Definisi elemen dan koleksi objek */
 #define IdxType int
-#define ElType Word
+
 
 typedef struct {
-	ElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	Word A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
 } ListPenyanyi;
 
@@ -43,12 +43,12 @@ boolean IsEmpty(ListPenyanyi L);
 /* Mengirimkan true jika ListPenyanyi L kosong, mengirimkan false jika tidak */
 
 /* *** Menghasilkan sebuah elemen *** */
-ElType Get(ListPenyanyi L, IdxType i);
+Word Get(ListPenyanyi L, IdxType i);
 /* Prekondisi : ListPenyanyi tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen ListPenyanyi yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai ListPenyanyi dan elemen ListPenyanyi *** */
-void Set(ListPenyanyi *L, IdxType i, ElType v);
+void Set(ListPenyanyi *L, IdxType i, Word v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 
@@ -79,20 +79,20 @@ boolean IsIdxEff (ListPenyanyi L, IdxType i);
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
 /* ********** Operasi-operasi ********** */
-boolean Search(ListPenyanyi L, ElType X);
+boolean Search(ListPenyanyi L, Word X);
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam ListPenyanyi */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-void InsertFirst(ListPenyanyi *L, ElType X);
+void InsertFirst(ListPenyanyi *L, Word X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen pertama L. */
 
-void InsertAt(ListPenyanyi *L, ElType X, IdxType i);
+void InsertAt(ListPenyanyi *L, Word X, IdxType i);
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
-void InsertLast(ListPenyanyi *L, ElType X);
+void InsertLast(ListPenyanyi *L, Word X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
