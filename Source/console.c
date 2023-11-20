@@ -177,22 +177,22 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
 /*I.S. Antrian pada lagu sudah terdefinisi  */
 /*F.S. Jika keadaan belum memutar lagu tetapi sudah ada que maka akan memuta lagu pada que, Jika sedang memutar lagu 
 maka lagu akan dimasukkan pada History Lagu dan memutar lagu pada queue*/
-/*void SongPrev(HistoriLagu *HS,){
+void SongPrev(HistoriLagu *HS,QueueLagu *Q){
     QueueLagu Qtemp;
     char *lagutemp,*albumtemp,*penyanyitemp;
-    CreateQueue(&Qtemp);
+    CCreateQueue(&Qtemp);
     if(IsHistEmpty(*HS)){
         printf("History kosong, memutar kembali lagu\n");
         printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
     }else{
         Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
-        while(!isEmpty(*Q)){
-            Cdequeue(&Q,penyanyitemp,albumtemp,lagutemp);
+        while(!CIsEmpty(*Q)){
+            Cdequeue(Q,penyanyitemp,albumtemp,lagutemp);
             Cenqueue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
-        }while(isEmpty(Qtemp)){
+        }while(CIsEmpty(Qtemp)){
             Cdequeue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
-            Cenqueue(&Q,penyanyitemp,albumtemp,lagutemp);
-        }Pop(HS, (&current)->penyanyi, (&current)->album, (&current)->lagu);
+            Cenqueue(Q,penyanyitemp,albumtemp,lagutemp);
+        }PopLagu(HS,(current).lagu,(current).album,(current).penyanyi);
         printf("Memutar lagu sebelumnya\n");
         printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
     }
