@@ -17,6 +17,9 @@ void QUIT() {
         }
 
         SAVE(file);
+        printf ("Data berhasil disimpan.\n")
+        printf ("Kamu keluar dari WayangWave.\n");
+        printf ("Dadah ^_^/\n");
     } else {
         printf ("Kamu keluar dari WayangWave.\n");
         printf ("Dadah ^_^/\n");
