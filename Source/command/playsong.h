@@ -11,6 +11,6 @@
 #include "../ADT/ADT_Set/set.h"
 #include "../ADT/ADT_Map/map.h"
 
-void playsong(ListPenyanyi lp, SetLagu sl, MapAlbum ma);
+void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriLagu* Hl);
 
 #endif
