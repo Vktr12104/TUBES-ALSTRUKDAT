@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/steven adrian/Downloads/TUBES ALSTRUKDAT/TUBES-ALSTRUKDAT",
-      "program": "c:/Users/steven adrian/Downloads/TUBES ALSTRUKDAT/TUBES-ALSTRUKDAT/build/Debug/outDebug",
+      "cwd": "c:/Users/steven adrian/Downloads/tubes alstrukdat/TUBES-ALSTRUKDAT",
+      "program": "c:/Users/steven adrian/Downloads/tubes alstrukdat/TUBES-ALSTRUKDAT/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

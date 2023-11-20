@@ -9,7 +9,7 @@
 typedef char* infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {
-    Isi_Que infoplaylist;
+    isi_playlist infoplaylist;
     address next;
 } ElmtList;
 typedef struct {

@@ -74,9 +74,9 @@ typedef struct {
 /* Struktur Data List Penyanyi (yang memiliki Album yang memiliki Lagu) [List Statis] */
 
 typedef struct {
-    Word lagu_playlist;
-    Title album_playlist[MaxEl];
-    Title Penyanyi_playlist[MaxEl];
+    char *lagu_playlist;
+    char *album_playlist;
+    char *Penyanyi_playlist;
 } isi_playlist;
 
 typedef struct {
