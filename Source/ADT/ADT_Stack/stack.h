@@ -21,13 +21,13 @@ boolean IsHistEmpty(HistoriLagu S);
 Menghasilkan True jika Stack kosong, dan False jika Stack tidak kosong
 */
 
-void PushLagu(HistoriLagu *S, Lagu L);
+void PushLagu(HistoriLagu *S, char *lagu, char *album, char *artis);
 /*
 I.S. Sembarang, P terdefinisi
 F.S. Menempatkan P pada Top dari S (History lagu)
 */
 
-void PopLagu(HistoriLagu *S, Lagu *L);
+void PopLagu(HistoriLagu *S, char *lagu, char *album, char *artis);
 /*
 I.S. Stack tidak kosong
 F.S. Mengambil P dari Top dari S

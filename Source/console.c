@@ -9,6 +9,7 @@
 #include "ADT_Set/set.h"
 #include "ADT/ADT_LinkedList/listb.h"
 #include "ADT/ADT_List/listdinamis.h"
+#include "ADT/ADT_Stack/stack.h"
 
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     QueueLagu Q;
@@ -151,22 +152,44 @@ void QueClear(QueueLagu *Q) {
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Menghapus semua lagu pada queue*/    
-/*void SongNext(HistoriLagu *HS, QueueLagu *Q){
+void SongNext(HistoriLagu *HS, QueueLagu *Q){
     boolean isNotPlaying=true; 
     if(isNotPlaying && isEmpty(*Q)){
         printf("Queue kosong dan tidak ada lagu yang sedang dimainkan");
     }else if(isEmpty(*Q)) {
         printf("Queue kosong, memutar kembali lagu\n");
-        printf("\"%s\" oleh \"%s\""c);
+        printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
     }else{
-
+        PushLagu(HS,current.lagu,current.album,current.lagu);
+        Cdequeue(Q,(&current)->penyanyi, (&current)->album, (&current)->lagu);
+        printf("Memutar lagu selanjutnya\n");
+        printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
     }
-}*/
+}
 
 /*I.S. Antrian pada lagu sudah terdefinisi  */
 /*F.S. Jika keadaan belum memutar lagu tetapi sudah ada que maka akan memuta lagu pada que, Jika sedang memutar lagu 
 maka lagu akan dimasukkan pada History Lagu dan memutar lagu pada queue*/
-void SongPrev(HistoriLagu *HS);
+void SongPrev(HistoriLagu *HS){
+    QueueLagu Qtemp;
+    char *lagutemp,*albumtemp,*penyanyitemp;
+    CreateQueue(&Qtemp);
+    if(IsHistEmpty(*HS)){
+        printf("History kosong, memutar kembali lagu\n");
+        printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
+    }else{
+        Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
+        while(!isEmpty(*Q)){
+            Cdequeue(&Q,penyanyitemp,albumtemp,lagutemp);
+            Cenqueue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
+        }while(isEmpty(Qtemp)){
+            Cdequeue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
+            Cenqueue(&Q,penyanyitemp,albumtemp,lagutemp);
+        }Pop(HS, (&current)->penyanyi, (&current)->album, (&current)->lagu);
+        printf("Memutar lagu sebelumnya\n");
+        printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
+    }
+}
 /*I.S. History  pada lagu sudah terdefinisi  */
 /*F.S Memutar lagu pada history lagu, jika belum ada dan baru memutar laguu yang diputar maka lagu 
 lagu yang sedang diputar*/
