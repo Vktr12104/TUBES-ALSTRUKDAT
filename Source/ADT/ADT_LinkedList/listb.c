@@ -26,9 +26,9 @@ address Alokasilistb (char *penyanyi, char *album, char *lagu) {
     address P;
     P = (ElmtList *) malloc(sizeof(ElmtList));
     if (P!= NULL) {
-        P->infoplaylist.Penyanyi_playlist=*penyanyi;
-        P->infoplaylist.album_playlist=*album;
-        P->infoplaylist.lagu_playlist=*lagu;
+        P->infoplaylist.Penyanyi_playlist=penyanyi;
+        P->infoplaylist.album_playlist=album;
+        P->infoplaylist.lagu_playlist=lagu;
         Next(P) = NULL;
     }
     return P;
@@ -69,7 +69,7 @@ address Searchlistb (listBerkait L, char *kata) {
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirstlistb (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) {
     address P;
-    P = Alokasi(penyanyi,album,lagu);
+    P = Alokasilistb(penyanyi,album,lagu);
     if (P != NULL) {
         Next(P) = First(*L);
         First(*L) = P;
@@ -80,7 +80,7 @@ void InsVFirstlistb (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) 
 /* menambahkan elemen pertama dengan NULLai X jika alokasi berhasil */
 void InsVLastlistb (listBerkait *L, char *penyanyi,  char *album,  char *lagu) {
     address P;
-    P = Alokasi(penyanyi,album,lagu);
+    P = Alokasilistb(penyanyi,album,lagu);
     if (P != NULL) {  
         InsertLastlistb(L,P);
     }
@@ -95,7 +95,7 @@ void DelVFirstlistb (listBerkait *L, Isi_Que *X) {
     address P;
 
     DelFirstlistb(L, &P);
-    *X->lagu_playlist = Info(P).lagu_playlist;
+    X->lagu_playlist = Info(P).lagu_playlist;
     Dealokasilistb(&P);
 }
 /* I.S. List L tidak kosong  */
@@ -105,7 +105,7 @@ void DelVLastlistb (listBerkait *L, Isi_Que *X) {
     address P;
 
     DelLastlistb(L, &P);
-    *X->lagu_playlist = Info(P).lagu_playlist;
+    X->lagu_playlist = Info(P).lagu_playlist;
     Dealokasilistb(&P);
 }
 /* I.S. list tidak kosong */
@@ -139,7 +139,7 @@ void InsertLastlistb (listBerkait *L, address P) {
             last = Next(last);
         }
 
-        InsertAfter(L, P, last);
+        InsertAfterlistb(L, P, last);
     }
 }
 /* I.S. Sembarang, P sudah dialokasi  */
@@ -162,7 +162,7 @@ void DelPlistb (listBerkait *L, char *lagu) {
         address prec = First(*L);
 
         if (prec == P){ // If its on first element
-            DelFirst(L, &P);
+            DelFirstlistb(L, &P);
         }
         else {
 
@@ -170,10 +170,10 @@ void DelPlistb (listBerkait *L, char *lagu) {
                 prec = Next(prec);
             }
 
-            DelAfter(L, &P, prec);
+            DelAfterlistb(L, &P, prec);
         }
     }
-    Dealokasi(&P);
+    Dealokasilistb(&P);
 }
 
 /* I.S. Sembarang */
@@ -185,7 +185,7 @@ void DelLastlistb (listBerkait *L, address *P) {
     if (Next(First(*L)) == NULL){    // 1 element only
 
         *P = First(*L);
-        CreateEmpty(L);
+        CreateEmptylistb(L);
 
     }
     else {
@@ -197,7 +197,7 @@ void DelLastlistb (listBerkait *L, address *P) {
 
         // Next Next (prec ) == NULL , got the prec of last element
 
-        DelAfter(L, P, prec);
+        DelAfterlistb(L, P, prec);
 
     }
 }
@@ -287,7 +287,7 @@ void InversListlistb (listBerkait *L) {
 /* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
 
 void Konkat1listb (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
-    CreateEmpty(L3);
+    CreateEmptylistb(L3);
 
     if (!(IsEmptylistb(*L1))){
         First(*L3) = First(*L1);
@@ -305,8 +305,8 @@ void Konkat1listb (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
     }
 
 
-    CreateEmpty(L1);
-    CreateEmpty(L2);
+    CreateEmptylistb(L1);
+    CreateEmptylistb(L2);
 }
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
