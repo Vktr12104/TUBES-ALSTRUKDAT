@@ -8,12 +8,15 @@
 #include "Source/ADT/boolean.h"
 #include "Source/console.h"
 #include <stdio.h>
-
+status current;
 int main(){
+    
     char namaFile[] = "text.txt";
     ListPenyanyi listmusisi3;
     QueueLagu Q;
     CCreateQueue(&Q);
+    HistoriLagu HS;
+    CreateHist(&HS);
     SetLagu lagu2;
     MapAlbum m2;
     boolean quit = false;
@@ -43,6 +46,10 @@ int main(){
             QueMove(&Q);
         }else if(StrComp(currentCommand.TabWord,"QUEUE CLEAR")){
             QueClear(&Q);
+        }else if(StrComp(currentCommand.TabWord,"PLAYLIST CREATE")){
+
+        }else if(StrComp(currentCommand.TabWord,"SONG NEXT")){
+            SongNext(&HS,&Q);
         }
     }
     //DisplayListPenyanyi(listmusisi3);
