@@ -11,7 +11,6 @@
 #define IDX_MAX 99
 
 /* Definisi tipe elemen dan indeks pada CQueue */
-typedef int ElType;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah CQueue, maka akses elemen : */
