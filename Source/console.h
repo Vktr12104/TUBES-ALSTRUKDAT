@@ -101,4 +101,8 @@ void save (Word filename,Penyanyi p,Album al ,Lagu lg);
 /* I.S. array terdefinisi */
 /* F.S. array disimpan dalam file eksternal */
 
+void QUIT ();
+/* I.S. sembarang */
+/* F.S. keluar dari sesi*/
+
 #endif
