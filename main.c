@@ -1,6 +1,6 @@
 #include "Source/ADT/ADT_Mesin-Kata/mesinkata.h"
 #include "Source/ADT/ADT_MesinKarakter/mesinkarakter.h"
-// #include "Source/ADT/ADT_Map/map.h"
+#include "Source/ADT/ADT_Map/map.h"
 #include "Source/ADT/ADT_List/liststatis.h"
 #include "Source/command/start.h"
 #include "Source/ADT/ADT_Set/set.h"
@@ -16,10 +16,10 @@ int main(){
     STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
     DisplayListPenyanyi(listmusisi3);
     DisplaySetLagu(lagu2,5);
+    displayMapAlbum(m2,0);
+    displayMapAlbum(m2,1);
     listdefault(listmusisi3,lagu2,m2);
     listplaylist(listlagu3);
-    //displayMapAlbum(m2);
-    
 
 
     return 0;
