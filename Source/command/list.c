@@ -48,7 +48,7 @@ void listdefault(ListPenyanyi input1, SetLagu input3, MapAlbum input2) {
     }
 }
 
-void listplaylist(ListPlaylist input) {
+/*void listplaylist(ListPlaylist input) {
     printf("Daftar playlist yang kamu miliki:\n");
     if (input.playlistSize == 0) {
         printf("Kamu tidak memiliki playlist.\n");
@@ -57,4 +57,4 @@ void listplaylist(ListPlaylist input) {
             printf("%d. %s\n", i + 1, input.playlist[i].playlist_nama);
         }
     }
-}
+}*/
