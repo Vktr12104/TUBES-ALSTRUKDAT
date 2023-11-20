@@ -9,5 +9,5 @@
 #include "../ADT/ADT_Map/map.h"
 
 void listdefault(ListPenyanyi input1, SetLagu input3,MapAlbum input2); /*, MapAlbum input2 */
-void listplaylist(ListPlaylist input);
+//void listplaylist(ListPlaylist input);
 #endif
