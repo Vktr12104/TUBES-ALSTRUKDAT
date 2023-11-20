@@ -6,20 +6,21 @@
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
 #include "Source/ADT/boolean.h"
+#include "Source/console.h"
 #include <stdio.h>
 
 int main(){
     char namaFile[] = "text.txt";
     ListPenyanyi listmusisi3;
+    QueueLagu Q;
+    CCreateQueue(&Q);
     SetLagu lagu2;
     MapAlbum m2;
-    ListPlaylist listlagu3;
     boolean quit = false;
     boolean start = false;
     while(!quit){
         printf(">> ");
         STARTCOMMAND();
-        displayWord(currentCommand);
         if(StrComp(currentCommand.TabWord, "START")){
             STARTREAD(&listmusisi3,&lagu2,&m2,namaFile);
             start = true; // untuk menandakan sudah pernah distart
@@ -32,6 +33,16 @@ int main(){
                 printf("Command tidak bisa dieksekusi!\n");
 
             }
+        }else if(StrComp(currentCommand.TabWord,"QUEUE SONG")){
+            QueSong(listmusisi3,m2,lagu2,&Q);
+        }else if(StrComp(currentCommand.TabWord,"QUEUE PLAYLIST")){
+            
+        }else if(StrComp(currentCommand.TabWord,"QUEUE SWAP")){
+            QueSwap(&Q);
+        }else if(StrComp(currentCommand.TabWord,"QUEUE REMOVE")){
+            QueMove(&Q);
+        }else if(StrComp(currentCommand.TabWord,"QUEUE CLEAR")){
+            QueClear(&Q);
         }
     }
     //DisplayListPenyanyi(listmusisi3);
