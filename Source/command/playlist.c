@@ -25,13 +25,13 @@ void CreatePlayList() {
     }
     if (count >= 3) {
         char *comm = wordToString(currentCommand);
-        //InsertLast(&list_dinamis,); 
-        CreateEmpty(&list_dinamis.A[list_dinamis.NEff - 1]);
+        InsertLast(&list_dinamis.A[list_dinamis.NEff+1],currentCommand) ;
+        CreateEmptylistb(&list_dinamis.A[list_dinamis.NEff - 1]);
         printf("\n Playlist %s berhasil dibuat!", comm);
     } else {
         printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.");
     }
-}
+}   
 
 void playlist_add (listBerkait *input, ListPenyanyi lp, MapAlbum m2,SetLagu S) {
     printf("Daftar Penyanyi:\n");
@@ -66,7 +66,7 @@ void playlist_add (listBerkait *input, ListPenyanyi lp, MapAlbum m2,SetLagu S) {
     }print("Masukkan ID Playlist yang dipilih :\n");
     STARTCOMMAND();
     int x=wordToInt(currentCommand);
-    InsVLast(input,comm,comm1,comm2);
+    InsVLastlistb(input,comm,comm1,comm2);
     printf("Lagu dengan judul “%s” pada album %s oleh penyanyi %s berhasil ditambahkan ke dalam playlist.",comm2,comm1,comm);
     
 }
