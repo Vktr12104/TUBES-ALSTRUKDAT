@@ -2,42 +2,51 @@
 #include "listb.h"
 
 int main() {
-    listBerkait L1, L2, L3;
-    CreateEmpty(&L1);
-    CreateEmpty(&L2);
-    CreateEmpty(&L3);
+    // Buat listBerkait
+    listBerkait L;
+    CreateEmptylistb(&L);
 
-    Isi_Que elemen1 = {"Song1"};
-    Isi_Que elemen2 = {"Song2"};
-    Isi_Que elemen3 = {"Song3"};
+    // Tambahkan elemen ke list
+    InsVFirstlistb(&L, "Penyanyi1", "Album1", "Lagu1");
+    InsVLastlistb(&L, "Penyanyi2", "Album2", "Lagu2");
+    InsVLastlistb(&L, "Penyanyi3", "Album3", "Lagu3");
 
-    InsVFirst(&L1, elemen1);
-    InsVLast(&L1, elemen2);
-
-    InsVFirst(&L2, elemen3);
-
-    printf("List L1: ");
-    PrintInfo(L1);
+    // Cetak isi list
+    printf("Isi List Awal: ");
+    PrintInfolistb(L);
     printf("\n");
 
-    printf("List L2: ");
-    PrintInfo(L2);
+    // Contoh penggunaan fungsi lain
+    if (!IsEmptylistb(L)) {
+        printf("Jumlah elemen dalam list: %d\n", NbElmtlistb(L));
+        
+        address found = Searchlistb(L, "Lagu2");
+        if (found != NULL) {
+            printf("Elemen ditemukan: %.*s\n", Info(found).lagu_playlist, Info(found).lagu_playlist);
+        } else {
+            printf("Elemen tidak ditemukan\n");
+        }
+    }
+
+    // Hapus elemen dari list
+    Isi_Que deleted;
+    DelVFirstlistb(&L, &deleted);
+    printf("Elemen pertama dihapus: %.*s\n", deleted.lagu_playlist, deleted.lagu_playlist);
+
+    // Cetak isi list setelah penghapusan
+    printf("Isi List setelah penghapusan: ");
+    PrintInfolistb(L);
     printf("\n");
 
-    Konkat1(&L1, &L2, &L3);
+    // Dealokasi list
+    address P;
+    DelLastlistb(&L, &P);
+    Dealokasilistb(&P);
 
-    printf("List L3 after concatenation: ");
-    PrintInfo(L3);
+    // Cetak isi list setelah dealokasi
+    printf("Isi List setelah dealokasi: ");
+    PrintInfolistb(L);
     printf("\n");
-
-    printf("Is 'Song1' a member of L3? %s\n", IsMember(L3, "Song1") ? "Yes" : "No");
-
-    InversList(&L3);
-    printf("List L3 after inversion: ");
-    PrintInfo(L3);
-    printf("\n");
-
-    printf("Number of elements in L3: %d\n", NbElmt(L3));
 
     return 0;
 }

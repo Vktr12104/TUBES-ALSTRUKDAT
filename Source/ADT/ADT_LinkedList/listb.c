@@ -15,20 +15,20 @@ boolean IsEmptylistb (listBerkait L) {
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (listBerkait *L) {
+void CreateEmptylistb (listBerkait *L) {
     First(*L) = NULL;
 }
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi (char *penyanyi, char *album, char *lagu) {
+address Alokasilistb (char *penyanyi, char *album, char *lagu) {
     address P;
     P = (ElmtList *) malloc(sizeof(ElmtList));
     if (P!= NULL) {
-        P->infoplaylist.Penyanyi_playlist=*penyanyi;
-        P->infoplaylist.album_playlist=*album;
-        P->infoplaylist.lagu_playlist=*lagu;
+        P->infoplaylist.Penyanyi_playlist=penyanyi;
+        P->infoplaylist.album_playlist=album;
+        P->infoplaylist.lagu_playlist=lagu;
         Next(P) = NULL;
     }
     return P;
@@ -37,7 +37,7 @@ address Alokasi (char *penyanyi, char *album, char *lagu) {
 /* Jika alokasi berhasil, maka address tidak NULL, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
-void Dealokasi (address *P) {
+void Dealokasilistb (address *P) {
     free(*P);
 }
 /* I.S. P terdefinisi */
@@ -67,9 +67,9 @@ address Searchlistb (listBerkait L, char *kata) {
 
 /****************** PRIMITIF BERDASARKAN NULLAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) {
+void InsVFirstlistb (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) {
     address P;
-    P = Alokasi(penyanyi,album,lagu);
+    P = Alokasilistb(penyanyi,album,lagu);
     if (P != NULL) {
         Next(P) = First(*L);
         First(*L) = P;
@@ -78,9 +78,9 @@ void InsVFirst (listBerkait *L,char *penyanyi,  char *album,  char *lagu ) {
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan NULLai X jika alokasi berhasil */
-void InsVLast (listBerkait *L, char *penyanyi,  char *album,  char *lagu) {
+void InsVLastlistb (listBerkait *L, char *penyanyi,  char *album,  char *lagu) {
     address P;
-    P = Alokasi(penyanyi,album,lagu);
+    P = Alokasilistb(penyanyi,album,lagu);
     if (P != NULL) {  
         InsertLastlistb(L,P);
     }
@@ -91,22 +91,22 @@ void InsVLast (listBerkait *L, char *penyanyi,  char *album,  char *lagu) {
 /* berNULLai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (listBerkait *L, Isi_Que *X) {
+void DelVFirstlistb (listBerkait *L, Isi_Que *X) {
     address P;
 
-    DelFirst(L, &P);
-    *X = Info(P);
-    Dealokasi(&P);
+    DelFirstlistb(L, &P);
+    X->lagu_playlist = Info(P).lagu_playlist;
+    Dealokasilistb(&P);
 }
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: NULLai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
-void DelVLast (listBerkait *L, Isi_Que *X) {
+void DelVLastlistb (listBerkait *L, Isi_Que *X) {
     address P;
 
-    DelLast(L, &P);
-    *X = Info(P);
-    Dealokasi(&P);
+    DelLastlistb(L, &P);
+    X->lagu_playlist = Info(P).lagu_playlist;
+    Dealokasilistb(&P);
 }
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: NULLai info disimpan pada X */
@@ -120,7 +120,7 @@ void InsertFirstlistb (listBerkait *L, address P) {
 }
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (listBerkait *L, address P, address Prec) {
+void InsertAfterlistb (listBerkait *L, address P, address Prec) {
     Next(P) = Next(Prec);
     Next(Prec) = P;
 }
@@ -139,14 +139,14 @@ void InsertLastlistb (listBerkait *L, address P) {
             last = Next(last);
         }
 
-        InsertAfter(L, P, last);
+        InsertAfterlistb(L, P, last);
     }
 }
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-void DelFirst (listBerkait *L, address *P) {
+void DelFirstlistb (listBerkait *L, address *P) {
     *P = First(*L);
     First(*L) = Next(First(*L));
     Next(*P) = NULL;
@@ -155,14 +155,14 @@ void DelFirst (listBerkait *L, address *P) {
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (listBerkait *L, char *lagu) {
+void DelPlistb (listBerkait *L, char *lagu) {
     address P = Searchlistb(*L, lagu);
 
     if (P != NULL){   // Found
         address prec = First(*L);
 
         if (prec == P){ // If its on first element
-            DelFirst(L, &P);
+            DelFirstlistb(L, &P);
         }
         else {
 
@@ -170,10 +170,10 @@ void DelP (listBerkait *L, char *lagu) {
                 prec = Next(prec);
             }
 
-            DelAfter(L, &P, prec);
+            DelAfterlistb(L, &P, prec);
         }
     }
-    Dealokasi(&P);
+    Dealokasilistb(&P);
 }
 
 /* I.S. Sembarang */
@@ -181,11 +181,11 @@ void DelP (listBerkait *L, char *lagu) {
 /* Maka P dihapus dari list dan di-dealokasi */
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
-void DelLast (listBerkait *L, address *P) {
+void DelLastlistb (listBerkait *L, address *P) {
     if (Next(First(*L)) == NULL){    // 1 element only
 
         *P = First(*L);
-        CreateEmpty(L);
+        CreateEmptylistb(L);
 
     }
     else {
@@ -197,7 +197,7 @@ void DelLast (listBerkait *L, address *P) {
 
         // Next Next (prec ) == NULL , got the prec of last element
 
-        DelAfter(L, P, prec);
+        DelAfterlistb(L, P, prec);
 
     }
 }
@@ -206,7 +206,7 @@ void DelLast (listBerkait *L, address *P) {
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (listBerkait *L, address *Pdel, address Prec) {
+void DelAfterlistb (listBerkait *L, address *Pdel, address Prec) {
     address P;
     boolean found;
 
@@ -230,7 +230,7 @@ void DelAfter (listBerkait *L, address *Pdel, address Prec) {
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo(listBerkait L) {
+void PrintInfolistb(listBerkait L) {
     printf("[");
     if (!IsEmptylistb(L)) {
         address CP = First(L);
@@ -250,7 +250,7 @@ void PrintInfo(listBerkait L) {
 /* Contoh : jika ada tiga elemen berNULLai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NbElmt (listBerkait L) {
+int NbElmtlistb (listBerkait L) {
     int count;
     address P;
 
@@ -267,7 +267,7 @@ int NbElmt (listBerkait L) {
 
 /****************** PROSES TERHADAP LIST ******************/
 
-void InversList (listBerkait *L) {
+void InversListlistb (listBerkait *L) {
     address P, Prec, Last;
 
     P = First((*L));
@@ -286,8 +286,8 @@ void InversList (listBerkait *L) {
 /* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
 /* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
 
-void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
-    CreateEmpty(L3);
+void Konkat1listb (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
+    CreateEmptylistb(L3);
 
     if (!(IsEmptylistb(*L1))){
         First(*L3) = First(*L1);
@@ -305,8 +305,8 @@ void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
     }
 
 
-    CreateEmpty(L1);
-    CreateEmpty(L2);
+    CreateEmptylistb(L1);
+    CreateEmptylistb(L2);
 }
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
@@ -314,7 +314,7 @@ void Konkat1 (listBerkait *L1, listBerkait *L2, listBerkait *L3) {
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
-boolean IsMember(listBerkait S, char* Elmt)
+boolean IsMemberlistb(listBerkait S, char* Elmt)
 /* Mengembalikan true jika Elmt adalah member dari S */
 {
     boolean found = false;
