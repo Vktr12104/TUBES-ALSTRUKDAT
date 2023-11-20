@@ -1,100 +1,132 @@
 #include "listdinamis.h"
 
 /* ********** KONSTRUKTOR ********** */
-/* Konstruktor: create list kosong */
-ListD MakeList() {
+ListD MakeListD() {
     ListD L;
-    L.A = (ListPlaylist*)malloc(MaxEl * sizeof(ListPlaylist));
     L.NEff = 0;
     L.Max = MaxEl;
+    L.A.First = NULL;
     return L;
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
-/* *** Test list kosong *** */
-boolean IsEmpty(ListD L) {
-    return L.NEff == 0;
+boolean IsEmptyListD(ListD L) {
+    return L.A.First == NULL;
 }
 
 /* ********** SELEKTOR ********** */
-/* *** Banyaknya elemen *** */
-int Length(ListD L) {
+int LengthListD(ListD L) {
     return L.NEff;
 }
 
-/* *** Selektor INDEKS *** */
-IdxType FirstIdx(ListD L) {
-    return 0;
+IdxType FirstIdxListD(ListD L) {
+    return 1;
 }
 
-IdxType LastIdx(ListD L) {
-    return L.NEff - 1;
+IdxType LastIdxListD(ListD L) {
+    return L.NEff;
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid(ListD L, IdxType i) {
-    return (i >= 0) && (i < L.Max);
+boolean IsIdxValidListD(ListD L, IdxType i) {
+    return i >= 1 && i <= L.Max;
 }
 
-boolean IsIdxEff(ListD L, IdxType i) {
-    return (i >= 0) && (i < L.NEff);
+boolean IsIdxEffListD(ListD L, IdxType i) {
+    return i >= FirstIdxListD(L) && i <= LastIdxListD(L);
 }
 
 /* ********** Operasi-operasi ********** */
 boolean IsMemberdinamis(ListD L, ListPlaylist X) {
-    int i;
-    for (i = 0; i < L.NEff; i++) {
-        if (StrComp(X.playlist->playlist_nama,L.A[i].NamaPlaylist)) {
+    address P = L.A.First;
+    while (P != NULL) {
+        if (IsEqualPlaylist(P->infoplaylist, X)) {
             return true;
         }
+        P = P->next;
     }
     return false;
 }
 
-void InsertFirst(ListD *L, Word nama) {
-    if (L->NEff < L->Max) {
-        int i;
-        for (i = L->NEff; i > 0; i--) {
-            L->A[i] = L->A[i - 1];
-        }
-        *L->A[0].NamaPlaylist = nama;
+void InsertFirstListD(ListD *L, Word nama) {
+    address P = (address)malloc(sizeof(ElmtList));
+    if (P != NULL) {
+        P->infoplaylist = MakePlaylist(nama);
+        P->next = L->A.First;
+        L->A.First = P;
         L->NEff++;
     }
 }
 
-void InsertAt(ListD *L, Word nama, IdxType i) {
-    if (L->NEff < L->Max && IsIdxEff(*L, i)) {
-        int j;
-        for (j = L->NEff; j > i; j--) {
-            L->A[j] = L->A[j - 1];
+void InsertAtListD(ListD *L, Word nama, IdxType i) {
+    if (IsIdxValidListD(*L, i)) {
+        address P = (address)malloc(sizeof(ElmtList));
+        if (P != NULL) {
+            P->infoplaylist = MakePlaylist(nama);
+            if (i == FirstIdxListD(*L)) {
+                P->next = L->A.First;
+                L->A.First = P;
+            } else {
+                address Prec = L->A.First;
+                IdxType j = 1;
+                while (j < i - 1) {
+                    Prec = Prec->next;
+                    j++;
+                }
+                P->next = Prec->next;
+                Prec->next = P;
+            }
+            L->NEff++;
         }
-        *L->A[i].NamaPlaylist=nama;
-        L->NEff++;
-    }
-}
-void InsertLast(ListD *L, Word nama ) {
-    if (L->NEff < L->Max) {
-        *L->A[L->NEff].NamaPlaylist = nama;
-        L->NEff++;
     }
 }
 
-void DeleteFirst(ListD *L) {
-    if (!IsEmpty(*L)) {
-        int i;
-        for (i = 0; i < L->NEff - 1; i++) {
-            L->A[i] = L->A[i + 1];
+void InsertLastListD(ListD *L, Word nama) {
+    if (IsEmptyListD(*L)) {
+        InsertFirstListD(L, nama);
+    } else {
+        address P = (address)malloc(sizeof(ElmtList));
+        if (P != NULL) {
+            P->infoplaylist = MakePlaylist(nama);
+            P->next = NULL;
+
+            address Last = L->A.First;
+            while (Last->next != NULL) {
+                Last = Last->next;
+            }
+
+            Last->next = P;
+            L->NEff++;
         }
+    }
+}
+
+void DeleteFirstListD(ListD *L) {
+    if (!IsEmptyListD(*L)) {
+        address P = L->A.First;
+        L->A.First = P->next;
+        free(P);
         L->NEff--;
     }
 }
 
-void DeleteAt(ListD *L, IdxType i) {
-    if (!IsEmpty(*L) && IsIdxEff(*L, i)) {
-        int j;
-        for (j = i; j < L->NEff - 1; j++) {
-            L->A[j] = L->A[j + 1];
+void DeleteAtListD(ListD *L, IdxType i) {
+    if (IsIdxEffListD(*L, i)) {
+        address P;
+        if (i == FirstIdxListD(*L)) {
+            P = L->A.First;
+            L->A.First = P->next;
+        } else {
+            address Prec = L->A.First;
+            IdxType j = 1;
+            while (j < i - 1) {
+                Prec = Prec->next;
+                j++;
+            }
+            P = Prec->next;
+            Prec->next = P->next;
         }
+        free(P);
         L->NEff--;
     }
 }
