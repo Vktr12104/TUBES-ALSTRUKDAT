@@ -140,6 +140,7 @@ void QueMove(QueueLagu *Q){
     QueueLagu Qtemp;
     CCreateQueue(&Qtemp);
     char *Penyanyitemp, *albumtemp, *lagutemp;
+    char *Penyanyitemp1, *albumtemp1, *lagutemp1;
     STARTCOMMAND();
     int x = wordToInt(currentCommand);
     
@@ -151,11 +152,16 @@ void QueMove(QueueLagu *Q){
             Cdequeue(Q, &Penyanyitemp, &albumtemp, &lagutemp);
             if (i + 1 != x) {
                 Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
+            }else{
+                Penyanyitemp1=Penyanyitemp;
+                albumtemp1=albumtemp;
+                lagutemp1=lagutemp;
             }
             i++;
-        }
+        }printf("Lagu %s oleh %s telah dihapus dari queue!\n",lagutemp1,Penyanyitemp1);
+        *Q = Qtemp;
     }
-    *Q = Qtemp;
+    
     displayQueue(*Q);
 }
 
@@ -166,7 +172,7 @@ void QueClear(QueueLagu *Q) {
     char *Penyanyitemp,*albumtemp,*lagutemp;
     while (!CIsEmpty(*Q)) {
         Cdequeue(Q,&Penyanyitemp,&albumtemp,&lagutemp);
-    }printf("Queue berhasil dikosongkan");
+    }printf("Queue berhasil dikosongkan\n");
 }
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
@@ -182,7 +188,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         PushLagu(HS,current.lagu,current.album,current.penyanyi);
         Cdequeue(Q,&current.lagu,&current.album,&current.penyanyi);
         printf("Memutar lagu selanjutnya\n");
-        printf("\"%s\" oleh \"%s\"",current.lagu,current.lagu);
+        printf("\"%s\" oleh \"%s\"\n",current.lagu,current.penyanyi);
     }
 }
 
@@ -195,7 +201,7 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
     CCreateQueue(&Qtemp);
     if(IsHistEmpty(*HS)){
         printf("History kosong, memutar kembali lagu\n");
-        printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
+        printf("\"%s\" oleh \"%s\"\n",current.lagu,current.penyanyi);
     }else{
         Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
         while(!CIsEmpty(*Q)){
@@ -284,8 +290,6 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg){
         printf ("Dadah ^_^/\n");
     }
 }
-
-
 void help(boolean start){
     if (start == false) {
         printf ("=====[ Menu Help WayangWave ]=====\n");
@@ -316,4 +320,11 @@ void help(boolean start){
         printf ("20. SAVE -> Menyimpan Array dalam file eksternal\n");
         printf ("21. QUIT -> Keluar dari sesi\n");
     }
+}
+
+void invalidCommand(Word* w) {
+    while (!EndWord) {
+        ADVCOMMAND();
+    }
+    printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
 }
