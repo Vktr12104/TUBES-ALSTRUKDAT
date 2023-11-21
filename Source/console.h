@@ -8,6 +8,7 @@
 #include "ADT/ADT_Queue/queue.h"
 #include "ADT/ADT_Set/set.h"
 #include "ADT/ADT_Stack/stack.h"
+#include "ADT/boolean.h"
 
 #ifndef CONSOLE_H
 #define CONSOLE_H
