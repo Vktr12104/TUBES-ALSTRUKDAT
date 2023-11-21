@@ -6,7 +6,7 @@
 
 #include "../boolean.h"
 #include "../ADT_MesinKarakter/mesinkarakter.h"
-
+#include "../ADT_List/liststatis.h"
 
 #define NMax 450
 #define BLANK ' '
@@ -103,9 +103,6 @@ void IgnoreDots ();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar ≠ '.' */
 
-Word concatWord(Word w1, Word w2);
-/* Menggabungkan dua kata menjadi satu kata */
-
 boolean isWordEqual(Word a, Word b);
 /* Mengembalikan true jika kata a dan b sama */
 
@@ -121,6 +118,7 @@ void displayWordNewLine(Word w);
 
 int wordToInt(Word w);
 /* Mengubah kata menjadi integer */
+
 int stringLength(char *str);
 /* Mengembalikan panjang string */
 
@@ -154,5 +152,7 @@ void CreateWord2(int length, char * string, Word * w);
 boolean IsWordSame(Word w, Word v);
 
 Word takeword(Word command, int ke);
+
+boolean isMemberList (Word input, ListPenyanyi LP);
 
 #endif
