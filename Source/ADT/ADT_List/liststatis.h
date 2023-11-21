@@ -116,4 +116,6 @@ ListPenyanyi Concat(ListPenyanyi L1, ListPenyanyi L2);
 /* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
 
 void DisplayListPenyanyi(ListPenyanyi L);
+
+boolean isMemberListPenyanyi (Word input, ListPenyanyi LP);
 #endif
