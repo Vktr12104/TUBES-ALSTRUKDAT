@@ -16,4 +16,6 @@ void PLAYLISTSWAP(ListDinamik *DaftarPlaylist);
 
 void PLAYLISTREMOVE(ListDinamik *DaftarPlaylist);
 
+void PLAYLISTDELETE(ListDinamik *DaftarPlaylist);
+
 #endif

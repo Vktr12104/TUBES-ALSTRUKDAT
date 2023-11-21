@@ -290,3 +290,31 @@ void PLAYLISTREMOVE(ListDinamik *DaftarPlaylist) {
         }
     }
 }
+
+void PLAYLISTDELETE(ListDinamik *DaftarPlaylist) {
+    printf("Daftar Playlist Pengguna :\n");
+    DisplayLD(*DaftarPlaylist);
+    printf("\n");
+    // Tampilkan daftar playlist
+    // ...
+
+    printf("Masukkan ID Playlist yang dipilih : ");
+    STARTCOMMAND(); // Mulai membaca kata
+    printf("\n");
+    int id_playlist = wordToInt(currentCommand) - 1;
+    ; // Mengubah Word ke integer
+
+    if (id_playlist < 0 || id_playlist >= DaftarPlaylist->Neff) {
+        printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", id_playlist+1);
+    }
+    else {
+        // Hapus playlist dengan ID yang diberikan
+        ElType playlist;
+        playlist = GetLD(*DaftarPlaylist, id_playlist);
+        DeleteAtListDin(&*DaftarPlaylist, id_playlist);
+        printf("Playlist ID %d dengan judul \"", id_playlist+1);
+        displayWord(playlist);
+        printf("\" berhasil dihapus.\n");
+    }
+    
+}
