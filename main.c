@@ -11,6 +11,7 @@
 #include "Source/console.h"
 #include "Source/command/welcome.h"
 #include <stdio.h>
+#include "Source/command/play.h"
 status current;
 int main() {
     
@@ -53,7 +54,10 @@ int main() {
             } else {
                 printf("Command tidak bisa dieksekusi!\n");
             }
-        } else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST;")) {
+        } else if (StrComp(currentCommand.TabWord, "PLAY SONG;")) {
+            playsong(listmusisi3,lagu2,m2,&Q,&HS);
+        }
+        else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST;")) {
             listplaylist(DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUEUE SONG;")) {
             QueSong(listmusisi3, m2, lagu2, &Q);
