@@ -23,7 +23,6 @@ int main() {
     CreateHist(&HS);
     SetLagu lagu2;
     MapAlbum m2;
-    ListDinamik ld;  
     boolean start = false;
     boolean quit = false;
     welcome();
@@ -32,7 +31,7 @@ int main() {
         printf(">> ");
         STARTCOMMAND(); 
         if (StrComp(currentCommand.TabWord, "START")) {
-            STARTREAD(&listmusisi3, &lagu2, &m2, &ld, namaFile);
+            STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
             start = true;
             quit=true;
         } else if (StrComp(currentCommand.TabWord, "LOAD")) {
@@ -41,7 +40,6 @@ int main() {
             invalidCommand(&currentCommand);
         }
     }
-    help(start);
     quit=false;
     while (!quit) {
         printf(">> ");
@@ -54,7 +52,7 @@ int main() {
                 printf("Command tidak bisa dieksekusi!\n");
             }
         } else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
-            listplaylist(ld);
+            listplaylist(DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUEUE SONG")) {
             QueSong(listmusisi3, m2, lagu2, &Q);
         } else if (StrComp(currentCommand.TabWord, "QUEUE PLAYLIST")) {
@@ -66,7 +64,9 @@ int main() {
         } else if (StrComp(currentCommand.TabWord, "QUEUE CLEAR")) {
             QueClear(&Q);
         } else if (StrComp(currentCommand.TabWord, "PLAYLIST CREATE")) {
-            CreatePlayList(&ld);
+            CreatePlayList(&DaftarPlaylist);
+        } else if (StrComp(currentCommand.TabWord, "PLAYLIST ADD SONG")) {
+            PLAYLISTADDSONG(listmusisi3, m2, lagu2, &DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "SONG NEXT")) {
             SongNext(&HS, &Q);
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
@@ -78,6 +78,9 @@ int main() {
             quit = true;
         } else if (StrComp(currentCommand.TabWord, "HELP")) {
             help(start);
+        }
+        else if (StrComp(currentCommand.TabWord, "STATUS")) {
+            DisplaySemuaLD(DaftarPlaylist);
         }
     }
 
