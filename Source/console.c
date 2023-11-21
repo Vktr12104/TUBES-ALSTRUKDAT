@@ -55,6 +55,8 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     }displayQueue(*Ql);
 }
 
+
+/*
 void QueList(ListD list_dinamis, QueueLagu *Ql) {
     printf("Masukkan ID PlayList : ");
     STARTCOMMAND();
@@ -70,7 +72,7 @@ void QueList(ListD list_dinamis, QueueLagu *Ql) {
             P=Next(P);
         }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlaylist);
     }
-}
+}*/
     
 
 /*I.S. List Pada Playlist sudah terdefinisi*/

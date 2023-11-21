@@ -19,7 +19,6 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql);
 /*F.S. Memasukkan lagu yang dipilih ke dalam antrian*/
 void QueSwap(QueueLagu *q) ;
 
-void QueList(ListD list_dinamis, QueueLagu *Ql) ;
 
 void QueMove(QueueLagu *Q);
 
