@@ -26,15 +26,24 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
 
     printf("Masukkan Nama Album yang dipilih: ");
     STARTCOMMAND();
+    if (!IsMemberMapAlbum(m2,currentCommand)){
+        printf("Nama Album tersebut tidak valid\n");
+        return;
+    }
     char *comm1=wordToString(currentCommand);
     int idxalbum=laguAlbumID(currentCommand,m2);
     
     printf("Daftar Lagu Album %s oleh %s : \n",comm1,comm);
     DisplaySetLagu(S,idxalbum);
+    int countlagu = CountLaguByAlbumID(&S,idxalbum);
 
     printf("Masukkan ID Lagu yang dipilih: ");
     STARTCOMMAND();
     int idxlagu=wordToInt(currentCommand);
+    if((idxlagu<=0) || (idxlagu > countlagu)){
+        printf("ID lagu tidak valid\n");
+        return;
+    }
     Word namalagu=namalagufromalbum(S,idxalbum,idxlagu);
     char *comm3=wordToString(namalagu);
     if (CIsFull(*Ql)){
