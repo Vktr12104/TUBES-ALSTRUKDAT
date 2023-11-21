@@ -6,8 +6,16 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
 
     printf("Masukkan Nama Penyanyi yang dipilih : \n");
     STARTCOMMAND();
+
+    if (!isMemberListPenyanyi(currentCommand, lp)){
+        printf("Nama Penyanyi ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        return;
+    }
     Word namapenyanyi = currentCommand;
     int idpenyanyi = albumtoidpenyanyi(lp, namapenyanyi);
+
     printf("Daftar album oleh ");
     displayWord(namapenyanyi);
     printf(" : \n");
@@ -15,8 +23,16 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
 
     printf("Masukkan Nama Album yang dipilih : \n");
     STARTCOMMAND();
+
+    if (!IsMemberMapAlbum(ma,currentCommand)){
+        printf("Album ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        return;
+    }
     Word namaalbum = currentCommand;
     int idalbum = laguAlbumID(namaalbum, ma);
+
     printf("Daftar lagu album ");
     displayWord(namaalbum);
     printf(" oleh ");
@@ -27,6 +43,12 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     printf("Masukkan ID Lagu yang dipilih :  ");
     STARTCOMMAND();
     int idlagu = wordToInt(currentCommand);
+    int jumlahlagu = CountLaguByAlbumID(&sl,idalbum);
+
+    if((idlagu<=0) || (idlagu > jumlahlagu)){
+        printf("ID lagu tidak valid\n");
+        return;
+    }
     Word namalagu = namalagufromalbum (sl, idalbum, idlagu);
 
 
