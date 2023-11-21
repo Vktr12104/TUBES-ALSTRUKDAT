@@ -94,16 +94,11 @@ void Cdequeue(QueueLagu *Q, char **penyanyi, char **album, char **lagu) {
 
 /* *** Display CQueue *** */
 void displayQueue(QueueLagu Q) {
-    printf("[");
     if (!CIsEmpty(Q)) {
-        for (int i = CIDX_HEAD(Q); i < CIDX_HEAD(Q) + CLength(Q); i++) {
-            printf("(%s- %s- %s)", Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
-            if (i % (IDX_MAX + 1) != CIDX_TAIL(Q)) {
-                printf(", ");
-            }
+        for (int i = 0; i < CLength(Q); i++) {
+            printf("%d. %s - %s - %s\n",i+1, Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
         }
     }
-    printf("]\n");
 }
 
 /* Proses : Menuliskan isi CQueue dengan traversal; CQueue ditulis di antara kurung 
