@@ -10,7 +10,7 @@
 #define NMax 450
 #define BLANK ' '
 #define ENTER '\n'
-#define MARK ';'
+#define MARK '\n'
 #define MARK2 '\0'
 
 typedef struct
