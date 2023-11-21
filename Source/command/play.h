@@ -10,9 +10,12 @@
 #include "../ADT/boolean.h"
 #include "../ADT/ADT_Set/set.h"
 #include "../ADT/ADT_Map/map.h"
+#include "../ADT/ADT_Stack/stack.h"
+#include "../ADT/ADT_Queue/circular_queue.h"
 
 void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriLagu* Hl);
 
-void playPlaylist (ListDinamik LD, QueueLagu Ql, HistoriLagu* Hl);
+void playPlaylist (ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl);
 
+int pilihPlaylist(ListDinamik LD);
 #endif
