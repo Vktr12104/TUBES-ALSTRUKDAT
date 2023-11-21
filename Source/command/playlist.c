@@ -197,3 +197,59 @@ void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *dafta
         printf("ID Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", id_playlist + 1);
     }
 }
+
+
+void PLAYLISTSWAP(ListDinamik *DaftarPlaylist){
+    // Mengambil idP, id1, id2 dari Current Command
+    printf("\n");
+    int i = 14;
+    int idP,id1,id2;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= ENTER)){
+        idP = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    i++;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= ENTER)){
+        id1 = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    i++;
+    while ((currentCommand.TabWord[i]!= BLANK)&& (currentCommand.TabWord[i]!= '\0')){
+        id2 = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    idP = idP -1;
+    id1 = id1 -1;
+    id2 = id2 -1;
+
+    // Memulai fungsi swap playlist
+        if (idP < 0 || idP >= DaftarPlaylist->Neff) {
+        printf("Tidak ada playlist dengan playlist ID %d\n", idP+1);
+        return;
+    }
+    else {
+        LinkedList playlist = DaftarPlaylist->Content[idP];
+        
+        if (id1 < 0 || id1 >= LengthSB(playlist) || id2 < 0 || id2 >= LengthSB(playlist)) {
+            printf("Tidak ada lagu dengan urutan %d atau %d di playlist\n", id1+1, id2+1);
+        }
+        else {
+            // Menukar lagu pada urutan x dan y
+            Detail tempx, tempy;
+            GetSB(&(DaftarPlaylist->Content[idP]), &tempx, id1);
+            GetSB(&(DaftarPlaylist->Content[idP]), &tempy, id2);
+            SetSB(&(DaftarPlaylist->Content[idP]), tempy, id1);
+            SetSB(&(DaftarPlaylist->Content[idP]), tempx, id2);
+
+            printf("Berhasil menukar lagu dengan nama \"");
+            displayWord(tempx.Lagu);
+            printf("\" dengan \"");
+            displayWord(tempy.Lagu);
+            printf("\" di playlist \"");
+            displayWord(Title(DaftarPlaylist->Content[idP]));
+            printf("\".\n");
+        }
+    }
+}
+
+
