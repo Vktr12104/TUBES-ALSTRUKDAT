@@ -1,52 +1,32 @@
-#include <stdio.h>
 #include "listb.h"
 
 int main() {
-    // Buat listBerkait
-    listBerkait L;
-    CreateEmptylistb(&L);
+    LinkedList s;
+    Word input1, input2, input3;
+    Detail w;
+    CreateSB(&s);
 
-    // Tambahkan elemen ke list
-    InsVFirstlistb(&L, "Penyanyi1", "Album1", "Lagu1");
-    InsVLastlistb(&L, "Penyanyi2", "Album2", "Lagu2");
-    InsVLastlistb(&L, "Penyanyi3", "Album3", "Lagu3");
+    //input 1
+    CreateWord2(5, "rafly", &input1);
+    CreateWord2(5, "ylfar", &input2);
+    CreateWord2(5, "faryl", &input3);
+    CreateD(&w, input1, input2, input3);
+    InsertSB(&s, w, 0);
+    //input 2
+    CreateWord2(5, "zahra", &input1);
+    CreateWord2(5, "arazh", &input1);
+    CreateWord2(5, "azhar", &input3);
+    CreateD(&w, input1, input2, input3);
+    InsertSB(&s, w, 0);
 
-    // Cetak isi list
-    printf("Isi List Awal: ");
-    PrintInfolistb(L);
-    printf("\n");
+    //input 3
+    CreateWord2(6, "wildan", &input1);
+    CreateWord2(6, "danwil", &input2);
+    CreateWord2(6, "nalwid", &input3);
+    CreateD(&w, input1, input2, input3);
+    InsertSB(&s, w, 2);
 
-    // Contoh penggunaan fungsi lain
-    if (!IsEmptylistb(L)) {
-        printf("Jumlah elemen dalam list: %d\n", NbElmtlistb(L));
-        
-        address found = Searchlistb(L, "Lagu2");
-        if (found != NULL) {
-            printf("Elemen ditemukan: %.*s\n", Info(found).lagu_playlist, Info(found).lagu_playlist);
-        } else {
-            printf("Elemen tidak ditemukan\n");
-        }
-    }
-
-    // Hapus elemen dari list
-    Isi_Que deleted;
-    DelVFirstlistb(&L, &deleted);
-    printf("Elemen pertama dihapus: %.*s\n", deleted.lagu_playlist, deleted.lagu_playlist);
-
-    // Cetak isi list setelah penghapusan
-    printf("Isi List setelah penghapusan: ");
-    PrintInfolistb(L);
-    printf("\n");
-
-    // Dealokasi list
-    address P;
-    DelLastlistb(&L, &P);
-    Dealokasilistb(&P);
-
-    // Cetak isi list setelah dealokasi
-    printf("Isi List setelah dealokasi: ");
-    PrintInfolistb(L);
-    printf("\n");
+    DisplaySB(s);
 
     return 0;
 }
