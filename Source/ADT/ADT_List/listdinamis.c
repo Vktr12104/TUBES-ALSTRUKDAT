@@ -1,106 +1,137 @@
 #include "listdinamis.h"
 
-/* ********** KONSTRUKTOR ********** */
-ListD MakeListD() {
-    ListD L;
-    L.NEff = 0;
-    L.Max = MaxEl;
+ListDinamik CreateLD() {
+	ListDinamik A;
+	A.Content = (LinkedList *)malloc(sizeof(LinkedList) * InitialCapacity);
+	A.Capacity = InitialCapacity;
+	A.Neff = 0;
+	return A;
+}
 
-    L.A = (listBerkait*)malloc(MaxEl * sizeof(listBerkait));
+void DeallocateLD(ListDinamik *l) {
+	free((*l).Content);
+}
 
-    if (L.A == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        L.NEff = -1;
-    } else {
-        for (int i = 0; i < MaxEl; i++) {
-            L.A[i].First = '\0';
-        }
+boolean IsEmptyLD(ListDinamik l) {
+    return l.Neff == 0;
+}
+
+boolean IsFullLD(ListDinamik l) {
+    return l.Neff == l.Capacity;
+}
+
+boolean IsIdxValidLD(ListDinamik l, Key i) {
+    return i < l.Neff && i >= 0;
+}
+
+ElType GetLD(ListDinamik l, Key i) {
+    return Title(l.Content[i]);
+}
+
+void InsertLD(ListDinamik *l, ElType x, Key i) {
+	LinkedList xsb;
+
+	CreateSB(&xsb);
+	Title(xsb) = x;
+
+    int j;
+
+    if (IsFullLD(*l)) {
+		LinkedList *temp = (LinkedList *)malloc(sizeof(LinkedList) * (*l).Capacity);
+		for (j = 0; j < (*l).Neff; j++)
+		{
+            PasteWord(Title((*l).Content[j]), &Title(temp[j]));
+			First(temp[j]) = First((*l).Content[j]);
+		}
+
+		DeallocateLD(l);
+		(*l).Capacity *= 2;
+		(*l).Content = (LinkedList *)malloc(sizeof(LinkedList) * (*l).Capacity);
+
+		for (j = 0; j < (*l).Neff; j++)
+		{
+            PasteWord(Title(temp[j]), &Title((*l).Content[j]));
+			First((*l).Content[j]) = First(temp[j]);
+		}
+		free(temp);
     }
 
-    return L;
+	for (j = (*l).Neff; j > i; j--)
+	{
+		PasteWord(Title((*l).Content[j - 1]), &Title((*l).Content[j]));
+		First((*l).Content[j]) = First((*l).Content[j - 1]);
+	}
+
+	PasteWord(Title(xsb), &Title((*l).Content[i]));
+	(*l).Neff++;
 }
 
-/* ********** TEST KOSONG/PENUH ********** */
-boolean IsEmptyListD(ListD L) {
-    return L.A->First == NULL;
-}
+void DeleteLD(ListDinamik *l, Key i) {
+	int j;
+	for (j = i; j < (*l).Neff; j++)
+	{
+		PasteWord(Title((*l).Content[j + 1]), &Title((*l).Content[j]));
+		First((*l).Content[j]) = First((*l).Content[j + 1]);
+	}
+	(*l).Neff--;
 
-/* ********** SELEKTOR ********** */
-int LengthListD(ListD L) {
-    return L.NEff;
-}
+    if ((*l).Neff <= ((*l).Capacity / 4)) {
+		LinkedList *temp = (LinkedList *)malloc(sizeof(LinkedList) * (*l).Capacity);
+		for (j = 0; j < (*l).Neff; j++)
+		{
+            PasteWord(Title((*l).Content[j]), &Title(temp[j]));
+			First(temp[j]) = First((*l).Content[j]);
+		}
 
-IdxType FirstIdxListD(ListD L) {
-    return 1;
-}
+		DeallocateLD(l);
+		(*l).Capacity /= 2;
+		(*l).Content = (LinkedList *)malloc(sizeof(LinkedList) * (*l).Capacity);
 
-IdxType LastIdxListD(ListD L) {
-    return L.NEff;
-}
-
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidListD(ListD L, IdxType i) {
-    return i >= 1 && i <= L.Max;
-}
-
-boolean IsIdxEffListD(ListD L, IdxType i) {
-    return i >= FirstIdxListD(L) && i <= LastIdxListD(L);
-}
-
-/* ********** Operasi-operasi ********** */
-boolean IsMemberdinamis(ListD L, listBerkait X) {
-    int i;
-    for (i = 0; i < L.NEff; i++) {
-        if (isWordEqual(L.A[i].NamaPlaylist, X.NamaPlaylist)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void InsertFirstListD(ListD *L, Word nama) {
-    if (L->NEff < L->Max) {
-        int i;
-        for (i = L->NEff; i > 0; i--) {
-            (*L).A[i] = L->A[i - 1];
-        }
-        L->A[0].NamaPlaylist = nama;
-        L->NEff++;
+		for (j = 0; j < (*l).Neff; j++)
+		{
+            PasteWord(Title(temp[j]), &Title((*l).Content[j]));
+			First((*l).Content[j]) = First(temp[j]);
+		}
+		free(temp);
     }
 }
 
-void InsertAtListD(ListD *L, Word nama, IdxType i) {
-    if (L->NEff < L->Max && IsIdxEffListD(*L, i)) {
-        int j;
-        for (j = L->NEff; j > i; j--) {
-            L->A[j] = L->A[j - 1];
-        }
-        L->A[i].NamaPlaylist = nama;
-        L->NEff++;
-    }
+void DisplayLD(ListDinamik l) {
+	if (IsEmptyLD(l)) {
+		printf("Kosong\n");
+	}
+	else {
+		for (int i = 0; i < l.Neff; i++) {
+			printf("    %d. ", i+1);
+			displayWordNewLine(Title(l.Content[i]));
+		}
+	}
 }
 
-void InsertLastListD(ListD *L, Word nama) {
-    if (L->NEff < L->Max) {
-        L->A[L->NEff].NamaPlaylist = nama;
-        L->NEff++;
-    }
+void DisplayIsiLD(ListDinamik l, ElType x) {
+	boolean found = false;
+	int i = 0;
+	while (i < l.Neff && !found) {
+		if (IsWordSame(Title(l.Content[i]), x)) {
+			DisplaySB(l.Content[i]);
+			found = true;
+		}
+		i++;
+	}
+	if (!found) {
+		printf("Playlist tidak ada\n");
+	}
 }
 
-void DeleteFirstListD(ListD *L) {
-    if (!IsEmptyListD(*L)) {
-        for (int i = 0; i < L->NEff - 1; i++) {
-            L->A[i] = L->A[i + 1];
-        }
-        L->NEff--;
-    }
-}
+void DisplaySemuaLD(ListDinamik l) {
+	if (IsEmptyLD(l)) {
+		printf("Kosong\n");
+	}
 
-void DeleteAtListD(ListD *L, IdxType i) {
-    if (IsIdxEffListD(*L, i)) {
-        for (int j = i - 1; j < L->NEff - 1; j++) {
-            L->A[j] = L->A[j + 1];
-        }
-        L->NEff--;
-    }
+	for (int i = 0; i < l.Neff; i++) {
+		printf("Judul %d: ", i+1);
+		displayWordNewLine(Title(l.Content[i]));
+		DisplaySB(l.Content[i]);
+	}
+
 }
