@@ -12,7 +12,7 @@
 #include "Source/command/welcome.h"
 #include <stdio.h>
 status current;
-int main(){
+int main() {
     
     char namaFile[] = "text.txt";
     ListPenyanyi listmusisi3;
@@ -27,64 +27,59 @@ int main(){
     boolean start = false;
     boolean quit = false;
     welcome();
-    while(!quit){
+
+    while (!quit) {
+        printf(">> ");
+        STARTCOMMAND(); 
+        if (StrComp(currentCommand.TabWord, "START")) {
+            STARTREAD(&listmusisi3, &lagu2, &m2, &ld, namaFile);
+            start = true;
+            quit=true;
+        } else if (StrComp(currentCommand.TabWord, "LOAD")) {
+            // Tambahkan implementasi untuk perintah "LOAD" jika diperlukan
+        } else {
+            invalidCommand(&currentCommand);
+        }
+    }
+    help(start);
+    quit=false;
+    while (!quit) {
         printf(">> ");
         STARTCOMMAND();
-        if(StrComp(currentCommand.TabWord, "START")){
-            STARTREAD(&listmusisi3,&lagu2,&m2,&ld,namaFile);
-            start = true; // untuk menandakan sudah pernah distart
-        }
-        else if (StrComp(currentCommand.TabWord,"LIST DEFAULT")){
-            if(start == true){
-                listdefault(listmusisi3,lagu2,m2);
-            }
-            else{
-                printf("Command tidak bisa dieksekusi!\n");
 
+        if (StrComp(currentCommand.TabWord, "LIST DEFAULT")) {
+            if (start == true) {
+                listdefault(listmusisi3, lagu2, m2);
+            } else {
+                printf("Command tidak bisa dieksekusi!\n");
             }
-        }else if(StrComp(currentCommand.TabWord,"LIST PLAYLIST")){
+        } else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
             listplaylist(ld);
-        }else if(StrComp(currentCommand.TabWord,"QUEUE SONG")){
-            QueSong(listmusisi3,m2,lagu2,&Q);
-        }else if(StrComp(currentCommand.TabWord,"QUEUE PLAYLIST")){
-            
-        }else if(StrComp(currentCommand.TabWord,"QUEUE SWAP")){
+        } else if (StrComp(currentCommand.TabWord, "QUEUE SONG")) {
+            QueSong(listmusisi3, m2, lagu2, &Q);
+        } else if (StrComp(currentCommand.TabWord, "QUEUE PLAYLIST")) {
+            // ... (tambahkan implementasi untuk QUEUE PLAYLIST)
+        } else if (StrComp(currentCommand.TabWord, "QUEUE SWAP")) {
             QueSwap(&Q);
-        }else if(StrComp(currentCommand.TabWord,"QUEUE REMOVE")){
+        } else if (StrComp(currentCommand.TabWord, "QUEUE REMOVE")) {
             QueMove(&Q);
-        }else if(StrComp(currentCommand.TabWord,"QUEUE CLEAR")){
+        } else if (StrComp(currentCommand.TabWord, "QUEUE CLEAR")) {
             QueClear(&Q);
-        }else if(StrComp(currentCommand.TabWord,"PLAYLIST CREATE")){
-                CreatePlayList(&ld);
-        }else if(StrComp(currentCommand.TabWord,"SONG NEXT")){
-            SongNext(&HS,&Q);
-        }else if(StrComp(currentCommand.TabWord,"SONG PREVIOUS")){
-            SongPrev(&HS,&Q);
-        }
-        else if (StrComp(currentCommand.TabWord,"SAVE")){
-            save(listmusisi3,m2,lagu2);
-        }
-        else if (StrComp(currentCommand.TabWord,"QUIT")){
-            QUIT(listmusisi3,m2,lagu2);
+        } else if (StrComp(currentCommand.TabWord, "PLAYLIST CREATE")) {
+            CreatePlayList(&ld);
+        } else if (StrComp(currentCommand.TabWord, "SONG NEXT")) {
+            SongNext(&HS, &Q);
+        } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
+            SongPrev(&HS, &Q);
+        } else if (StrComp(currentCommand.TabWord, "SAVE")) {
+            save(listmusisi3, m2, lagu2);
+        } else if (StrComp(currentCommand.TabWord, "QUIT")) {
+            QUIT(listmusisi3, m2, lagu2);
             quit = true;
-        }
-        else if (StrComp(currentCommand.TabWord,"HELP")){
+        } else if (StrComp(currentCommand.TabWord, "HELP")) {
             help(start);
         }
     }
-    //DisplayListPenyanyi(listmusisi3);
-    //DisplaySetLagu(lagu2,5);
-    //displayMapAlbum(m2,0);
-    //displayMapAlbum(m2,1);
-    //listdefault(listmusisi3,lagu2,m2);
-
-
-
-
 
     return 0;
-    
-    
-
-    
 }
