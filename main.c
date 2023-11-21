@@ -53,6 +53,9 @@ int main(){
         }else if(StrComp(currentCommand.TabWord,"SONG PREVIOUS")){
             SongPrev(&HS,&Q);
         }
+        else if (StrComp(currentCommand.TabWord,"SAVE")){
+            save(listmusisi3,m2,lagu2);
+        }
     }
     //DisplayListPenyanyi(listmusisi3);
     //DisplaySetLagu(lagu2,5);
