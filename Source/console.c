@@ -332,3 +332,42 @@ void invalidCommand(Word* w) {
     }
     printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
 }
+void NotPlaying(){
+    (&current)->penyanyi = NULL;
+    (&current)->album = NULL;
+    (&current)->lagu = NULL;
+}
+
+void NotPlayingPlaylist(){
+    current.playlistID = -1;
+}
+
+boolean isNotPlayingPlaylist(){
+    return current.playlistID == -1;
+}
+
+boolean isNotPlaying (){
+    return current.penyanyi == NULL && 
+    current.album == NULL && 
+    current.lagu == NULL;
+}
+
+void statuscurrent(QueueLagu Q){
+    if(isNotPlayingPlaylist()){
+        printf("\n");
+    }else{
+        printf("Current Playlist :\n");
+    }
+    printf("Now Playing:\n");
+    if(!isNotPlaying()){
+        printf("%s - %s - %s\n",current.penyanyi,current.album,current.lagu);   
+    }else{
+        printf("No songs have been played yet. Please search for a song to begin playback.\n");
+    }
+    printf("Queue :\n");
+    if(!CIsEmpty(Q)){
+        displayQueue(Q);
+    }else{
+        printf("Your queue is empty.\n");
+    }
+}
