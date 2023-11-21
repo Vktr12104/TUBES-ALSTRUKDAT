@@ -34,4 +34,5 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg);
 
 void help(boolean start);
 
+void invalidCommand(Word* w);
 #endif
