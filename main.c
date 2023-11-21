@@ -10,7 +10,6 @@
 #include "Source/ADT/boolean.h"
 #include "Source/console.h"
 #include "Source/command/welcome.h"
-#include "Source/command/play.h"
 #include <stdio.h>
 status current;
 int main() {
@@ -54,10 +53,7 @@ int main() {
             } else {
                 printf("Command tidak bisa dieksekusi!\n");
             }
-        }else if (StrComp(currentCommand.TabWord, "PLAY PLAYLIST")) {
-            playPlaylist(DaftarPlaylist,&Q,&HS);
-        } 
-        else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
+        } else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
             listplaylist(DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUEUE SONG")) {
             QueSong(listmusisi3, m2, lagu2, &Q);
@@ -75,6 +71,11 @@ int main() {
             PLAYLISTADDSONG(listmusisi3, m2, lagu2, &DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "PLAYLIST ADD ALBUM")) {
             PLAYLISTADDALBUM(listmusisi3, m2, lagu2, &DaftarPlaylist);
+        } else if (StrComp2(currentCommand.TabWord, "PLAYLIST REMOVE",15)) {
+            PLAYLISTREMOVE(&DaftarPlaylist);
+        }
+        else if (StrComp(currentCommand.TabWord, "PLAYLIST DELETE")){
+            PLAYLISTDELETE(&DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "SONG NEXT")) {
             SongNext(&HS, &Q);
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
@@ -90,7 +91,11 @@ int main() {
         else if (StrComp(currentCommand.TabWord, "STATUS")) {
             statuscurrent(Q);
         }
+        else if (StrComp(currentCommand.TabWord, "CHECK")){
+            DisplaySemuaLD(DaftarPlaylist);
+        }
     }
-
+    
     return 0;
+    
 }
