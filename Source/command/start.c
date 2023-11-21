@@ -10,6 +10,7 @@ void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *dafta
   CreateMapAlbum(&*m2);
   ListDinamik DaftarPlaylist = CreateLD();
 
+
   CreateEmptySetLagu(&*lagu2);
   *LP = MakeListPenyanyi();
   //CreateMapAlbum(&mapAl);
