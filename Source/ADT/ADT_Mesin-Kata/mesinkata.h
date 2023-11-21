@@ -6,7 +6,6 @@
 
 #include "../boolean.h"
 #include "../ADT_MesinKarakter/mesinkarakter.h"
-#include "../ADT_List/liststatis.h"
 
 #define NMax 450
 #define BLANK ' '
