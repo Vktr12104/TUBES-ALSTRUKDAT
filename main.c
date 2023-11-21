@@ -82,7 +82,7 @@ int main() {
             help(start);
         }
         else if (StrComp(currentCommand.TabWord, "STATUS")) {
-            DisplaySemuaLD(DaftarPlaylist);
+            statuscurrent(Q);
         }
     }
 
