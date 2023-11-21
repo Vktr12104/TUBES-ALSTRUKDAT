@@ -1,6 +1,6 @@
 #include "start.h"
 
-void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,char NamaFile []){
+void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []){
   startWFile("text.txt");
   //MapAlbum mapAl;
   Word NamaPenyanyi;
@@ -8,6 +8,7 @@ void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,char NamaFile []){
   Word NamaLagu;
   int panjg;
   CreateMapAlbum(&*m2);
+  ListDinamik DaftarPlaylist = CreateLD();
 
   CreateEmptySetLagu(&*lagu2);
   *LP = MakeListPenyanyi();
