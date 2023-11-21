@@ -116,4 +116,6 @@ void DisplaySemuaLD(ListDinamik l);
  * berakhir akhir dengan '\n'
 */
 
+
+void DeleteAtListDin(ListDinamik *array, IdxType i);
 #endif

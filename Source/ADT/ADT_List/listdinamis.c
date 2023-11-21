@@ -96,6 +96,16 @@ void DeleteLD(ListDinamik *l, Key i) {
     }
 }
 
+void DeleteAtListDin(ListDinamik *array, IdxType i)
+{
+	int j;
+	for (j = i; j < array->Neff; j++)
+	{
+		(*array).Content[j] = (*array).Content[j + 1];
+	}
+	(*array).Neff--;
+}
+
 void DisplayLD(ListDinamik l) {
 	if (IsEmptyLD(l)) {
 		printf("Kosong\n");
