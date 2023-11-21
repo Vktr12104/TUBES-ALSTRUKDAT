@@ -257,3 +257,60 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg){
     printf("Save file berhasil disimpan.\n");
     printf("// File disimpan pada /save/savefile.txt\n");
 }
+
+void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg){
+    printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
+    STARTCOMMAND();
+    if (currentCommand.TabWord[0] == 'Y') {
+        printf("Masukkan nama file untuk penyimpanan: ");
+        STARTCOMMAND();
+
+        Word file;
+        file.Length = currentCommand.Length;
+
+        for (int i=0; i<currentCommand.Length; i++){
+            file.TabWord[i] = currentWord.TabWord[i];
+        }
+
+        save(p,al,lg);
+        printf ("Data berhasil disimpan.\n");
+        printf ("Kamu keluar dari WayangWave.\n");
+        printf ("Dadah ^_^/\n");
+    } else {
+        printf ("Kamu keluar dari WayangWave.\n");
+        printf ("Dadah ^_^/\n");
+    }
+}
+
+
+void help(boolean start){
+    if (start == false) {
+        printf ("=====[ Menu Help WayangWave ]=====\n");
+        printf ("1. START -> Untuk masuk sesi baru\n");
+        printf ("2. LOAD -> Untuk memulai sesi berdasarkan file konfigurasi\n");
+    }
+    else {
+        printf ("=====[ Menu Help WayangWave ]=====\n");
+        printf ("1. LIST DEFAULT -> Untuk menampilkan daftar penyanyi, album, dan lagu default\n");
+        printf ("2. LIST PLAYLIST -> Untuk menampilkan playlist yang ada pada pengguna\n");
+        printf ("3. PLAY SONG -> Memutar lagu sesuai yang dipilih dan dimasukkan ke dalam history\n");
+        printf ("4. PLAY PLAYLIST -> Memainkan lagu berdasarkan id playlist\n");
+        printf ("5. QUEUE SONG -> Memasukkan lagu yang dipilih ke dalam antrian\n");
+        printf ("6. QUEUE PLAYLIST -> Menambahkan lagu yang ada dalam playlist ke dalam queue\n");
+        printf ("7. QUEUE SWAP -> Melakukan pertukaran lagu pada queue\n");
+        printf ("8. QUEUE REMOVE <id> -> Menghapus Que pada urutan tertentu\n");
+        printf ("9. QUEUE CLEAR -> Menghapus semua lagu pada queue\n");
+        printf ("10. SONG NEXT -> Memutar lagu dari dalam antrian dan menambahkannya ke dalam riwayat pemutaran jika antrian tidak kosong; jika antrian kosong, lagu yang sedang diputar akan terus diputar.\n");
+        printf ("11. SONG PREVIOUS -> Memutar lagu pada history lagu, jika belum ada dan baru memutar laguu yang diputar maka lagu lagu yang sedang diputar\n");
+        printf ("12. PLAYLIST CREATE -> Tercipta satu playlist\n");
+        printf ("13. PLAYLIST ADD SONG -> Menambahkan lagu pada playlist tertentu\n");
+        printf ("14. PLAYLIST ADD ALBUM -> Menambahkan semua lagu pada album ke playlist\n");
+        printf ("15. PLAYLIST SWAP <id> <x> <y> -> Menukar lagu pada playlist tertentu\n");
+        printf ("16. PLAYLIST REMOVE <id> <n> -> Menghapus lagu pada playlist tertentu\n");
+        printf ("17. PLAYLIST DELETE -> Menghapus Playlist\n");
+        printf ("18. STATUS -> Mengeluarkan output status pemutaran lagu\n");
+        printf ("19. HELP -> Mengembalikan output berupa daftar command yang dapat dimasukkan berikut fungsinya\n");
+        printf ("20. SAVE -> Menyimpan Array dalam file eksternal\n");
+        printf ("21. QUIT -> Keluar dari sesi\n");
+    }
+}

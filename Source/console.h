@@ -31,4 +31,8 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q);
 
 void save (ListPenyanyi p,MapAlbum al ,SetLagu lg);
 
+void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg);
+
+void help(boolean start);
+
 #endif
