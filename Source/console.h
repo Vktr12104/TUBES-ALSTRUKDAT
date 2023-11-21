@@ -35,4 +35,21 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg);
 void help(boolean start);
 
 void invalidCommand(Word* w);
+void NotPlaying ();
+
+/**
+ * Membuat playlist yang dimainkan menjadi tidak ada/idx undef
+*/
+void NotPlayingPlaylist();
+
+/**
+ * Mengembalikan nilai true jika tidak ada playlist yang dimainkan
+*/
+boolean isNotPlayingPlaylist();
+
+/**
+ * Mengembalikan nilai true jika tidak ada lagu yang dimainkan
+*/
+boolean isNotPlaying();
+void statuscurrent(QueueLagu Q);
 #endif
