@@ -391,3 +391,43 @@ Word takewordsemicolon(Word command, int colon){
         return w;
     }
 }
+
+
+void displayWordNewLine(Word w) {
+    if (w.Length == 0) {
+        printf("Kosong\n");
+    }
+    else {
+        for (int i = 0; i < w.Length; i++) {
+            printf("%c", w.TabWord[i]);
+        }
+        printf("\n");
+    }
+}
+
+boolean IsWordSame(Word w, Word v) {
+    boolean IsSame = true;
+    if (w.Length != v.Length) {
+        IsSame = false;
+    }
+    else {
+        int i = 0;
+        while (IsSame && i < w.Length) {
+            if (w.TabWord[i] != v.TabWord[i]) {
+                IsSame = false;
+            }
+            i++;
+        }
+    }
+    return IsSame;
+}
+
+
+void CreateWord2(int length, char * string, Word * w) {
+    (*w).Length = 0;
+    for (int i = 0; i < length; i++) {
+        (*w).TabWord[i] = * string;
+        (*w).Length++;
+        string++;
+    }
+}

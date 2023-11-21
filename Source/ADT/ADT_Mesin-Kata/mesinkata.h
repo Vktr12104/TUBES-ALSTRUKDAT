@@ -117,6 +117,8 @@ char* wordToString(Word w);
 void displayWord(Word w);
 /* Menampilkan kata  w */
 
+void displayWordNewLine(Word w);
+
 int wordToInt(Word w);
 /* Mengubah kata menjadi integer */
 int stringLength(char *str);
@@ -146,5 +148,9 @@ void ResetKalimat() ;
 void PasteWord(Word source, Word * dest);
 
 Word takewordsemicolon(Word command, int colon);
+
+void CreateWord2(int length, char * string, Word * w);
+
+boolean IsWordSame(Word w, Word v);
 
 #endif
