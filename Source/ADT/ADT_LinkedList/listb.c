@@ -94,27 +94,31 @@ void InsertSB(LinkedList *s, Detail x, int i) {
 }
 
 void DeleteSB(LinkedList *s, Detail *x, int i) {
-    Address p;
-    p = First(*s);
+   
+        Address p;
+        p = First(*s);
 
-    if (p != NULL) {
-        if (i == 0) {
-            Next(p) = First(*s);
-            First(*s) = p;
-        }
-        else {
-            int counter = 0;
-            Address loc = First(*s);
-            while (counter < i - 1) {
-                counter++;
-                loc = Next(loc);
+        if (p != NULL) {
+            if (i == 0) {
+                First(*s) = Next(p);
+                PasteD(Info(p),x);
+                free(p);
             }
-            p = Next(loc);
-            PasteD(Info(p), x);
-            Next(loc) = Next(p);
-            free(p);
-        }
-    }
+            else {
+                int counter = 0;
+                Address loc = First(*s);
+                while (counter < i - 1) {
+                    counter++;
+                    loc = Next(loc);
+                }
+                p = Next(loc);
+                PasteD(Info(p), x);
+                Next(loc) = Next(p);
+                free(p);
+            }
+        }      
+    
+
 }
 
 void DisplaySB(LinkedList s) {
