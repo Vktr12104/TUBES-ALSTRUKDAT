@@ -12,4 +12,5 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
 
 void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist);
 
+void PLAYLISTSWAP(ListDinamik ListDin, int id1, int id2);
 #endif

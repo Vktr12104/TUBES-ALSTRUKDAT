@@ -434,11 +434,9 @@ void CreateWord2(int length, char * string, Word * w) {
 
 Word takeword(Word command, int ke)
 {
-	/*KAMUS LOKAL*/
 	Word w;
 	int i = 0;
 	int j = 0;
-	/*ALGORITMA*/
 	while (j != ke - 1 && i < command.Length)
 	{
 		if (command.TabWord[i] == ' ')

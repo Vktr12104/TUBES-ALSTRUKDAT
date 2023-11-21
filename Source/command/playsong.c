@@ -42,3 +42,9 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
         (*Hl).count--;
     }
 }
+
+void playPlaylist (ListDinamik LD, QueueLagu Ql, HistoriLagu* Hl){
+    printf("Masukkan ID Playlist: \n");
+    STARTCOMMAND();
+    
+}
