@@ -12,7 +12,7 @@
 #include "../ADT/ADT_Map/map.h"
 #include "../ADT/ADT_Stack/stack.h"
 #include "../ADT/ADT_Queue/circular_queue.h"
-
+#include "../console.h"
 void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriLagu* Hl);
 
 void playPlaylist (ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl);
