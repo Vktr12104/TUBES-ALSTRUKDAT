@@ -112,9 +112,9 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
         CreateD(&d, penyanyitemp, albumtemp, namalagu);
         // insert ke linkedlist
         InsertSB(&daftarplaylist->Content[id_playlist], d, LengthSB(daftarplaylist->Content[id_playlist]));;        
-        printf("Lagu dengan judul ");
+        printf("Lagu dengan judul \"");
         displayWord(namalagu);
-        printf(" pada album ");
+        printf("\" pada album ");
         displayWord(albumtemp);
         printf(" oleh penyanyi \n");
         displayWord(penyanyitemp);
@@ -175,5 +175,25 @@ void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *dafta
     STARTCOMMAND(); // Mulai membaca kata
     printf("\n");
     int id_playlist = wordToInt(currentCommand) - 1;
-
+    if (IsIdxValidLD(*daftarplaylist, id_playlist)) {
+        Word playlist;
+        Detail d;
+        PasteWord(Title(daftarplaylist->Content[id_playlist]), &playlist);
+        Word lagu;
+        DisplaySetLagu(S,idxalbum);
+        /*for (int i = 0; i < ValueM(LaguAlbum, album).Length; i++) {
+            PasteWord(ValueM(LaguAlbum, album).Content[i], &lagu);
+            CreateD(&d, penyanyitemp, albumtemp, lagu);
+            InsertSB(&DaftarPlaylist.Content[id_playlist], d, LengthSB(DaftarPlaylist.Content[id_playlist]));
+        }*/
+        
+        printf("Album dengan judul \"");
+        displayWord(albumtemp);
+        printf("\" berhasil ditambahkan ke dalam playlist pengguna \"");
+        displayWord(playlist);
+        printf("\".\n");
+    }
+    else {
+        printf("ID Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", id_playlist + 1);
+    }
 }
