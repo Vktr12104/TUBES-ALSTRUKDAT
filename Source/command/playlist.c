@@ -180,12 +180,12 @@ void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *dafta
         Detail d;
         PasteWord(Title(daftarplaylist->Content[id_playlist]), &playlist);
         Word lagu;
-        DisplaySetLagu(S,idxalbum);
-        /*for (int i = 0; i < ValueM(LaguAlbum, album).Length; i++) {
-            PasteWord(ValueM(LaguAlbum, album).Content[i], &lagu);
+        for (int i=1;i<=(CountLaguByAlbumID(&S,idxalbum));i++){
+            Word check = namalagufromalbum(S,idxalbum,i);
+            PasteWord(check, &lagu);
             CreateD(&d, penyanyitemp, albumtemp, lagu);
-            InsertSB(&DaftarPlaylist.Content[id_playlist], d, LengthSB(DaftarPlaylist.Content[id_playlist]));
-        }*/
+            InsertSB(&daftarplaylist->Content[id_playlist], d, LengthSB(daftarplaylist->Content[id_playlist]));
+        }
         
         printf("Album dengan judul \"");
         displayWord(albumtemp);
