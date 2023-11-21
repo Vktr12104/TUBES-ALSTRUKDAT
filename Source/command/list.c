@@ -48,6 +48,10 @@ void listdefault(ListPenyanyi input1, SetLagu input3, MapAlbum input2) {
     }
 }
 
+
+void listplaylist(ListDinamik input){
+    DisplayLD(input);
+}
 /*void listplaylist(ListPlaylist input) {
     printf("Daftar playlist yang kamu miliki:\n");
     if (input.playlistSize == 0) {
