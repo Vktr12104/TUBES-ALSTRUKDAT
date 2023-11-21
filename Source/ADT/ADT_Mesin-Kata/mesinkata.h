@@ -152,6 +152,4 @@ boolean IsWordSame(Word w, Word v);
 
 Word takeword(Word command, int ke);
 
-boolean isMemberListPenyanyi (Word input, ListPenyanyi LP);
-
 #endif
