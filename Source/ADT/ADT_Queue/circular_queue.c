@@ -63,15 +63,14 @@ void Cenqueue(QueueLagu *Q, char *penyanyi,  char *album,  char *lagu) {
     CTAIL(*Q).album_playlist=album;
 
 }
-void Cdequeue(QueueLagu *Q, char *penyanyi, char *album, char *lagu) {
+void Cdequeue(QueueLagu *Q, char **penyanyi, char **album, char **lagu) {
     if (CIsEmpty(*Q)) {
         // Queue kosong, tidak ada yang dapat di-dequeue
-        penyanyi = album = lagu = NULL;
+        *penyanyi = *album = *lagu = NULL;
     } else {
-        // Ambil nilai dari elemen yang akan di-dequeue
-        penyanyi = CTAIL(*Q).Penyanyi_playlist;
-        album = CTAIL(*Q).album_playlist;
-        lagu = CTAIL(*Q).lagu_playlist;
+        *penyanyi = CHEAD(*Q).Penyanyi_playlist;
+        *album = CHEAD(*Q).album_playlist;
+        *lagu = CHEAD(*Q).lagu_playlist;
 
         // Atur ulang idxHead dan idxTail jika diperlukan
         if (Q->idxHead == Q->idxTail) {
@@ -137,9 +136,11 @@ void displayQueue(QueueLagu Q) {
     printf("Queue Contents:\n");
     displayQueue(Q);
 
-    char penyanyiDequeue[50], albumDequeue[50], laguDequeue[50];
-    Cdequeue(&Q, penyanyiDequeue, albumDequeue, laguDequeue);
+    char *penyanyiDequeue, *albumDequeue, *laguDequeue;
+    Cdequeue(&Q, &penyanyiDequeue, &albumDequeue, &laguDequeue);
     printf("Dequeued Element: %s - %s - %s\n", penyanyiDequeue, albumDequeue, laguDequeue);
+    Cenqueue(&Q,penyanyiDequeue,albumDequeue,laguDequeue);
+
 
     printf("Updated Queue Length: %d\n", CLength(Q));
 
