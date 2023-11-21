@@ -13,4 +13,6 @@
 
 void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriLagu* Hl);
 
+void playPlaylist (ListDinamik LD, QueueLagu Ql, HistoriLagu* Hl);
+
 #endif
