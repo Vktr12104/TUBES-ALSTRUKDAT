@@ -36,61 +36,68 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     displayWord(namapenyanyi);
 
 
-    QueClear(&Ql);
+    QueClear(Ql);
     while ((*Hl).idxTop>=0) {
         (*Hl).idxTop--;
         (*Hl).count--;
     }
 }
 
-void playPlaylist (ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl){
-    if (IsEmptyLD(LD)){
+void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
+    if (IsEmptyLD(LD)) {
         printf("Playlist kosong, tidak ada yang bisa dimainkan.\n");
-    }
-    else{
+    } else {
         CreateHist(Hl);
         CCreateQueue(Ql);
 
-    int pilih = pilihPlaylist(LD);
-    Address P = LD.Content[pilih].First;
-    current.lagu = wordToString(LD.Content[pilih].First->Info.Lagu);
-    current.penyanyi = wordToString(LD.Content[pilih].First->Info.Penyanyi);
-    current.album = wordToString(LD.Content[pilih].First->Info.Album);
+        int pilih = pilihPlaylist(LD);
+        Address P = LD.Content[pilih].First;
+        current.lagu = wordToString(LD.Content[pilih].First->Info.Lagu);
+        current.penyanyi = wordToString(LD.Content[pilih].First->Info.Penyanyi);
+        current.album = wordToString(LD.Content[pilih].First->Info.Album);
 
-    P = Next(P);
-    while(P != NULL){
-        Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
-        PushLagu(Hl, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
         P = Next(P);
-    } 
-}
+        while (P != NULL) {
+            Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
+            PushLagu(Hl, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
+            P = Next(P);
+        }
+    }
 }
 
-int pilihPlaylist(ListDinamik LD){
+
+int pilihPlaylist(ListDinamik LD) {
     boolean found = false;
     int idxPlaylist;
-    while (!found){
+
+    while (!found) {
         boolean cek = false;
-        while(!cek){
+
+        while (!cek) {
             printf("\nMasukkan ID Playlist yang dipilih : ");
             STARTCOMMAND();
-            if (currentCommand.TabWord[currentCommand.Length-1]==';'){
+
+            if (currentCommand.TabWord[currentCommand.Length - 1] == ';') {
                 cek = true;
-            }
-            else{
+            } else {
                 printf("Command Tidak Valid. Silakan Coba Lagi!\n");
             }
         }
-        Word notikom = takewordsemicolon(currentCommand,1);
+
+        Word notikom = takewordsemicolon(currentCommand, 1);
         printf("\n");
         int ID = wordToInt(notikom);
-        if (ID > 0 && ID <= LD.Neff){
+
+        if (ID > 0 && ID <= LD.Neff) {
             found = true;
             idxPlaylist = ID - 1;
         }
-        if (!found){
+
+        if (!found) {
             printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", ID);
         }
+        current.playlistID = ID;
     }
+
     return idxPlaylist;
 }
