@@ -46,6 +46,10 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
 
     printf("Masukkan Nama Penyanyi: ");
     STARTCOMMAND();
+    if(!isMemberListPenyanyi(currentCommand,lp)){
+        printf("Nama Penyanyi tersebut tidak valid\n");
+        return;
+    }
     Word penyanyitemp ;
     CreateWord2(currentCommand.Length,currentCommand.TabWord,&penyanyitemp);
 
