@@ -252,4 +252,41 @@ void PLAYLISTSWAP(ListDinamik *DaftarPlaylist){
     }
 }
 
+void PLAYLISTREMOVE(ListDinamik *DaftarPlaylist) {
+    displayWordNewLine(currentCommand);
+    int index, urutan;
+    int i = 16;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= ENTER)){
+        index = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    i++;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= '\0')){
+        urutan = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    index = index -1;
+    urutan = urutan-1;
+    if (index < 0 || index >= DaftarPlaylist->Neff) {
+        printf("Tidak ada playlist dengan playlist ID %d\n", index+1);
+    }
+    else {
+        LinkedList playlist = DaftarPlaylist->Content[index];
+        if (urutan < 0 || urutan >= LengthSB(playlist)) {
+            printf("Tidak ada lagu dengan urutan %d di playlist\n", urutan+1);
+        }
+        else {
+            Detail x;
+            DisplaySB(playlist);
+            DeleteSB(&DaftarPlaylist->Content[index], &x, urutan);
 
+            printf("Lagu \"");
+            displayWord(x.Lagu);
+            printf("\" oleh \"");
+            displayWord(x.Penyanyi);
+            printf("\" telah dihapus dari playlist \"");
+            displayWord(Title(playlist));
+            printf("\" !\n");
+        }
+    }
+}

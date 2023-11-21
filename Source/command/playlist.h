@@ -14,4 +14,6 @@ void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *dafta
 
 void PLAYLISTSWAP(ListDinamik *DaftarPlaylist);
 
+void PLAYLISTREMOVE(ListDinamik *DaftarPlaylist);
+
 #endif
