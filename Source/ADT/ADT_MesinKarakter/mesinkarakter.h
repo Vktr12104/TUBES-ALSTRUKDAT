@@ -6,8 +6,8 @@
 
 #include "../boolean.h" 
 
-#define MARK ';'
 #define ENTER '\n'
+#define MARK '\n'
 #define BLANK ' '
 
 /* State Mesin */
