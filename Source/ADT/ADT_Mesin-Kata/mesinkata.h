@@ -124,6 +124,9 @@ int stringLength(char *str);
 boolean StrComp(char *str,char *str2);
 /*Mengembalikan true jika char str dan str1 sama*/
 
+boolean StrComp2(char *str,char *str2,int x);
+// Compare string tapi panjangnya bisa disesuaikan
+
 void CreateWord(Word *w);
 
 void assignWord(Word *w, char arr[], int len);
@@ -151,5 +154,7 @@ void CreateWord2(int length, char * string, Word * w);
 boolean IsWordSame(Word w, Word v);
 
 Word takeword(Word command, int ke);
+
+int stringToInt(char* input);
 
 #endif

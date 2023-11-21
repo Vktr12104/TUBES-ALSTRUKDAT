@@ -265,6 +265,16 @@ boolean StrComp(char *str,char *str2){
     }return cek;
 }
 
+boolean StrComp2(char *str,char *str2,int x){ 
+    boolean cek=true;
+    for (int i=0;i<x;i++){
+        if(str[i]!=str2[i]){
+            cek=false;
+        }
+    }
+    return cek;
+}
+
 void CreateWord(Word * w){
     w->Length = 0;
 }
@@ -469,3 +479,7 @@ Word takeword(Word command, int ke)
 }
 
 
+
+int stringToInt(char* input){
+    return (input - "0");
+}
