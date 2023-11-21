@@ -40,7 +40,7 @@ boolean IsIdxEff (ListPenyanyi L, IdxType i){
     return(i>=FirstIdx(L) && i<= LastIdx(L));
 }
 
-boolean Search(ListPenyanyi L, ElType X){
+boolean Search(ListPenyanyi L, Word X){
     boolean isFound = false;
     for (int i=0; i < L.NEff; i++){
         if (isWordEqual (X,L.A[i])) {isFound = true; break;}
@@ -48,11 +48,11 @@ boolean Search(ListPenyanyi L, ElType X){
     return isFound;
 }
 
-void InsertFirst(ListPenyanyi *L, ElType X){
+void InsertFirst(ListPenyanyi *L, Word X){
     InsertAt(L,X,0);
 }
 
-void InsertAt(ListPenyanyi *L, ElType X, IdxType i)
+void InsertAt(ListPenyanyi *L, Word X, IdxType i)
 {
     int j;
     for (j = LastIdx(*L) + 1; j > i; j--)
@@ -63,7 +63,7 @@ void InsertAt(ListPenyanyi *L, ElType X, IdxType i)
     L->NEff++;
 }
 
-void InsertLast(ListPenyanyi *L, ElType X){
+void InsertLast(ListPenyanyi *L, Word X){
     InsertAt(L, X, Length(*L));
 }
 
