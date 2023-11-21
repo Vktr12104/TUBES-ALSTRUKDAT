@@ -17,7 +17,6 @@
 #define IdxType int
 #define ElType Word
 
-
 typedef struct {
 	Word A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
 	int NEff;
@@ -47,11 +46,6 @@ boolean IsEmpty(ListPenyanyi L);
 Word Get(ListPenyanyi L, IdxType i);
 /* Prekondisi : ListPenyanyi tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen ListPenyanyi yang ke-i */
-
-/* *** Selektor SET : Mengubah nilai ListPenyanyi dan elemen ListPenyanyi *** */
-void Set(ListPenyanyi *L, IdxType i, Word v);
-/* I.S. T terdefinisi, sembarang */
-/* F.S. Elemen T yang ke-i bernilai v */
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
@@ -118,4 +112,5 @@ ListPenyanyi Concat(ListPenyanyi L1, ListPenyanyi L2);
 void DisplayListPenyanyi(ListPenyanyi L);
 
 boolean isMemberListPenyanyi (Word input, ListPenyanyi LP);
+
 #endif
