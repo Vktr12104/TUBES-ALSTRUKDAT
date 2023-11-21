@@ -52,7 +52,7 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
         printf("Berhasil masuk\n");
         Cenqueue(Ql,comm,comm1,comm3);
         printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
-    }
+    }displayQueue(*Ql);
 }
 
 void QueList(ListD list_dinamis, QueueLagu *Ql) {
@@ -96,7 +96,7 @@ void QueSwap(QueueLagu *q) {
     } else {
         int i = 0;
         while (!CIsEmpty(*q)) {
-            Cdequeue(q, Penyanyitemp, albumtemp, lagutemp);
+            Cdequeue(q, &Penyanyitemp, &albumtemp, &lagutemp);
             if (i == x) {
                 *penyanyi1 = *Penyanyitemp;
                 *album1 = *albumtemp;
@@ -115,7 +115,7 @@ void QueSwap(QueueLagu *q) {
 
         int j = 0;
         while (!CIsEmpty(Qtemp)) {
-            Cdequeue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
+            Cdequeue(&Qtemp, &Penyanyitemp, &albumtemp, &lagutemp);
             if (j == x) {
                 *Penyanyitemp = *penyanyi2;
                 *albumtemp = *album2;
@@ -146,7 +146,7 @@ void QueMove(QueueLagu *Q){
     } else {
         int i = 0;
         while (!CIsEmpty(*Q)) {
-            Cdequeue(Q, Penyanyitemp, albumtemp, lagutemp);
+            Cdequeue(Q, &Penyanyitemp, &albumtemp, &lagutemp);
             if (i + 1 != x) {
                 Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
             }
@@ -154,6 +154,7 @@ void QueMove(QueueLagu *Q){
         }
     }
     *Q = Qtemp;
+    displayQueue(*Q);
 }
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
@@ -162,7 +163,7 @@ void QueMove(QueueLagu *Q){
 void QueClear(QueueLagu *Q) {
     char *Penyanyitemp,*albumtemp,*lagutemp;
     while (!CIsEmpty(*Q)) {
-        Cdequeue(Q,Penyanyitemp,albumtemp,lagutemp);
+        Cdequeue(Q,&Penyanyitemp,&albumtemp,&lagutemp);
     }printf("Queue berhasil dikosongkan");
 }
 
@@ -177,7 +178,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
     }else{
         PushLagu(HS,current.lagu,current.album,current.penyanyi);
-        Cdequeue(Q,current.lagu,current.album,current.penyanyi);
+        Cdequeue(Q,&current.lagu,&current.album,&current.penyanyi);
         printf("Memutar lagu selanjutnya\n");
         printf("\"%s\" oleh \"%s\"",current.lagu,current.lagu);
     }
@@ -196,10 +197,10 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
     }else{
         Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
         while(!CIsEmpty(*Q)){
-            Cdequeue(Q,penyanyitemp,albumtemp,lagutemp);
+            Cdequeue(Q,&penyanyitemp,&albumtemp,&lagutemp);
             Cenqueue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
         }while(CIsEmpty(Qtemp)){
-            Cdequeue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
+            Cdequeue(&Qtemp,&penyanyitemp,&albumtemp,&lagutemp);
             Cenqueue(Q,penyanyitemp,albumtemp,lagutemp);
         }PopLagu(HS,(current).lagu,(current).album,(current).penyanyi);
         printf("Memutar lagu sebelumnya\n");
