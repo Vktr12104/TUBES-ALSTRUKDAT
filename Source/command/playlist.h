@@ -10,4 +10,6 @@ void CreatePlayList(ListDinamik *DaftarPlaylist);
 
 void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist);
 
+void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist);
+
 #endif

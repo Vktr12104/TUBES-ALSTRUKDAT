@@ -67,6 +67,8 @@ int main() {
             CreatePlayList(&DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "PLAYLIST ADD SONG")) {
             PLAYLISTADDSONG(listmusisi3, m2, lagu2, &DaftarPlaylist);
+        } else if (StrComp(currentCommand.TabWord, "PLAYLIST ADD ALBUM")) {
+            PLAYLISTADDALBUM(listmusisi3, m2, lagu2, &DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "SONG NEXT")) {
             SongNext(&HS, &Q);
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {

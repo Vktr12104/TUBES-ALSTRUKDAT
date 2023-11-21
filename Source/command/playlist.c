@@ -50,7 +50,9 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
     printf("Masukkan Nama Penyanyi: ");
     STARTCOMMAND();
     if(!isMemberListPenyanyi(currentCommand,lp)){
-        printf("Nama Penyanyi tersebut tidak valid\n");
+        printf("Nama Penyanyi  ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         return;
     }
     Word penyanyitemp ;
@@ -69,7 +71,9 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
     Word albumtemp;
     CreateWord2(currentCommand.Length,currentCommand.TabWord,&albumtemp);
     if (!IsMemberMapAlbum(m2,currentCommand)){
-        printf("Nama Album tersebut tidak valid\n");
+        printf("Album ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         return;
     }
     char *comm1=wordToString(currentCommand);
@@ -124,3 +128,52 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
     }
 }
 
+
+void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist) {
+    printf("Daftar Penyanyi:\n");
+    DisplayListPenyanyi(lp);
+    printf("\n");
+
+    printf("Masukkan Nama Penyanyi yang dipilih : ");
+    STARTCOMMAND();
+    if(!isMemberListPenyanyi(currentCommand,lp)){
+        printf("Nama Penyanyi  ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        return;
+    }
+    Word penyanyitemp ;
+    CreateWord2(currentCommand.Length,currentCommand.TabWord,&penyanyitemp);
+
+    char *comm=wordToString(currentCommand);
+    int idxpenyanyi=albumtoidpenyanyi(lp,currentCommand);
+
+    printf("\n");
+    printf("Daftar Album oleh %s:\n",comm);
+    displayMapAlbum(m2,idxpenyanyi);
+
+    printf("\n");
+    printf("Masukkan Judul Album yang dipilih: ");
+    STARTCOMMAND();
+    Word albumtemp;
+    CreateWord2(currentCommand.Length,currentCommand.TabWord,&albumtemp);
+    if (!IsMemberMapAlbum(m2,currentCommand)){
+        printf("Album ");
+        displayWord(currentCommand);
+        printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        return;
+    }
+    char *comm1=wordToString(currentCommand);
+    int idxalbum=laguAlbumID(currentCommand,m2);
+    printf("\n");
+    printf("Daftar Playlist Pengguna :\n");
+    DisplayLD(*daftarplaylist);
+    printf("\n");
+
+    // Meminta input ID Playlist
+    printf("Masukkan ID Playlist yang dipilih : ");
+    STARTCOMMAND(); // Mulai membaca kata
+    printf("\n");
+    int id_playlist = wordToInt(currentCommand) - 1;
+
+}
