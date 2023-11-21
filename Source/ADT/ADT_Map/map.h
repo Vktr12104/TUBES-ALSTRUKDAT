@@ -58,5 +58,7 @@ int albumtoidpenyanyi(ListPenyanyi P,Word nama);
 
 int laguAlbumID(Word input,MapAlbum P);
 
+int jumlahalbumperpenyanyi(MapAlbum P,int idpenyanyi);
+
 
 #endif

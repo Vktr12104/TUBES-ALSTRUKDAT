@@ -97,3 +97,15 @@ int laguAlbumID(Word input,MapAlbum P){
     }
     return index;
 }
+
+int jumlahalbumperpenyanyi(MapAlbum P,int idpenyanyi){
+    int count = 0;
+
+    for (int i = 1 ;i<=P.count; ++i) {
+        if (P.Elements[i].penyanyi_id == idpenyanyi) {
+            count++;
+        }
+    }
+
+    return count; 
+}
