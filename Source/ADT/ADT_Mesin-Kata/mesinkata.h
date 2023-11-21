@@ -153,4 +153,6 @@ void CreateWord2(int length, char * string, Word * w);
 
 boolean IsWordSame(Word w, Word v);
 
+Word takeword(Word command, int ke);
+
 #endif
