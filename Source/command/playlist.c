@@ -13,6 +13,7 @@
 
 
 void CreatePlayList(ListDinamik *DaftarPlaylist) {
+    printf("\n");
     printf("Masukkan nama playlist yang ingin dibuat : ");
     STARTCOMMAND();  
     int i = 0;
@@ -28,12 +29,14 @@ void CreatePlayList(ListDinamik *DaftarPlaylist) {
         InsertLD(DaftarPlaylist, currentCommand, DaftarPlaylist->Neff);
         CreateSB(&DaftarPlaylist->Content[DaftarPlaylist->Neff-1]);
         // Display output
+        printf("\n");
         printf("Playlist ");
         displayWord(currentCommand);
         printf(" berhasil dibuat! Silakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");        
     }
     else {
-        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.");
+        printf("\n");
+        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
     }
 }   
 
