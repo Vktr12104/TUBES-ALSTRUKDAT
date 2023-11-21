@@ -109,8 +109,8 @@ typedef struct {
     char *lagu;
     char *album;
     char *penyanyi;
+    int playlistID;
 }status;
-
 extern status current;
 // Data Struct yang digunakan untuk menampung history lagu pada stack pada SONGS (Previous & Next)
 
