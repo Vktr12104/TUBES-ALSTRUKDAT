@@ -20,10 +20,15 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql);
 void QueSwap(QueueLagu *q) ;
 
 void QueList(ListD list_dinamis, QueueLagu *Ql) ;
+
 void QueMove(QueueLagu *Q);
+
 void QueClear(QueueLagu *Q);
+
 void SongNext(HistoriLagu *HS, QueueLagu *Q);
+
 void SongPrev(HistoriLagu *HS,QueueLagu *Q);
 
+void save (ListPenyanyi p,MapAlbum al ,SetLagu lg);
 
 #endif

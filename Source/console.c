@@ -200,3 +200,51 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
 /*I.S. History  pada lagu sudah terdefinisi  */
 /*F.S Memutar lagu pada history lagu, jika belum ada dan baru memutar laguu yang diputar maka lagu 
 lagu yang sedang diputar*/
+
+void save (ListPenyanyi p,MapAlbum al ,SetLagu lg){
+    FILE* input = fopen("C:/Users/USER/Documents/STI Semester 3/Alstrukdat/Tubes 1/TUBES-ALSTRUKDAT/save/test.txt", "w");
+    Word tempPenyanyi, tempAlbum, tempLagu, tempPlaylist, tempInt;
+    int NPenyanyi, NAlbum, NLagu, NQueue, NRiwayat, NPlaylist;
+    fprintf(input, "%d\n", p.NEff);
+    int counter=1;
+    int counter2=0;
+    for (int i = 0; i < p.NEff; i++){
+        int jumlahalbumperpenyanyi2 = jumlahalbumperpenyanyi(al,i);
+        fprintf(input,"%d ", jumlahalbumperpenyanyi2);
+        for (int a=0;a<p.A[i].Length;a++){
+            if (a<p.A[i].Length-1){
+                fprintf(input,"%c",p.A[i].TabWord[a]);      
+            }
+            else{
+                fprintf(input,"%c\n",p.A[i].TabWord[a]);   
+            }
+        }
+        for (int j = 0;j<jumlahalbumperpenyanyi2;j++){
+            int jumlahlagu = CountLaguByAlbumID(&lg,counter);
+            fprintf(input, "%d ", jumlahlagu);
+            for (int b=0 ; b<al.Elements[counter].nama_album.Length;b++){
+                if (b<al.Elements[counter].nama_album.Length-1){
+                    fprintf(input,"%c",al.Elements[counter].nama_album.TabWord[b]);      
+                }
+                else{
+                    fprintf(input,"%c\n",al.Elements[counter].nama_album.TabWord[b]);   
+                }
+            }
+            counter++;
+            for (int k=0;k<jumlahlagu;k++){
+                counter2++;
+                for (int c=0 ; c<lg.A[counter2].nama_lagu.Length;c++){
+                    if (c<lg.A[counter2].nama_lagu.Length-1){
+                        fprintf(input,"%c",lg.A[counter2].nama_lagu.TabWord[c]);      
+                    }
+                    else{
+                        fprintf(input,"%c\n",lg.A[counter2].nama_lagu.TabWord[c]);   
+                    }
+                }
+            }
+        }
+    }
+    fclose(input);
+    printf("Save file berhasil disimpan.\n");
+    printf("// File disimpan pada /save/savefile.txt\n");
+}
