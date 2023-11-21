@@ -78,7 +78,7 @@ boolean IsMemberMapAlbum(MapAlbum P, Word AT){
         return false;
     }
     else{
-        for (int i = 0; i < P.count; i++) {
+        for (int i = 1; i <= P.count; i++) {
             if (isWordEqual(P.Elements[i].nama_album, AT)) {
                 return true;
             }
