@@ -16,6 +16,6 @@
 
 boolean CekLoad (char* NamaFile);
 
-void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, ListD ListPlaylist, status *LaguSekarang);
+void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, ListDinamik ListPlaylist, status *LaguSekarang);
 
 #endif
