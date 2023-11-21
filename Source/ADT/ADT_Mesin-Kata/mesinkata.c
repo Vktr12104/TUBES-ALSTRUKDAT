@@ -470,7 +470,7 @@ Word takeword(Word command, int ke)
 	return w;
 }
 
-boolean isMemberList(Word input, ListPenyanyi LP) {
+boolean isMemberListPenyanyi(Word input, ListPenyanyi LP) {
     int i;
     for (i = 0; i < LP.NEff; i++) {
         if (StrComp(input.TabWord, LP.A[i].TabWord) == 0) {

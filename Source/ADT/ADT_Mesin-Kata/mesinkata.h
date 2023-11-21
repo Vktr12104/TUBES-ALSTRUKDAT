@@ -153,6 +153,6 @@ boolean IsWordSame(Word w, Word v);
 
 Word takeword(Word command, int ke);
 
-boolean isMemberList (Word input, ListPenyanyi LP);
+boolean isMemberListPenyanyi (Word input, ListPenyanyi LP);
 
 #endif
