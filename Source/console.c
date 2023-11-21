@@ -87,44 +87,44 @@ void QueSwap(QueueLagu *q) {
     int x = wordToInt(currentCommand);
     STARTCOMMAND();
     int y = wordToInt(currentCommand);
-    if (x > q->idxTail && y > q->idxTail) {
-        if (x > q->idxTail) {
+    if (x > CLength(*q) || y > CLength(*q)) {
+        if (x > CLength(*q)) {
             printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", x);
-        } else {
+        } else if( y > CLength(*q)) {
             printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", y);
         }
     } else {
-        int i = 0;
+        int i = 1;
         while (!CIsEmpty(*q)) {
             Cdequeue(q, &Penyanyitemp, &albumtemp, &lagutemp);
             if (i == x) {
-                *penyanyi1 = *Penyanyitemp;
-                *album1 = *albumtemp;
-                *lagu1 = *lagutemp;
+                penyanyi1 = Penyanyitemp;
+                album1 = albumtemp;
+                lagu1 = lagutemp;
             }
 
             if (i == y) {
-                *penyanyi2 = *Penyanyitemp;
-                *album2 = *albumtemp;
-                *lagu2 = *lagutemp;
+                penyanyi2 = Penyanyitemp;
+                album2 = albumtemp;
+                lagu2 = lagutemp;
             }
 
             Cenqueue(&Qtemp, Penyanyitemp, albumtemp, lagutemp);
             i++;
         }
 
-        int j = 0;
+        int j = 1;
         while (!CIsEmpty(Qtemp)) {
             Cdequeue(&Qtemp, &Penyanyitemp, &albumtemp, &lagutemp);
             if (j == x) {
-                *Penyanyitemp = *penyanyi2;
-                *albumtemp = *album2;
-                *lagutemp = *lagu2;
+                Penyanyitemp = penyanyi2;
+                albumtemp = album2;
+                lagutemp = lagu2;
             }
             if (j == y) {
-                *Penyanyitemp = *penyanyi1;
-                *albumtemp = *album1;
-                *lagutemp = *lagu1;
+                Penyanyitemp = penyanyi1;
+                albumtemp = album1;
+                lagutemp = lagu1;
             }
             Cenqueue(q, Penyanyitemp, albumtemp, lagutemp);
             j++;
