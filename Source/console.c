@@ -223,8 +223,8 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
 /*F.S Memutar lagu pada history lagu, jika belum ada dan baru memutar laguu yang diputar maka lagu 
 lagu yang sedang diputar*/
 
-void save (ListPenyanyi p,MapAlbum al ,SetLagu lg){
-    FILE* input = fopen("C:/Users/USER/Documents/STI Semester 3/Alstrukdat/Tubes 1/TUBES-ALSTRUKDAT/save/test.txt", "w");
+void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
+    FILE* input = fopen("./TUBES-ALSTRUKDAT/save/test.txt", "w");
     Word tempPenyanyi, tempAlbum, tempLagu, tempPlaylist, tempInt;
     int NPenyanyi, NAlbum, NLagu, NQueue, NRiwayat, NPlaylist;
     fprintf(input, "%d\n", p.NEff);
@@ -266,12 +266,47 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg){
             }
         }
     }
+    char* CekEmpty = "-";
+    if (StrComp(current.penyanyi,CekEmpty)){
+        fprintf(input, "-\n");
+    }
+    else{
+        fprintf(input, "%s;%s;%s\n", current.penyanyi, current.album, current.lagu);
+    }
+
+    if (!CIsEmpty(QL)){
+        fprintf(input,"%d\n",CLength(QL));
+        for (int i = 0; i < CLength(QL); i++){
+            fprintf(input,"%s;%s;%s\n", QL.Isi[i].Penyanyi_playlist, QL.Isi[i].album_playlist, QL.Isi[i].lagu_playlist);
+        }
+    }
+
+    if(!IsHistEmpty(HL)){
+        fprintf(input,"%d\n",HL.idxTop+1);
+        for (int i = HL.idxTop; i>=0; i--){
+            fprintf(input,"%s;%s;%s\n", HL.hist_lagu->Penyanyi_playlist, HL.hist_lagu->album_playlist, HL.hist_lagu->lagu_playlist);
+        }
+    }
+
+    if(LD.Neff != 0){
+        fprintf(input,"%d\n",LD.Neff);
+        for (int i = 0; i < LD.Neff; i++){
+            int JumlahLagu = LengthSB(LD.Content[i]);
+            fprintf(input,"%d %s\n", JumlahLagu, LD.Content[i].Title);
+
+            Address Lagu = (LD.Content[i]).First;
+            for (int j=0; j<JumlahLagu; j++){
+                fprintf(input, "%s;%s;%s\n", Lagu->Info.Penyanyi, Lagu->Info.Album, Lagu->Info.Lagu);
+                Lagu = Lagu->Next;
+            }
+        }
+    }
     fclose(input);
     printf("Save file berhasil disimpan.\n");
     printf("// File disimpan pada /save/savefile.txt\n");
 }
 
-void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg){
+void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
     printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
     STARTCOMMAND();
     if (currentCommand.TabWord[0] == 'Y') {
@@ -285,7 +320,7 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg){
             file.TabWord[i] = currentWord.TabWord[i];
         }
 
-        save(p,al,lg);
+        save(p,al,lg,QL,HL,LD);
         printf ("Data berhasil disimpan.\n");
         printf ("Kamu keluar dari WayangWave.\n");
         printf ("Dadah ^_^/\n");

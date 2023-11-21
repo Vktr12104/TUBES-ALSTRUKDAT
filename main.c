@@ -81,9 +81,9 @@ int main() {
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
             SongPrev(&HS, &Q);
         } else if (StrComp(currentCommand.TabWord, "SAVE")) {
-            save(listmusisi3, m2, lagu2);
+            save(listmusisi3, m2, lagu2, Q , HS , DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUIT")) {
-            QUIT(listmusisi3, m2, lagu2);
+            QUIT(listmusisi3, m2, lagu2, Q, HS, DaftarPlaylist);
             quit = true;
         } else if (StrComp(currentCommand.TabWord, "HELP")) {
             help(start);

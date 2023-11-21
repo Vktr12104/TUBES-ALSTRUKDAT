@@ -29,9 +29,9 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q);
 
 void SongPrev(HistoriLagu *HS,QueueLagu *Q);
 
-void save (ListPenyanyi p,MapAlbum al ,SetLagu lg);
+void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD);
 
-void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg);
+void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD);
 
 void help(boolean start);
 
