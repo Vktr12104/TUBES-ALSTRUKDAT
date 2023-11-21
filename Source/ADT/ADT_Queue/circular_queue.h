@@ -43,7 +43,7 @@ void Cenqueue(QueueLagu *Q, char *penyanyi,  char *album,  char *lagu) ;
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-void Cdequeue(QueueLagu *Q, char *penyanyi, char *album, char *lagu) ;
+void Cdequeue(QueueLagu *Q, char **penyanyi, char **album, char **lagu);
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. mengembalikan nilai Q pada idxHead;
