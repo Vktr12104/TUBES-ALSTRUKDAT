@@ -1,10 +1,10 @@
 #ifndef ADTPLAYLIST
 #define ADTPLAYLIST
+#include "../ADT/ADT_List/listdinamis.h"
 
 
 
 
 
-void CreatePlayList ();
-void playlist_add (ListPlaylist *input,ListPenyanyi lp, MapAlbum m2,SetLagu S);
+void CreatePlayList(ListDinamik *DaftarPlaylist);
 #endif
