@@ -20,6 +20,10 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     STARTCOMMAND();
     char *comm=wordToString(currentCommand);
     int idxpenyanyi=albumtoidpenyanyi(lp,currentCommand);
+    if (!isMemberListPenyanyi(currentCommand,lp)){
+        printf("Nama Penyanyi tersebut tidak valid\n");
+        return;
+    }
 
     printf("Daftar Album oleh %s:\n",comm);
     displayMapAlbum(m2,idxpenyanyi);
