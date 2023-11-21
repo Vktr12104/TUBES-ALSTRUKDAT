@@ -9,6 +9,7 @@
 #include "Source/command/playlist.h"
 #include "Source/ADT/boolean.h"
 #include "Source/console.h"
+#include "Source/command/welcome.h"
 #include <stdio.h>
 status current;
 int main(){
@@ -25,6 +26,7 @@ int main(){
     ListDinamik ld;  
     boolean start = false;
     boolean quit = false;
+    welcome();
     while(!quit){
         printf(">> ");
         STARTCOMMAND();
