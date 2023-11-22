@@ -152,6 +152,7 @@ void ADVCOMMAND () {
           Jika currentChar = MARK, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure SalinWord */
 
+   
 void CopyCommand () {
     int i;
     i = 0;
@@ -164,6 +165,44 @@ void CopyCommand () {
     }
     currentCommand.Length = i;
 }
+
+void STARTCOMMAND2 () {
+    Word empty = {"",0};
+    currentCommand = empty;
+    START();
+    IgnoreBlanks();
+    if (currentChar == ENTER) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        ADVCOMMAND2();
+    }
+}
+
+void ADVCOMMAND2 () {
+    IgnoreDots();
+    if (currentChar == ENTER && !EndWord) {
+        EndWord = true;
+    } else {
+        CopyCommand2();
+        IgnoreDots();
+    }
+}
+
+
+void CopyCommand2 () {
+    int i;
+    i = 0;
+    while ((currentChar != MARK3) && (currentChar != ENTER)) {
+        if (i < NMax) {
+            currentCommand.TabWord[i] = currentChar;
+            i++;
+        }
+        advTerminal();
+    }
+    currentCommand.Length = i;
+}
+
 void IgnoreDots() {
     while (currentChar == BLANK || currentChar == '.') {
          advTerminal();
