@@ -5,7 +5,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     DisplayListPenyanyi(lp);
 
     printf("Masukkan Nama Penyanyi yang dipilih : \n");
-    STARTCOMMAND();
+    STARTCOMMAND2();
 
     if (!isMemberListPenyanyi(currentCommand, lp)){
         printf("Nama Penyanyi ");
@@ -23,7 +23,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     displayMapAlbum(ma, idpenyanyi);
 
     printf("Masukkan Nama Album yang dipilih : \n");
-    STARTCOMMAND();
+    STARTCOMMAND2();
 
     if (!IsMemberMapAlbum(ma,currentCommand)){
         printf("Album ");
@@ -43,7 +43,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     DisplaySetLagu(sl, idalbum);
 
     printf("Masukkan ID Lagu yang dipilih :  ");
-    STARTCOMMAND();
+    STARTCOMMAND2();
     int idlagu = wordToInt(currentCommand);
     int jumlahlagu = CountLaguByAlbumID(&sl,idalbum);
 
@@ -75,7 +75,11 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     current.penyanyi=penyanyi;
 }
 
-void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
+
+
+
+
+/*void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
     if (IsEmptyLD(LD)) {
         printf("Playlist kosong, tidak ada yang bisa dimainkan.\n");
     } else {
@@ -131,5 +135,52 @@ int pilihPlaylist(ListDinamik LD) {
         current.playlistID = ID;
     }
 
+    return idxPlaylist;
+}*/
+
+
+
+void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
+    if (IsEmptyLD(LD)) {
+        printf("Playlist kosong, tidak ada yang bisa dimainkan.\n");
+    } else {
+        CreateHist(Hl);
+        CCreateQueue(Ql);
+
+        int pilih = pilihPlaylist(LD);
+        Address P = LD.Content[pilih].First;
+        current.lagu = wordToString(LD.Content[pilih].First->Info.Lagu);
+        current.penyanyi = wordToString(LD.Content[pilih].First->Info.Penyanyi);
+        current.album = wordToString(LD.Content[pilih].First->Info.Album);
+
+        P = Next(P);
+        while (P != NULL) {
+            Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
+            PushLagu(Hl, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
+            P = Next(P);
+        }
+    }
+}
+
+
+int pilihPlaylist(ListDinamik LD) {
+    int idxPlaylist;
+
+    printf("Masukkan ID Playlist yang dipilih : ");
+    STARTCOMMAND2(); // Mulai membaca kata
+    printf("\n");
+    int idplaylist = wordToInt(currentCommand) - 1;
+
+    if(IsIdxValidLD(LD, idplaylist)){
+        if (idplaylist > 0 && idplaylist <= LD.Neff) {
+            idxPlaylist = idplaylist - 1;
+            printf ("Memutar playlist ");
+            displayWord(Title(LD.Content[idxPlaylist]));
+            printf (".\n");
+        } else {
+            printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist);
+        }
+        current.playlistID = idplaylist;
+    } 
     return idxPlaylist;
 }
