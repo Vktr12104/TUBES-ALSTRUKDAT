@@ -37,7 +37,7 @@ void help(boolean start);
 
 void invalidCommand(Word* w);
 void NotPlaying ();
-
+void statuscurrent(QueueLagu Q,ListDinamik LD);
 /**
  * Membuat playlist yang dimainkan menjadi tidak ada/idx undef
 */
@@ -52,5 +52,4 @@ boolean isNotPlayingPlaylist();
  * Mengembalikan nilai true jika tidak ada lagu yang dimainkan
 */
 boolean isNotPlaying();
-void statuscurrent(QueueLagu Q);
 #endif
