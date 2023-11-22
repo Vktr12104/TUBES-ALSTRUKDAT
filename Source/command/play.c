@@ -5,7 +5,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     DisplayListPenyanyi(lp);
 
     printf("Masukkan Nama Penyanyi yang dipilih : \n");
-    STARTCOMMAND2();
+    STARTCOMMAND();
 
     if (!isMemberListPenyanyi(currentCommand, lp)){
         printf("Nama Penyanyi ");
@@ -23,7 +23,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     displayMapAlbum(ma, idpenyanyi);
 
     printf("Masukkan Nama Album yang dipilih : \n");
-    STARTCOMMAND2();
+    STARTCOMMAND();
 
     if (!IsMemberMapAlbum(ma,currentCommand)){
         printf("Album ");
@@ -43,7 +43,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     DisplaySetLagu(sl, idalbum);
 
     printf("Masukkan ID Lagu yang dipilih :  ");
-    STARTCOMMAND2();
+    STARTCOMMAND();
     int idlagu = wordToInt(currentCommand);
     int jumlahlagu = CountLaguByAlbumID(&sl,idalbum);
 
@@ -167,7 +167,7 @@ int pilihPlaylist(ListDinamik LD) {
     int idxPlaylist;
 
     printf("Masukkan ID Playlist yang dipilih : ");
-    STARTCOMMAND2(); // Mulai membaca kata
+    STARTCOMMAND(); // Mulai membaca kata
     printf("\n");
     int idplaylist = wordToInt(currentCommand) - 1;
 
