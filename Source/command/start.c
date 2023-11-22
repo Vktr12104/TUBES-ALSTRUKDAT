@@ -1,5 +1,6 @@
 #include "start.h"
-
+status current;
+int currentIDplay;
 void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []){
   startWFile("text.txt");
   //MapAlbum mapAl;
@@ -8,6 +9,8 @@ void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *dafta
   Word NamaLagu;
   int panjg;
   CreateMapAlbum(&*m2);
+  NotPlaying();
+  NotPlayingPlaylist();
   ListDinamik DaftarPlaylist = CreateLD();
 
 
