@@ -14,6 +14,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
         return;
     }
     Word namapenyanyi = currentCommand;
+    char *penyanyi=wordToString(namapenyanyi);
     int idpenyanyi = albumtoidpenyanyi(lp, namapenyanyi);
 
     printf("Daftar album oleh ");
@@ -31,6 +32,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
         return;
     }
     Word namaalbum = currentCommand;
+    char *album=wordToString(namaalbum);
     int idalbum = laguAlbumID(namaalbum, ma);
 
     printf("Daftar lagu album ");
@@ -50,6 +52,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
         return;
     }
     Word namalagu = namalagufromalbum (sl, idalbum, idlagu);
+    char *lagu=wordToString(namalagu);
 
 
     printf ("Memutar lagu ");
@@ -62,7 +65,9 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     while ((*Hl).idxTop>=0) {
         (*Hl).idxTop--;
         (*Hl).count--;
-    }
+    }current.album=album;
+    current.lagu=lagu;
+    current.penyanyi=penyanyi;
 }
 
 void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
