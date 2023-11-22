@@ -12,9 +12,9 @@
 #include "ADT/ADT_Stack/stack.h"
 
 void NotPlaying(){
-    (&current)->penyanyi = NULL;
-    (&current)->album = NULL;
-    (&current)->lagu = NULL;
+    (&current)->penyanyi = "-";
+    (&current)->album = "-";
+    (&current)->lagu = "-";
 }
 
 void NotPlayingPlaylist(){
@@ -243,7 +243,7 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
 lagu yang sedang diputar*/
 
 void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
-    FILE* input = fopen("./TUBES-ALSTRUKDAT/save/test.txt", "w");
+    FILE* input = fopen("./save/test.txt", "w+");
     Word tempPenyanyi, tempAlbum, tempLagu, tempPlaylist, tempInt;
     int NPenyanyi, NAlbum, NLagu, NQueue, NRiwayat, NPlaylist;
     fprintf(input, "%d\n", p.NEff);
@@ -286,36 +286,28 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
         }
     }
     char* CekEmpty = "-";
-    if (StrComp(current.penyanyi,CekEmpty)){
-        fprintf(input, "-\n");
-    }
-    else{
-        fprintf(input, "%s;%s;%s\n", current.penyanyi, current.album, current.lagu);
-    }
-
+    if (StrComp(current.penyanyi,CekEmpty)) fprintf(input, "-\n");
+    else fprintf(input, "%s;%s;%s\n", current.penyanyi, current.album, current.lagu);
     if (!CIsEmpty(QL)){
         fprintf(input,"%d\n",CLength(QL));
-        for (int i = 0; i < CLength(QL); i++){
-            fprintf(input,"%s;%s;%s\n", QL.Isi[i].Penyanyi_playlist, QL.Isi[i].album_playlist, QL.Isi[i].lagu_playlist);
-        }
+        for (int i = 0; i < CLength(QL); i++) fprintf(input,"%s;%s;%s\n", QL.Isi[i].Penyanyi_playlist, QL.Isi[i].album_playlist, QL.Isi[i].lagu_playlist);
     }
-
+    
     if(!IsHistEmpty(HL)){
         fprintf(input,"%d\n",HL.idxTop+1);
         for (int i = HL.idxTop; i>=0; i--){
-            fprintf(input,"%s;%s;%s\n", HL.hist_lagu->Penyanyi_playlist, HL.hist_lagu->album_playlist, HL.hist_lagu->lagu_playlist);
+            fprintf(input,"%s;%s;%s\n", HL.hist_lagu[i].Penyanyi_playlist, HL.hist_lagu[i].album_playlist, HL.hist_lagu[i].lagu_playlist);
         }
     }
-
     if(LD.Neff != 0){
         fprintf(input,"%d\n",LD.Neff);
         for (int i = 0; i < LD.Neff; i++){
             int JumlahLagu = LengthSB(LD.Content[i]);
-            fprintf(input,"%d %s\n", JumlahLagu, LD.Content[i].Title);
+            fprintf(input,"%d %s\n", JumlahLagu, wordToString(LD.Content[i].Title));
 
             Address Lagu = (LD.Content[i]).First;
             for (int j=0; j<JumlahLagu; j++){
-                fprintf(input, "%s;%s;%s\n", Lagu->Info.Penyanyi, Lagu->Info.Album, Lagu->Info.Lagu);
+                fprintf(input, "%s;%s;%s\n", wordToString(Lagu->Info.Penyanyi), wordToString(Lagu->Info.Album), wordToString(Lagu->Info.Lagu));
                 Lagu = Lagu->Next;
             }
         }
@@ -323,6 +315,7 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
     fclose(input);
     printf("Save file berhasil disimpan.\n");
     printf("// File disimpan pada /save/savefile.txt\n");
+    
 }
 
 void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){

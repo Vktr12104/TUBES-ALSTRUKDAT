@@ -12,6 +12,7 @@
 #include "Source/command/welcome.h"
 #include <stdio.h>
 #include "Source/command/play.h"
+#include "Source/command/load.h"
 status current;
 int main() {
     
@@ -26,6 +27,7 @@ int main() {
     MapAlbum m2;
     boolean start = false;
     boolean quit = false;
+    boolean load = false;
     NotPlaying();
     NotPlayingPlaylist();
     welcome();
@@ -38,7 +40,9 @@ int main() {
             start = true;
             quit=true;
         } else if (StrComp(currentCommand.TabWord, "LOAD")) {
-            // Tambahkan implementasi untuk perintah "LOAD" jika diperlukan
+            STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
+            load = true;
+            quit = true;
         } else {
             invalidCommand(&currentCommand);
         }
@@ -56,9 +60,6 @@ int main() {
             }
         } else if (StrComp(currentCommand.TabWord, "PLAY SONG")) {
             playsong(listmusisi3,lagu2,m2,&Q,&HS);
-        }
-        else if (StrComp(currentCommand.TabWord, "PLAY PLAYLIST")) {
-            playPlaylist(DaftarPlaylist,&Q,&HS);
         }
         else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
             listplaylist(DaftarPlaylist);
@@ -102,9 +103,7 @@ int main() {
             statuscurrent(Q);
         }
         else if (StrComp(currentCommand.TabWord, "CHECK")){
-            printf("%d\n",DaftarPlaylist.Neff);
             DisplaySemuaLD(DaftarPlaylist);
-            Viewhist(HS);
         }
     }
     
