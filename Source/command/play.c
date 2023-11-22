@@ -165,8 +165,9 @@ void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
         current.lagu = wordToString(LD.Content[idplaylist].First->Info.Lagu);
         current.penyanyi = wordToString(LD.Content[idplaylist].First->Info.Penyanyi);
         current.album = wordToString(LD.Content[idplaylist].First->Info.Album);
-        current.playlistID = idplaylist;
-        printf("current %d \n", current.playlistID);
+       
+        currentIDplay = idplaylist+1;
+        printf("current %d \n", currentIDplay);
         P = Next(P);
         while (P != NULL) {
             Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
