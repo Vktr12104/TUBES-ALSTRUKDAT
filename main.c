@@ -12,7 +12,7 @@
 #include "Source/command/welcome.h"
 #include <stdio.h>
 #include "Source/command/play.h"
-status current;
+
 int main() {
     
     char namaFile[] = "text.txt";
@@ -26,9 +26,7 @@ int main() {
     MapAlbum m2;
     boolean start = false;
     boolean quit = false;
-    boolean load = false;
-    NotPlaying();
-    NotPlayingPlaylist();
+
     welcome();
 
     while (!quit) {
@@ -38,10 +36,8 @@ int main() {
             STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
             start = true;
             quit=true;
-        }  else if (StrComp(currentCommand.TabWord, "LOAD")) {
-            STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
-            load = true;
-            quit = true;
+        } else if (StrComp(currentCommand.TabWord, "LOAD")) {
+            // Tambahkan implementasi untuk perintah "LOAD" jika diperlukan
         } else {
             invalidCommand(&currentCommand);
         }
@@ -53,15 +49,16 @@ int main() {
 
         if (StrComp(wordToString(currentCommand), "LIST DEFAULT")) {
             if (start == true) {
+            
                 listdefault(listmusisi3, lagu2, m2);
             } else {
                 printf("Command tidak bisa dieksekusi!\n");
             }
-        } else if (StrComp(currentCommand.TabWord, "PLAY SONG")) {
-            playsong(listmusisi3,lagu2,m2,&Q,&HS);
-        }
-        else if (StrComp(currentCommand.TabWord, "PLAY PLAYLIST")) {
+        } else if (StrComp(currentCommand.TabWord, "PLAY PLAYLIST")) {
             playPlaylist(DaftarPlaylist,&Q,&HS);
+        } 
+        else if (StrComp(currentCommand.TabWord, "PLAY SONG")) {
+            playsong(listmusisi3,lagu2,m2,&Q,&HS);
         }
         else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
             listplaylist(DaftarPlaylist);
@@ -102,12 +99,10 @@ int main() {
             help(start);
         }
         else if (StrComp(currentCommand.TabWord, "STATUS")) {
-            statuscurrent(Q);
+            statuscurrent(Q,DaftarPlaylist);
         }
         else if (StrComp(currentCommand.TabWord, "CHECK")){
-            printf("%d\n",DaftarPlaylist.Neff);
             DisplaySemuaLD(DaftarPlaylist);
-            Viewhist(HS);
         }
     }
     
