@@ -61,11 +61,16 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     displayWord(namapenyanyi);
 
 
+    printf ("\n");
     QueClear(Ql);
+    
     while ((*Hl).idxTop>=0) {
         (*Hl).idxTop--;
         (*Hl).count--;
-    }current.album=album;
+    }
+    printf ("History dikosongkan.\n");
+
+    current.album=album;
     current.lagu=lagu;
     current.penyanyi=penyanyi;
 }
