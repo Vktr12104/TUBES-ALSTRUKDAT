@@ -10,8 +10,9 @@
 #define NMax 450
 #define BLANK ' '
 #define ENTER '\n'
-#define MARK ';'
+#define MARK '\n'
 #define MARK2 '\0'
+#define MARK3 ';'
 
 typedef struct
 {
@@ -97,6 +98,31 @@ void CopyCommand ();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+
+
+void STARTCOMMAND2 ();
+/* I.S. : currentChar sembarang
+   F.S. : EndWord = true, dan currentChar = MARK;
+          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
+          currentChar karakter pertama sesudah karakter terakhir kata */
+
+void ADVCOMMAND2 ();
+/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+   F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
+          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
+          Jika currentChar = MARK, EndWord = true.
+   Proses : Akuisisi kata menggunakan procedure SalinWord */
+
+void CopyCommand2 ();
+/* Mengakuisisi kata, menyimpan dalam currentWord
+   I.S. : currentChar adalah karakter pertama dari kata
+   F.S. : currentWord berisi kata yang sudah diakuisisi;
+          currentChar = BLANK atau currentChar = MARK;
+          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+
 void IgnoreDots ();
 /* Mengabaikan satu atau beberapa titik
    I.S. : currentChar sembarang

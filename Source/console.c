@@ -11,7 +11,25 @@
 #include "ADT/ADT_List/listdinamis.h"
 #include "ADT/ADT_Stack/stack.h"
 
+void NotPlaying(){
+    (&current)->penyanyi = NULL;
+    (&current)->album = NULL;
+    (&current)->lagu = NULL;
+}
 
+void NotPlayingPlaylist(){
+    current.playlistID = -1;
+}
+
+boolean isNotPlayingPlaylist(){
+    return current.playlistID == -1;
+}
+
+boolean isNotPlaying (){
+    return current.penyanyi == NULL && 
+    current.album == NULL && 
+    current.lagu == NULL;
+}
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     printf("Daftar Penyanyi:\n");
     DisplayListPenyanyi(lp);
@@ -182,8 +200,7 @@ void QueClear(QueueLagu *Q) {
 /*I.S. Antrian pada lagu sudah terdefinisi */
 /*F.S. Menghapus semua lagu pada queue*/    
 void SongNext(HistoriLagu *HS, QueueLagu *Q){
-    boolean isNotPlaying=true; 
-    if(isNotPlaying && CIsEmpty(*Q)){
+    if(isNotPlaying() && CIsEmpty(*Q)){
         printf("Queue kosong dan tidak ada lagu yang sedang dimainkan\n");
     }else if(CIsEmpty(*Q)) {
         printf("Queue kosong, memutar kembali lagu\n");
@@ -192,7 +209,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         PushLagu(HS,current.lagu,current.album,current.penyanyi);
         Cdequeue(Q,&current.lagu,&current.album,&current.penyanyi);
         printf("Memutar lagu selanjutnya\n");
-        printf("\"%s\" oleh \"%s\"\n",current.lagu,current.penyanyi);
+        printf("\"%s\" oleh \"%s\"\n",current.penyanyi,current.lagu);
     }
 }
 
@@ -203,9 +220,11 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
     QueueLagu Qtemp;
     char *lagutemp,*albumtemp,*penyanyitemp;
     CCreateQueue(&Qtemp);
-    if(IsHistEmpty(*HS)){
+     if (isNotPlaying() && IsHistEmpty (*HS)){
+        printf("\nRiwayat lagu kosong dan tidak ada lagu yang sedang dimainkan\n");
+    }else if(IsHistEmpty(*HS)){
         printf("History kosong, memutar kembali lagu\n");
-        printf("\"%s\" oleh \"%s\"\n",current.lagu,current.penyanyi);
+        printf("\"%s\" oleh \"%s\"\n",current.penyanyi,current.lagu);
     }else{
         Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
         while(!CIsEmpty(*Q)){
@@ -216,7 +235,7 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
             Cenqueue(Q,penyanyitemp,albumtemp,lagutemp);
         }PopLagu(HS,(current).lagu,(current).album,(current).penyanyi);
         printf("Memutar lagu sebelumnya\n");
-        printf("\"%s\" oleh \"%s\"", current.lagu, current.penyanyi);
+        printf("\"%s\" oleh \"%s\"\n", current.penyanyi, current.lagu);
     }
 }
 /*I.S. History  pada lagu sudah terdefinisi  */
@@ -367,25 +386,7 @@ void invalidCommand(Word* w) {
     }
     printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
 }
-void NotPlaying(){
-    (&current)->penyanyi = NULL;
-    (&current)->album = NULL;
-    (&current)->lagu = NULL;
-}
 
-void NotPlayingPlaylist(){
-    current.playlistID = -1;
-}
-
-boolean isNotPlayingPlaylist(){
-    return current.playlistID == -1;
-}
-
-boolean isNotPlaying (){
-    return current.penyanyi == NULL && 
-    current.album == NULL && 
-    current.lagu == NULL;
-}
 
 void statuscurrent(QueueLagu Q){
     if(isNotPlayingPlaylist()){
