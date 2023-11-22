@@ -32,7 +32,7 @@ void CreatePlayList(ListDinamik *DaftarPlaylist) {
         printf("\n");
         printf("Playlist ");
         displayWord(currentCommand);
-        printf(" berhasil dibuat! Silakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");        
+        printf(" berhasil dibuat! Silakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");   
     }
     else {
         printf("\n");
