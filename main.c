@@ -57,6 +57,9 @@ int main() {
         } else if (StrComp(currentCommand.TabWord, "PLAY SONG")) {
             playsong(listmusisi3,lagu2,m2,&Q,&HS);
         }
+        else if (StrComp(currentCommand.TabWord, "PLAY PLAYLIST")) {
+            playPlaylist(DaftarPlaylist,&Q,&HS);
+        }
         else if (StrComp(currentCommand.TabWord, "LIST PLAYLIST")) {
             listplaylist(DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUEUE SONG")) {
@@ -99,7 +102,9 @@ int main() {
             statuscurrent(Q);
         }
         else if (StrComp(currentCommand.TabWord, "CHECK")){
+            printf("%d\n",DaftarPlaylist.Neff);
             DisplaySemuaLD(DaftarPlaylist);
+            Viewhist(HS);
         }
     }
     
