@@ -62,7 +62,7 @@ void Viewhist(HistoriLagu S) {
         printf("Daftar Lagu dalam HistoriLagu:\n");
         printf("[");
         for (int i = 1; i <= S.idxTop; i++) {
-            printf("(%s, %s)", S.hist_lagu[i].lagu_playlist, S.hist_lagu[i].album_playlist);
+            printf("(%s, %s, %s)", S.hist_lagu[i].lagu_playlist, S.hist_lagu[i].album_playlist,S.hist_lagu[i].Penyanyi_playlist);
             if (i < S.idxTop) {
                 printf(", ");
             }
