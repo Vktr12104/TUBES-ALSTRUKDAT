@@ -12,7 +12,7 @@
 #include "../ADT/ADT_Queue/circular_queue.h"
 #include "../ADT/ADT_Stack/stack.h"
 #include "start.h"
-#include "ADT/struc.h"
+#include "../ADT/struc.h"
 
 boolean CekLoad (char* NamaFile);
 
