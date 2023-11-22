@@ -146,13 +146,27 @@ void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
     } else {
         CreateHist(Hl);
         CCreateQueue(Ql);
+        printf("Masukkan ID Playlist yang dipilih : ");
+        STARTCOMMAND(); // Mulai membaca kata
+        printf("\n");
+        int idplaylist = wordToInt(currentCommand) - 1;
+        if(IsIdxValidLD(LD, idplaylist)){
+            if ((idplaylist >= 0) && (idplaylist < LD.Neff)) {
+                printf ("Memutar playlist ");
+                displayWord(Title(LD.Content[idplaylist]));
+                printf (".\n");
+            } else {
+                printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist+1);
+            }
+        }
 
-        int pilih = pilihPlaylist(LD);
-        Address P = LD.Content[pilih].First;
-        current.lagu = wordToString(LD.Content[pilih].First->Info.Lagu);
-        current.penyanyi = wordToString(LD.Content[pilih].First->Info.Penyanyi);
-        current.album = wordToString(LD.Content[pilih].First->Info.Album);
 
+        Address P = LD.Content[idplaylist].First;
+        current.lagu = wordToString(LD.Content[idplaylist].First->Info.Lagu);
+        current.penyanyi = wordToString(LD.Content[idplaylist].First->Info.Penyanyi);
+        current.album = wordToString(LD.Content[idplaylist].First->Info.Album);
+        current.playlistID = idplaylist;
+        printf("current %d \n", current.playlistID);
         P = Next(P);
         while (P != NULL) {
             Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
@@ -162,7 +176,7 @@ void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
     }
 }
 
-
+/*
 int pilihPlaylist(ListDinamik LD) {
     int idxPlaylist;
 
@@ -172,15 +186,15 @@ int pilihPlaylist(ListDinamik LD) {
     int idplaylist = wordToInt(currentCommand) - 1;
 
     if(IsIdxValidLD(LD, idplaylist)){
-        if (idplaylist > 0 && idplaylist <= LD.Neff) {
-            idxPlaylist = idplaylist - 1;
+        if ((idplaylist >= 0) && (idplaylist < LD.Neff)) {
             printf ("Memutar playlist ");
             displayWord(Title(LD.Content[idxPlaylist]));
             printf (".\n");
         } else {
-            printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist);
+            printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist+1);
         }
         current.playlistID = idplaylist;
     } 
     return idxPlaylist;
 }
+*/

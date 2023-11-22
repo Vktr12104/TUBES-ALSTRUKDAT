@@ -17,5 +17,4 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
 
 void playPlaylist (ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl);
 
-int pilihPlaylist(ListDinamik LD);
 #endif
