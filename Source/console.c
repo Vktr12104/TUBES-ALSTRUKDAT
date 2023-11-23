@@ -244,8 +244,6 @@ lagu yang sedang diputar*/
 
 void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
     FILE* input = fopen("./save/test.txt", "w+");
-    Word tempPenyanyi, tempAlbum, tempLagu, tempPlaylist, tempInt;
-    int NPenyanyi, NAlbum, NLagu, NQueue, NRiwayat, NPlaylist;
     fprintf(input, "%d\n", p.NEff);
     int counter=1;
     int counter2=0;
