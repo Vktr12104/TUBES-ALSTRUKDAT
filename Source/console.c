@@ -25,9 +25,9 @@ boolean isNotPlayingPlaylist(){
 }
 
 boolean isNotPlaying (){
-    return current.penyanyi == NULL && 
-    current.album == NULL && 
-    current.lagu == NULL;
+    return current.penyanyi == "-" && 
+    current.album == "-" && 
+    current.lagu == "-";
 }
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     printf("Daftar Penyanyi:\n");
@@ -205,7 +205,16 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         printf("Queue kosong, memutar kembali lagu\n");
         printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
     }else{
-        PushLagu(HS,current.lagu,current.album,current.penyanyi);
+        printf("%s\n",current.penyanyi);
+        printf("%s\n",current.album);
+        printf("%s\n",current.lagu);
+        printf("%d\n",isNotPlaying());
+        if(!isNotPlaying()){
+            printf("%s\n",current.penyanyi);
+            printf("%s\n",current.album);
+            printf("%s\n",current.lagu);
+            PushLagu(HS,current.lagu,current.album,current.penyanyi);
+        }
         Cdequeue(Q,&current.lagu,&current.album,&current.penyanyi);
         printf("Memutar lagu selanjutnya\n");
         printf("\"%s\" oleh \"%s\"\n",current.penyanyi,current.lagu);
