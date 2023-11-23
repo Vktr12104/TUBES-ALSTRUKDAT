@@ -26,7 +26,7 @@ int main() {
     MapAlbum m2;
     boolean start = false;
     boolean quit = false;
-
+    boolean load = false;
     welcome();
 
     while (!quit) {
@@ -37,7 +37,9 @@ int main() {
             start = true;
             quit=true;
         } else if (StrComp(currentCommand.TabWord, "LOAD")) {
-            // Tambahkan implementasi untuk perintah "LOAD" jika diperlukan
+            STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
+            load = true;
+            quit = true;
         } else {
             invalidCommand(&currentCommand);
         }

@@ -13,7 +13,7 @@
 
 
 void CreatePlayList(ListDinamik *DaftarPlaylist) {
-    printf("\n");
+    // printf("\n");
     printf("Masukkan nama playlist yang ingin dibuat : ");
     STARTCOMMAND();  
     int i = 0;
