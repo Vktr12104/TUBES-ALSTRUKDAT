@@ -95,6 +95,7 @@ int main() {
             PLAYLISTDELETE(&DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "SONG NEXT")) {
             SongNext(&HS, &Q);
+            Viewhist(HS);
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
             SongPrev(&HS, &Q);
         } else if (StrComp(currentCommand.TabWord, "SAVE")) {
