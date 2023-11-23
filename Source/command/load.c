@@ -1,64 +1,74 @@
 #include "load.h"
 
-boolean CekLoad(char* NamaFile){
-    FILE* cek = fopen(NamaFile,"r");
-    if (cek == NULL){
-        return false;
-    }
-    else{
-        return true;
-    }
+boolean FileExists(char *fname) {
+     FILE *file;
+     if ((file = fopen(fname, "r")))
+     {
+          fclose(file);
+          return true;
+     }
+     return false;
 }
 
-void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, ListDinamik ListPlaylist, status *LaguSekarang){
-    STARTCOMMAND(Penyanyi,Album,SetLagu,NamaFile);
-    ADVWORD();
-    if (StrComp(wordToString(currentWord),"-")){
+void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, status *LaguSekarang){
+    
+    if (FileExists(NamaFile)){
+        startWFile(NamaFile);
+        // inisiasi
+        Word NamaPenyanyi;
+        Word NamaAlbum;
+        Word NamaLagu;
+        int panjg;
+        CreateMapAlbum(&*m2);
+        NotPlaying();
+        NotPlayingPlaylist();
+        *daftarplaylist = CreateLD();
+        CreateEmptySetLagu(&*lagu2);
+        *LP = MakeListPenyanyi();
+        //CreateMapAlbum(&mapAl);
+        
+
+
+        
+        int loop = wordToInt(currentWord);
+        int album,lagu;
+        int number =1;
+        int idalbum=1;
+        for (int i = 0; i < loop; i++){
+            ADVSATUKATA();
+            album = currentWord.TabWord[0] - 48;   
+            ADVKALIMAT();  
+            InsertLast(&*LP, currentWord);
+            for (int j = 0; j < album; j++){
+            ADVSATUKATA();
+            lagu = currentWord.TabWord[0] - 48;
+            ADVKALIMAT();
+            InsertMapAlbum(&*m2,i,currentWord);
+            for (int k = 0; k < lagu; k++)
+            {
+                ADVKALIMAT();
+                InsertSetLagu(&*lagu2,currentWord,number);    
+            }
+            number++;
+            }
+            idalbum++;
+        }
+        ADVWORD();
+        displayWord(currentWord);
+        if (StrComp(wordToString(currentWord),"-")){
         LaguSekarang->penyanyi = "-";
         LaguSekarang->album = "-";
-        LaguSekarang->lagu = "-"                            ;
+        LaguSekarang->lagu = "-";
+        }
+        else{
+            LaguSekarang->penyanyi = wordToString(takewordsemicolon(currentWord, 1));
+            LaguSekarang->album = wordToString(takewordsemicolon(currentWord,2));
+            LaguSekarang->lagu = wordToString(takewordsemicolon(currentWord,3));
+        }                          
+        
     }
-    else{
-        LaguSekarang->penyanyi = wordToString(takewordsemicolon(currentWord, 1));
-        LaguSekarang->album = wordToString(takewordsemicolon(currentWord,2));
-        LaguSekarang->lagu = wordToString(takewordsemicolon(currentWord,3));
-    }
-
-    ADVWORD();
-    int JumlahQueueSongs = wordToInt(currentWord);
-    for (int i = 0; i<JumlahQueueSongs; i++){
-        ADVWORD();
-
-        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
-        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
-        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
-
-        Cenqueue(QueueLagu, namaP, namaA, namaL);
-    }
-
-    ADVWORD();
-    HistoriLagu HistoryRAW;
-    CreateHist(&HistoryRAW);
-
-    int JumlahHistorySongs = wordToInt(currentWord);
-
-    for (int j = 0; j < JumlahHistorySongs; j++){
-        ADVWORD();
-
-        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
-        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
-        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
-
-        PushLagu(&HistoryRAW, namaP, namaA, namaL);
-    }
-
-    for (int j = 0; j < JumlahHistorySongs; j++){
-        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
-        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
-        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
-
-        PopLagu(&HistoryRAW, &namaP, &namaA, &namaL);
-        PushLagu(HistoryLagu,namaP, namaA, namaL);
+    else {
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
     }
 
     // ADVWORD();

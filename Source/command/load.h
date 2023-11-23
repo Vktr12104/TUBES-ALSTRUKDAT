@@ -13,8 +13,8 @@
 #include "start.h"
 #include "../ADT/struc.h"
 
-boolean CekLoad (char* NamaFile);
+boolean FileExists(char *fname);
 
-void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, ListDinamik ListPlaylist, status *LaguSekarang);
+void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, status *LaguSekarang);
 
 #endif
