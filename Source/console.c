@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "ADT/struc.h"
 #include "ADT/ADT_Mesin-Kata/mesinkata.h"
-#include "ADT/ADT_Queue/queue.h"
 #include "ADT/ADT_Queue/circular_queue.h"
 #include "ADT/ADT_List/liststatis.h"
 #include "ADT/ADT_Map/map.h"
