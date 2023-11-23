@@ -483,3 +483,23 @@ Word takeword(Word command, int ke)
 int stringToInt(char* input){
     return (input - "0");
 }
+
+Word SplitCommandWords(Word* kata1){
+    Word kata2;
+    int i = 0;
+    while ((i < (*kata1).Length) && ((*kata1).TabWord[i] != ' ')){
+        i++;
+    }
+    int x1 = i;
+
+    int j = i + 1;
+    i = 0;
+    while ((j < (*kata1).Length) && ((*kata1).TabWord[j] != ' ')){
+        (kata2).TabWord[i] = (*kata1).TabWord[j];
+        i++;
+        j++;
+    } 
+
+    (kata2).Length = i;
+    return kata2;
+}

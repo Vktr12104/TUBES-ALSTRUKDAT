@@ -14,9 +14,9 @@ void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFi
     STARTCOMMAND(Penyanyi,Album,SetLagu,NamaFile);
     ADVWORD();
     if (StrComp(wordToString(currentWord),"-")){
-        LaguSekarang->penyanyi = '-';
-        LaguSekarang->album = '-';
-        LaguSekarang->lagu = '-';
+        LaguSekarang->penyanyi = "-";
+        LaguSekarang->album = "-";
+        LaguSekarang->lagu = "-"                            ;
     }
     else{
         LaguSekarang->penyanyi = wordToString(takewordsemicolon(currentWord, 1));

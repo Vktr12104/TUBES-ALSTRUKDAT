@@ -157,4 +157,6 @@ Word takeword(Word command, int ke);
 
 int stringToInt(char* input);
 
+Word SplitCommandWords(Word* kata1);
+
 #endif
