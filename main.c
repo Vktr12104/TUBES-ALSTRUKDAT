@@ -19,11 +19,11 @@ int main() {
     ListPenyanyi listmusisi3;
     ListDinamik DaftarPlaylist;
     QueueLagu Q;
-    CCreateQueue(&Q);
-    HistoriLagu HS;
-    CreateHist(&HS);
     SetLagu lagu2;
     MapAlbum m2;
+    HistoriLagu HS;
+    CCreateQueue(&Q);
+    CreateHist(&HS);
     boolean start = false;
     boolean quit = false;
     boolean load = false;
