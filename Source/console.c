@@ -226,14 +226,16 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
         printf("History kosong, memutar kembali lagu\n");
         printf("\"%s\" oleh \"%s\"\n",current.penyanyi,current.lagu);
     }else{
-        Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
+        if(!isNotPlaying()){
+            Cenqueue(&Qtemp,current.penyanyi,current.album,current.lagu);
+        }
         while(!CIsEmpty(*Q)){
             Cdequeue(Q,&penyanyitemp,&albumtemp,&lagutemp);
             Cenqueue(&Qtemp,penyanyitemp,albumtemp,lagutemp);
         }while(CIsEmpty(Qtemp)){
             Cdequeue(&Qtemp,&penyanyitemp,&albumtemp,&lagutemp);
             Cenqueue(Q,penyanyitemp,albumtemp,lagutemp);
-        }PopLagu(HS,(current).lagu,(current).album,(current).penyanyi);
+        }PopLagu(HS,&(current).lagu,&(current).album,&(current).penyanyi);
         printf("Memutar lagu sebelumnya\n");
         printf("\"%s\" oleh \"%s\"\n", current.penyanyi, current.lagu);
     }
