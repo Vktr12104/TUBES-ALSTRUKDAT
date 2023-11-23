@@ -73,7 +73,7 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
         printf("Berhasil masuk\n");
         Cenqueue(Ql,comm,comm1,comm3);
         printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
-    }displayQueue(*Ql);
+    }CdisplayQueue(*Ql);
 }
 
 
@@ -183,7 +183,7 @@ void QueMove(QueueLagu *Q){
         *Q = Qtemp;
     }
     
-    displayQueue(*Q);
+    CdisplayQueue(*Q);
 }
 
 /*I.S. Antrian pada lagu sudah terdefinisi */
@@ -395,7 +395,7 @@ void statuscurrent(QueueLagu Q,ListDinamik LD){
     }
     printf("Queue :\n");
     if(!CIsEmpty(Q)){
-        displayQueue(Q);
+        CdisplayQueue(Q);
     }else{
         printf("Your queue is empty.\n");
     }

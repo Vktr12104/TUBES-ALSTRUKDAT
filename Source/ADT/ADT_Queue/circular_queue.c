@@ -93,7 +93,7 @@ void Cdequeue(QueueLagu *Q, char **penyanyi, char **album, char **lagu) {
         Q mungkin kosong */
 
 /* *** Display CQueue *** */
-void displayQueue(QueueLagu Q) {
+void  CdisplayQueue(QueueLagu Q) {
     if (!CIsEmpty(Q)) {
         for (int i = 0; i < CLength(Q); i++) {
             printf("%d. %s - %s - %s\n",i+1, Q.Isi[i % (MaxEl+1)].Penyanyi_playlist,Q.Isi[i % (MaxEl+1)].album_playlist,Q.Isi[i % (MaxEl+1)].lagu_playlist);
