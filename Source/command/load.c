@@ -24,59 +24,59 @@ void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFi
         LaguSekarang->lagu = wordToString(takewordsemicolon(currentWord,3));
     }
 
-    // ADVWORD();
-    // int JumlahQueueSongs = wordToInt(currentWord);
-    // for (int i = 0; i<JumlahQueueSongs; i++){
-    //     ADVWORD();
+    ADVWORD();
+    int JumlahQueueSongs = wordToInt(currentWord);
+    for (int i = 0; i<JumlahQueueSongs; i++){
+        ADVWORD();
 
-    //     valuetype namaP = WordToString(takewordsemicolon(currentWord, 1));
-    //     valuetype namaA = WordToString(takewordsemicolon(currentWord, 2));
-    //     valuetype namaL = WordToString(takewordsemicolon(currentWord, 3));
+        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
+        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
+        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
 
-    //     Cenqueue(QueueLagu, namaP, namaA, namaL);
-    // }
+        Cenqueue(QueueLagu, namaP, namaA, namaL);
+    }
 
-    // ADVWORD();
-    // HistoriLagu HistoryRAW;
-    // CreateHist(&HistoryRAW);
+    ADVWORD();
+    HistoriLagu HistoryRAW;
+    CreateHist(&HistoryRAW);
 
-    // int JumlahHistorySongs = wordToInt(currentWord);
+    int JumlahHistorySongs = wordToInt(currentWord);
 
-    // for (int j = 0; j < JumlahHistorySongs; j++){
-    //     ADVWORD();
+    for (int j = 0; j < JumlahHistorySongs; j++){
+        ADVWORD();
 
-    //     valuetype namaP = wordToString(takewordsemicolon(currentWord,1));
-    //     valuetype namaA = WordToString(takewordsemicolon(currentWord, 2));
-    //     valuetype namaL = WordToString(takewordsemicolon(currentWord, 3));
+        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
+        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
+        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
 
-    //     PushLagu(&HistoryRAW, namaP, namaA, namaL);
-    // }
+        PushLagu(&HistoryRAW, namaP, namaA, namaL);
+    }
 
-    // for (int j = 0; j < JumlahHistorySongs; j++){
-    //     valuetype namaP = wordToString(takewordsemicolon(currentWord,1));
-    //     valuetype namaA = WordToString(takewordsemicolon(currentWord, 2));
-    //     valuetype namaL = WordToString(takewordsemicolon(currentWord, 3));
+    for (int j = 0; j < JumlahHistorySongs; j++){
+        char* namaP = wordToString(takewordsemicolon(currentWord, 1));
+        char* namaA = wordToString(takewordsemicolon(currentWord, 2));
+        char* namaL = wordToString(takewordsemicolon(currentWord, 3));
 
-    //     PopLagu(&HistoryRAW, &namaP, &namaA, &namaL);
-    //     PushLagu(HistoryLagu,namaP, namaA, namaL);
-    // }
+        PopLagu(&HistoryRAW, &namaP, &namaA, &namaL);
+        PushLagu(HistoryLagu,namaP, namaA, namaL);
+    }
 
-    // ADVWORD();
-    // int jumlahDinPlaylist = wordToInt(currentWord);
+    ADVWORD();
+    int jumlahDinPlaylist = wordToInt(currentWord);
 
-    // for (int k = 0; k<jumlahDinPlaylist; k++){
-    //     ADVWORD();
+    for (int k = 0; k<jumlahDinPlaylist; k++){
+        ADVWORD();
 
-    //     int jumlahLaguPlaylist = wordToInt(takeword(currentWord,1));
-    //     char* namaPlaylist = wordToString((currentWord));
-    //     CreatePlayList (&ListPlaylist.Content[k]);
-    //     for (int l = 0; l < jumlahLaguPlaylist; l++){
-    //         ADVWORD();
-    //         valuetype namaP = wordToString(takewordsemicolon(currentWord, 1));
-    //         valuetype namaA = WordToString(takewordsemicolon(currentWord, 2));
-    //         valuetype namaL = WordToString(takewordsemicolon(currentWord, 3));
+        int jumlahLaguPlaylist = wordToInt(takeword(currentWord,1));
+        char* namaPlaylist = wordToString((currentWord));
+        CreatePlayList (&ListPlaylist.Content[k]);
+        for (int l = 0; l < jumlahLaguPlaylist; l++){
+            ADVWORD();
+            char* namaP = wordToString(takewordsemicolon(currentWord, 1));
+            char* namaA = wordToString(takewordsemicolon(currentWord, 2));
+            char* namaL = wordToString(takewordsemicolon(currentWord, 3));
 
-    //         InsVLastlistb(&(ListPlaylist.Content[k]), namaP, namaA, namaL);
-    //     }
-    // }
+            // InsVLastlistb(&(ListPlaylist.Content[k]), namaP, namaA, namaL);
+        }
+    }
 }

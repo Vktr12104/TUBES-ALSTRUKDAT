@@ -26,16 +26,13 @@ Do I Wanna Know?
 R U Mine?
 Arabella
 -
-2
-7 DEDY
+1
+8 PLAYLIST ADD ALBUM
 BLACKPINK;BORN PINK;Pink Venom
 BLACKPINK;BORN PINK;Shut Down
 BLACKPINK;BORN PINK;Typa Girl
 BLACKPINK;BORN PINK;Ready For Love
-Arctic Monkeys;AM;Do I Wanna Know?
-Arctic Monkeys;AM;R U Mine?
-Arctic Monkeys;AM;Arabella
-3 DEDY2
-BLACKPINK;THE ALBUM;How You Like That
-BLACKPINK;THE ALBUM;Ice Cream (with Selena Gomez)
-BLACKPINK;THE ALBUM;Bet You Wanna (Feat. Cardi B)
+Arctic Monkeys;Humbug;My Propeller
+Arctic Monkeys;Humbug;Crying Lightning
+Arctic Monkeys;Humbug;Secret Door
+Arctic Monkeys;Humbug;Pretty Visitors

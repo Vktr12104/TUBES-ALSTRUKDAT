@@ -98,7 +98,7 @@ int main() {
             Viewhist(HS);
         } else if (StrComp(currentCommand.TabWord, "SONG PREVIOUS")) {
             SongPrev(&HS, &Q);
-        } else if (StrComp(currentCommand.TabWord, "SAVE")) {
+        } else if (StrComp2(currentCommand.TabWord, "SAVE",4)) {
             save(listmusisi3, m2, lagu2, Q , HS , DaftarPlaylist);
         } else if (StrComp(currentCommand.TabWord, "QUIT")) {
             QUIT(listmusisi3, m2, lagu2, Q, HS, DaftarPlaylist);
