@@ -12,10 +12,11 @@
 #include "Source/command/welcome.h"
 #include <stdio.h>
 #include "Source/command/play.h"
+#include "Source/command/load.h"
 
 int main() {
     
-    char namaFile[] = "text.txt";
+    char namaFile[] = "save/text.txt";
     ListPenyanyi listmusisi3;
     ListDinamik DaftarPlaylist;
     QueueLagu Q;
@@ -29,6 +30,7 @@ int main() {
     boolean load = false;
     welcome();
 
+
     while (!quit) {
         printf(">> ");
         STARTCOMMAND(); 
@@ -36,8 +38,11 @@ int main() {
             STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
             start = true;
             quit=true;
-        } else if (StrComp(currentCommand.TabWord, "LOAD")) {
-            STARTREAD(&listmusisi3, &lagu2, &m2, &DaftarPlaylist, namaFile);
+        } else if (StrComp2(currentCommand.TabWord, "LOAD",4)) {
+            Word namafileinput = SplitCommandWords(&currentCommand);
+            displayWordNewLine(namafileinput);
+            char* namafileinput2 = wordToString(namafileinput);
+            Load(&listmusisi3,&m2,&lagu2,namafileinput2 , &Q,&HS,DaftarPlaylist,&current);
             load = true;
             quit = true;
         } else {
