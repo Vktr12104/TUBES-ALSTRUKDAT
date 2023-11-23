@@ -2,7 +2,7 @@
 status current;
 int currentIDplay;
 void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []){
-  startWFile("text.txt");
+  startWFile(NamaFile);
   //MapAlbum mapAl;
   Word NamaPenyanyi;
   Word NamaAlbum;
