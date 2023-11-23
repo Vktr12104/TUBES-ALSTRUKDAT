@@ -503,3 +503,21 @@ Word SplitCommandWords(Word* kata1){
     (kata2).Length = i;
     return kata2;
 }
+
+char* currentWordtoFileName(Word w) {
+    // char * file_name = "../save/saved1.txt";
+    int folder_length = 5;
+    char * folder = "save/";
+    char * s;
+    s = (char *)malloc(sizeof(char) * (folder_length + w.Length + 1));
+
+    for (int i = 0; i < folder_length; i++) {
+        s[i] = folder[i];
+    }
+
+    for (int i = 0; i < w.Length; i++) {
+        s[i+folder_length] = w.TabWord[i];
+    }
+    s[w.Length + folder_length] = '\0';
+    return s;
+}

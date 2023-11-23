@@ -159,4 +159,7 @@ int stringToInt(char* input);
 
 Word SplitCommandWords(Word* kata1);
 
+char* currentWordtoFileName(Word w);
+
+
 #endif
