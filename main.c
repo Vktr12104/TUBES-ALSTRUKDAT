@@ -41,8 +41,8 @@ int main() {
         } else if (StrComp2(currentCommand.TabWord, "LOAD",4)) {
             Word namafileinput = SplitCommandWords(&currentCommand);
             displayWordNewLine(namafileinput);
-            char* namafileinput2 = currentWordtoFileName(namafileinput);
-            Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS,&current);
+            char* namafileinput2 = "./save/test.txt";
+            Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS);
             load = true;
             quit = true;
             start = true;
