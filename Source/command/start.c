@@ -25,12 +25,12 @@ void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *dafta
   int album,lagu;
   int number =1;
   int idalbum=1;
+  printf("\n");
   printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan\n");
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
     album = currentWord.TabWord[0] - 48;   
     ADVKALIMAT();  
-    printf("\n");
     InsertLast(&*LP, currentWord);
     for (int j = 0; j < album; j++){
       ADVSATUKATA();
@@ -46,6 +46,7 @@ void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *dafta
     }
     idalbum++;
   }
+  printf("\n");
 }
 
 // int main(){
