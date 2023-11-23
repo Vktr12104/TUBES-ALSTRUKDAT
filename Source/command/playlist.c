@@ -11,7 +11,6 @@
 #include "../ADT/ADT_Set/set.h"
 #include "../ADT/ADT_Stack/stack.h"
 
-
 void CreatePlayList(ListDinamik *DaftarPlaylist) {
     printf("\n");
     printf("Masukkan nama playlist yang ingin dibuat : ");
@@ -39,8 +38,6 @@ void CreatePlayList(ListDinamik *DaftarPlaylist) {
         printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
     }
 }   
-
-
 
 void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist) {
     printf("Daftar Penyanyi:\n");
@@ -128,7 +125,6 @@ void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftar
     }
 }
 
-
 void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist) {
     printf("Daftar Penyanyi:\n");
     DisplayListPenyanyi(lp);
@@ -197,7 +193,6 @@ void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *dafta
         printf("ID Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", id_playlist + 1);
     }
 }
-
 
 void PLAYLISTSWAP(ListDinamik *DaftarPlaylist){
     // Mengambil idP, id1, id2 dari Current Command
