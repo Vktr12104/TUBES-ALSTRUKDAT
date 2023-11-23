@@ -61,22 +61,22 @@ void Load(ListPenyanyi* Penyanyi,MapAlbum* Album, SetLagu* SetLagu, char* NamaFi
         PushLagu(HistoryLagu,namaP, namaA, namaL);
     }
 
-    ADVWORD();
-    int jumlahDinPlaylist = wordToInt(currentWord);
+    // ADVWORD();
+    // int jumlahDinPlaylist = wordToInt(currentWord);
 
-    for (int k = 0; k<jumlahDinPlaylist; k++){
-        ADVWORD();
+    // for (int k = 0; k<jumlahDinPlaylist; k++){
+    //     ADVWORD();
 
-        int jumlahLaguPlaylist = wordToInt(takeword(currentWord,1));
-        char* namaPlaylist = wordToString((currentWord));
-        CreatePlayList (&ListPlaylist.Content[k]);
-        for (int l = 0; l < jumlahLaguPlaylist; l++){
-            ADVWORD();
-            char* namaP = wordToString(takewordsemicolon(currentWord, 1));
-            char* namaA = wordToString(takewordsemicolon(currentWord, 2));
-            char* namaL = wordToString(takewordsemicolon(currentWord, 3));
+    //     int jumlahLaguPlaylist = wordToInt(takeword(currentWord,1));
+    //     char* namaPlaylist = wordToString((currentWord));
+    //     CreatePlayList (&ListPlaylist.Content[k]);
+    //     for (int l = 0; l < jumlahLaguPlaylist; l++){
+    //         ADVWORD();
+    //         char* namaP = wordToString(takewordsemicolon(currentWord, 1));
+    //         char* namaA = wordToString(takewordsemicolon(currentWord, 2));
+    //         char* namaL = wordToString(takewordsemicolon(currentWord, 3));
 
-            // InsVLastlistb(&(ListPlaylist.Content[k]), namaP, namaA, namaL);
-        }
-    }
+    //         // InsVLastlistb(&(ListPlaylist.Content[k]), namaP, namaA, namaL);
+    //     }
+    // }
 }
