@@ -13,7 +13,24 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-// LIST COMMAND
+
+// LIST COMMAND PLAYLIST
+
+void CreatePlayList(ListDinamik *DaftarPlaylist);
+
+void PLAYLISTADDSONG(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist);
+
+void PLAYLISTADDALBUM(ListPenyanyi lp, MapAlbum m2,SetLagu S ,ListDinamik *daftarplaylist);
+
+void PLAYLISTSWAP(ListDinamik *DaftarPlaylist);
+
+void PLAYLISTREMOVE(ListDinamik *DaftarPlaylist);
+
+void PLAYLISTDELETE(ListDinamik *DaftarPlaylist);
+
+
+
+// LIST COMMAND QUEUE
 
 void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql);
 /*I.S. List pada lagu sudah terdefinisi*/
@@ -36,7 +53,9 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
 void help(boolean start);
 
 void invalidCommand(Word* w);
+
 void NotPlaying ();
+
 void statuscurrent(QueueLagu Q,ListDinamik LD);
 /**
  * Membuat playlist yang dimainkan menjadi tidak ada/idx undef
