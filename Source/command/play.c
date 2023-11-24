@@ -56,9 +56,9 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     char *lagu=wordToString(namalagu);
 
 
-    printf ("Memutar lagu ");
+    printf ("Memutar lagu \"");
     displayWord(namalagu);
-    printf (" oleh ");
+    printf ("\" oleh ");
     displayWord(namapenyanyi);
 
 
@@ -90,9 +90,9 @@ void playPlaylist(ListDinamik LD, QueueLagu* Ql, HistoriLagu* Hl) {
         int idplaylist = wordToInt(currentCommand) - 1;
         if(IsIdxValidLD(LD, idplaylist)){
             if ((idplaylist >= 0) && (idplaylist < LD.Neff)) {
-                printf ("Memutar playlist ");
+                printf ("Memutar playlist \"");
                 displayWord(Title(LD.Content[idplaylist]));
-                printf (".\n");
+                printf ("\"\n");
             } else {
                 printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist+1);
             }
