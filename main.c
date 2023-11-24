@@ -39,7 +39,7 @@ int main() {
             Word namafileinput = SplitCommandWords(&currentCommand);
             displayWordNewLine(namafileinput);
             char* namafileinput2 = "./save/test.txt";
-            //Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS);
+            Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS,&current);
             load = true;
             quit = true;
             start = true;
