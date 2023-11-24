@@ -428,7 +428,7 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     }else{
         Cenqueue(Ql,comm,comm1,comm3);
         printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
-    }CdisplayQueue(*Ql);
+    }
 }
 
 
