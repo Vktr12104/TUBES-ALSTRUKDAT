@@ -36,13 +36,17 @@ int main() {
             start = true;
             quit=true;
         } else if (StrComp2(currentCommand.TabWord, "LOAD",4)) {
-            Word namafileinput = SplitCommandWords(&currentCommand);
-            displayWordNewLine(namafileinput);
-            char* namafileinput2 = "./save/test.txt";
-            Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS,&current);
-            load = true;
-            quit = true;
-            start = true;
+            char* namafileinput2 = currentWordtoFileName(currentCommand);
+            if(FileExists(namafileinput2)){
+                Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS,&current);
+                load = true;
+                quit = true;
+                start = true;
+                printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+            }
+            else{
+                printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+            }    
         } else {
             invalidCommand(start,load);
         }
