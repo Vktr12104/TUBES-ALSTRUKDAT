@@ -90,7 +90,7 @@ boolean isNotPlaying();
 
 void welcome();
 
-int gacha(int max_num) ;
+int RNG(int max_num) ;
 
 void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP);
 

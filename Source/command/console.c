@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "console.h"
+#include <time.h>
 
 void NotPlaying(){
     (&current)->penyanyi = "-";
@@ -887,4 +888,78 @@ printf("             /$$      /$$ /$$$$$$$$ /$$        /$$$$$$   /$$$$$$  /$$   
     printf("                                                                                                                        \n");
     printf("                                                                                                                        \n");
     printf("------------------------------------------- Choose << START >> or <<LOAD [file.txt]>> ------------------------------------\n");
+}
+
+// Bonus Enhance
+
+int RNG(int max_num) {
+    clock_t time = clock();
+    return time % max_num;
+}
+
+void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP) {
+    printf("Playlist Yang Anda Miliki:\n");
+    DisplayLD(DP);
+    printf("\n");
+    printf("Pilih ID playlist yang mau di-enhance: ");
+    STARTCOMMAND(); // Mulai membaca kata
+    printf("\n");
+    int id_playlist = wordToInt(currentCommand) - 1;
+
+    if (IsIdxValidLD(DP, id_playlist)) {
+        int listcount = 0;
+        int b=0;
+        int idpenyanyi,idalbum;
+        LinkedList list_lagu;
+        Word penyanyi;
+        Word album;
+        Word lagu;
+        Detail temp;
+
+            idpenyanyi = RNG(LP.NEff);
+            PasteWord(LP.A[idpenyanyi], &penyanyi);
+            for (int a=0;a<m2.count;a++){
+                if(m2.Elements[a].penyanyi_id==idpenyanyi)
+                idalbum = m2.Elements[a].album_id;
+            }
+            PasteWord(m2.Elements[idalbum].nama_album, &album);
+            
+            CreateSB(&list_lagu);
+
+            int j = CountLaguByAlbumID(&lagu2,idalbum);
+            for(int k =0;k<lagu2.jumlah_lagu;k++){
+                lagu = lagu2.A[k].nama_lagu;
+                if(lagu2.A[k].album_id==idalbum){
+                    lagu = lagu2.A[k].nama_lagu;
+                    CreateD(&temp, penyanyi, album, lagu);
+                    if (!IsMemberLinked(DP.Content[id_playlist], temp)) {
+                        InsertSB(&list_lagu, temp, LengthSB(list_lagu));
+                    }
+                }
+            }
+        printf("Berikut adalah lagu-lagu rekomendasi dari penyanyi ");
+        displayWord(penyanyi);
+        printf(" dalam album ");
+        displayWord(album);
+        printf(" :\n");
+        DisplaySB(list_lagu);
+
+        printf("\n");
+
+        printf("Ingin memasukan rekomendasi ke playlist? (Y/N) ");
+        STARTCOMMAND();
+        if (currentCommand.TabWord[0]=='Y'){
+            
+
+        }
+        else{
+            printf("Input invalid. \n");
+            return;
+        }
+
+
+    }
+    else {
+        printf("ID Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", id_playlist + 1);
+    }
 }
