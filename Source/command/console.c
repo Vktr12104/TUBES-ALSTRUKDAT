@@ -432,23 +432,34 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
 }
 
 
-/*
-void QueList(ListD list_dinamis, QueueLagu *Ql) {
-    printf("Masukkan ID PlayList : ");
-    STARTCOMMAND();
-    int x = wordToInt(currentCommand);
 
-    if (x >= list_dinamis.NEff) {
-        printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n");
+void QueList(ListDinamik LD, QueueLagu *Ql) {
+    printf("Masukkan ID Playlist : ");
+    STARTCOMMAND(); // Mulai membaca kata
+    printf("\n");
+    int idplaylist = wordToInt(currentCommand) - 1;
+
+    if (IsIdxValidLD(LD, idplaylist)) {
+        if (idplaylist >= 0 && idplaylist < LD.Neff) {
+            printf("Berhasil menambahkan semua lagu dari playlist ");
+            displayWord(Title(LD.Content[idplaylist]));
+            printf(" ke queue\n");
+
+            Address P = LD.Content[idplaylist].First;
+
+            // Enqueue all songs in the playlist
+            while (P != NULL) {
+                Cenqueue(Ql, wordToString(Info(P).Penyanyi), wordToString(Info(P).Album), wordToString(Info(P).Lagu));
+                P = Next(P);
+        }
+        } else {
+            printf("ID %d tidak ada dalam daftar, silakan coba lagi\n", idplaylist + 1);
+        }
     } else {
-        listBerkait ply = list_dinamis.A[x];
-        address P = First(ply);
-        while (P != NULL) {
-            Cenqueue(Ql,P->infoplaylist.Penyanyi_playlist, P->infoplaylist.album_playlist,P->infoplaylist.lagu_playlist);
-            P=Next(P);
-        }printf("Berhasil menambahkan playlist %s ke queue.\n", ply.NamaPlaylist);
+        printf("Queue Playlist gagal. ID Playlist tidak ditemukan!\n");
     }
-}*/
+}
+
     
 
 /*I.S. List Pada Playlist sudah terdefinisi*/
@@ -460,11 +471,18 @@ void QueSwap(QueueLagu *q) {
     char *penyanyi2, *album2, *lagu2;
     char *Penyanyitemp, *albumtemp, *lagutemp;
     CCreateQueue(&Qtemp);
-
-    STARTCOMMAND();
-    int x = wordToInt(currentCommand);
-    STARTCOMMAND();
-    int y = wordToInt(currentCommand);
+    int x;
+    int y;
+    int i=11;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= ENTER)){
+        x = currentCommand.TabWord[i] - '0';
+        i++;
+    }
+    i++;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= '\0')){
+        y = currentCommand.TabWord[i] - '0';
+        i++;
+    }
     if (x > CLength(*q) || y > CLength(*q)) {
         if (x > CLength(*q)) {
             printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", x);
@@ -517,8 +535,12 @@ void QueMove(QueueLagu *Q){
     CCreateQueue(&Qtemp);
     char *Penyanyitemp, *albumtemp, *lagutemp;
     char *Penyanyitemp1, *albumtemp1, *lagutemp1;
-    STARTCOMMAND();
-    int x = wordToInt(currentCommand);
+    int i=13;
+    int x;
+    while ((currentCommand.TabWord[i]!= BLANK) && (currentCommand.TabWord[i]!= '\0')){
+        x = currentCommand.TabWord[i] - '0';
+        i++;
+    }
     
     if (x > CLength(*Q)) {
         printf("Lagu dengan urutan ke %d tidak ada.\n", x);

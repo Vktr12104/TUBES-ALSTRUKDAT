@@ -70,11 +70,11 @@ int main() {
         } else if (StrComp(currentCommand.TabWord, "QUEUE SONG")) {
             QueSong(listmusisi3, m2, lagu2, &Q);
         } else if (StrComp(currentCommand.TabWord, "QUEUE PLAYLIST")) {
-            // ... (tambahkan implementasi untuk QUEUE PLAYLIST)
-        } else if (StrComp(currentCommand.TabWord, "QUEUE SWAP")) {
+            QueList(DaftarPlaylist,&Q);
+        } else if (StrComp2(currentCommand.TabWord, "QUEUE SWAP",10)) {
             if (currentCommand.TabWord[currentCommand.Length-1]==';'){}
             QueSwap(&Q);
-        } else if (StrComp(currentCommand.TabWord, "QUEUE REMOVE")) {
+        } else if (StrComp2(currentCommand.TabWord, "QUEUE REMOVE",12)) {
             QueMove(&Q);
         } else if (StrComp(currentCommand.TabWord, "QUEUE CLEAR")) {
             QueClear(&Q);

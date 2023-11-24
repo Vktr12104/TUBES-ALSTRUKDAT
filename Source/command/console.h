@@ -56,6 +56,7 @@ void QueClear(QueueLagu *Q);
 void SongNext(HistoriLagu *HS, QueueLagu *Q);
 
 void SongPrev(HistoriLagu *HS,QueueLagu *Q);
+void QueList(ListDinamik LD, QueueLagu *Ql);
 
 void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD);
 
