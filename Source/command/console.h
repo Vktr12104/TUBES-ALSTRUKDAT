@@ -17,7 +17,7 @@
 
 //LIST COMMAND START
 
-void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []);
+
 
 // LIST COMMAND LIST DEFAULT AND LIST PLAYLIST
 
