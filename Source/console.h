@@ -52,4 +52,7 @@ boolean isNotPlayingPlaylist();
  * Mengembalikan nilai true jika tidak ada lagu yang dimainkan
 */
 boolean isNotPlaying();
+
+void welcome();
+
 #endif
