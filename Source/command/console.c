@@ -759,11 +759,14 @@ void help(boolean start){
     }
 }
 
-void invalidCommand(Word* w) {
-    while (!EndWord) {
-        ADVCOMMAND();
+void invalidCommand(boolean start,boolean load) {
+    if(!start){
+        printf("Command tidak bisa dieksekusi.\n");
+    }else if(!load){
+        printf("Command tidak bisa dieksekusi.\n");
+    }else{
+        printf("Command tidak diketahui!\n");
     }
-    printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
 }
 
 

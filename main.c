@@ -44,7 +44,7 @@ int main() {
             quit = true;
             start = true;
         } else {
-            invalidCommand(&currentCommand);
+            invalidCommand(start,load);
         }
     }
     quit=false;
@@ -109,6 +109,8 @@ int main() {
         }
         else if (StrComp(currentCommand.TabWord, "CHECK")){
             DisplaySemuaLD(DaftarPlaylist);
+        }else{
+            invalidCommand(start,load);
         }
     }
     

@@ -64,7 +64,7 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
 
 void help(boolean start);
 
-void invalidCommand(Word* w);
+void invalidCommand(boolean start,boolean load);
 
 void NotPlaying ();
 
