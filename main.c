@@ -7,7 +7,7 @@
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
 #include "Source/ADT/boolean.h"
-#include "Source/console.h"
+#include "Source/command/console.h"
 #include <stdio.h>
 #include "Source/command/play.h"
 #include "Source/command/load.h"

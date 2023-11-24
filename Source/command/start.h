@@ -9,7 +9,7 @@
 #include "../ADT/ADT_Set/set.h"
 #include "../ADT/ADT_Map/map.h"
 #include "../ADT/struc.h"
-#include "../console.h"
+#include "console.h"
 
 
 void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []);
