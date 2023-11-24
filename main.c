@@ -109,6 +109,9 @@ int main() {
         }
         else if (StrComp(currentCommand.TabWord, "CHECK")){
             DisplaySemuaLD(DaftarPlaylist);
+        }
+        else if (StrComp(currentCommand.TabWord, "ENHANCE")){
+            ENHANCE(listmusisi3,lagu2,m2,DaftarPlaylist);
         }else{
             invalidCommand(start,load);
         }

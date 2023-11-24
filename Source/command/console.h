@@ -1,6 +1,7 @@
 
 #include "../ADT/ADT_List/listdinamis.h"
 #include "../ADT/ADT_List/liststatis.h"
+#include "../ADT/ADT_LinkedList/listb.h"
 #include "../ADT/ADT_Mesin-Kata/mesinkata.h"
 #include "../ADT/ADT_Queue/circular_queue.h"
 #include "../ADT/ADT_List/liststatis.h"
@@ -88,5 +89,9 @@ boolean isNotPlayingPlaylist();
 boolean isNotPlaying();
 
 void welcome();
+
+int gacha(int max_num) ;
+
+void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP);
 
 #endif
