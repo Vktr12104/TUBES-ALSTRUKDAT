@@ -14,7 +14,7 @@ boolean FileExists(char *fname) {
 void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char* NamaFile, QueueLagu* QueueLagu, HistoriLagu* HistoryLagu, status *LaguSekarang){
     if (FileExists(NamaFile)){
         startWFile(NamaFile);
-        // inisiasi
+
         Word NamaPenyanyi;
         Word NamaAlbum;
         Word NamaLagu;
@@ -27,7 +27,6 @@ void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplay
         *LP = MakeListPenyanyi();
         
         int loop = wordToInt(currentWord);
-        // printf ("%d\n",loop);
         int album,lagu;
         int number =1;
         int idalbum=1;
@@ -61,10 +60,8 @@ void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplay
             current.album = wordToString(takewordsemicolon(currentWord,2));
             current.lagu = wordToString(takewordsemicolon(currentWord,3));
         }
-        // printf("%s\n",current.lagu);
         ADVKALIMAT();
         loop = currentWord.TabWord[0]-'0';
-        // printf("%d\n", loop);
         for (int i = 0; i < loop; i++){
             ADVKALIMAT();
             char* penyanyienq = wordToString(takewordsemicolon(currentWord, 1));
@@ -72,10 +69,8 @@ void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplay
             char* laguenq = wordToString(takewordsemicolon(currentWord,3));
             Cenqueue(QueueLagu,penyanyienq,albumenq,laguenq);
         }
-        // printf("%s\n",QueueLagu->Isi[4].lagu_playlist);
         ADVKALIMAT();
         loop = currentWord.TabWord[0]-'0';
-        // printf("%d\n", loop);
         for (int j = 0; j < loop; j++){
             ADVKALIMAT();
             char* penyanyistack = wordToString(takewordsemicolon(currentWord, 1));
@@ -83,7 +78,6 @@ void Load(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplay
             char* lagustack = wordToString(takewordsemicolon(currentWord,3));
             PushLagu(HistoryLagu, lagustack, albumstack, penyanyistack);
         }
-        // printf("%s\n",HistoryLagu->hist_lagu[1].lagu_playlist);
         ADVKALIMAT();
         loop = currentWord.TabWord[0]-'0';
         for (int k = 0; k<loop; k++){
