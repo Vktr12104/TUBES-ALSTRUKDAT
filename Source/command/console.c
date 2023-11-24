@@ -427,7 +427,7 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
         printf("Queue Lagu Penuh!\n");
     }else{
         Cenqueue(Ql,comm,comm1,comm3);
-        printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
+        printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue.\n",comm3, comm);
     }
 }
 
@@ -441,9 +441,9 @@ void QueList(ListDinamik LD, QueueLagu *Ql) {
 
     if (IsIdxValidLD(LD, idplaylist)) {
         if (idplaylist >= 0 && idplaylist < LD.Neff) {
-            printf("Berhasil menambahkan semua lagu dari playlist ");
+            printf("Berhasil menambahkan semua lagu dari playlist \"");
             displayWord(Title(LD.Content[idplaylist]));
-            printf(" ke queue\n");
+            printf("\" ke queue\n");
 
             Address P = LD.Content[idplaylist].First;
 
@@ -524,7 +524,7 @@ void QueSwap(QueueLagu *q) {
             }
             Cenqueue(q, Penyanyitemp, albumtemp, lagutemp);
             j++;
-        }printf("Lagu %s berhasil ditukar dengan %s \n",lagu1,lagu2);
+        }printf("Lagu \"%s\" berhasil ditukar dengan \"%s\" \n",lagu1,lagu2);
     }
 }
 
@@ -556,7 +556,7 @@ void QueMove(QueueLagu *Q){
                 lagutemp1=lagutemp;
             }
             i++;
-        }printf("Lagu %s oleh %s telah dihapus dari queue!\n",lagutemp1,Penyanyitemp1);
+        }printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari queue!\n",lagutemp1,Penyanyitemp1);
         *Q = Qtemp;
     }
     
