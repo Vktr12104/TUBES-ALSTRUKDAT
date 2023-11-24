@@ -46,7 +46,10 @@ int main() {
             }
             else{
                 printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
-            }    
+            }
+        } else if (StrComp(currentCommand.TabWord, "HELP")) {
+            help(start); 
+           
         } else {
             invalidCommand(start,load);
         }
@@ -105,7 +108,8 @@ int main() {
         } else if (StrComp(currentCommand.TabWord, "QUIT")) {
             QUIT(listmusisi3, m2, lagu2, Q, HS, DaftarPlaylist);
             quit = true;
-        } else if (StrComp(currentCommand.TabWord, "HELP")) {
+        }
+        else if (StrComp(currentCommand.TabWord, "HELP")) {
             help(start);
         }
         else if (StrComp(currentCommand.TabWord, "STATUS")) {
@@ -120,6 +124,7 @@ int main() {
             invalidCommand(start,load);
         }
     }
+    
     
     return 0;
     
