@@ -26,6 +26,9 @@ void PasteD(Detail source, Detail *dest);
 /* I.S. source terdefinisi, dest sembarang. */
 /* F.S. mengisi dest dengan isi source. */
 
+boolean IsIsiSama(Detail d1, Detail d2);
+/* F.S. true jika detail sama. */
+
 void DisplayD(Detail d);
 /* I.S. d terdefinisi. */
 /* F.S. menampilkan "penyanyi - album - lagu". */
