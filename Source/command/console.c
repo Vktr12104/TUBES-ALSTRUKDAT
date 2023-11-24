@@ -897,16 +897,20 @@ int RNG(int max_num) {
     return time % max_num;
 }
 
-void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP) {
+void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik *DP) {
+    if(IsEmptyLD(*DP)){
+        printf("Kamu tidak memiliki playlist, silahkan membuat playlist terlebih dahulu. \n");
+        return;
+    }
     printf("Playlist Yang Anda Miliki:\n");
-    DisplayLD(DP);
+    DisplayLD(*DP);
     printf("\n");
     printf("Pilih ID playlist yang mau di-enhance: ");
     STARTCOMMAND(); // Mulai membaca kata
     printf("\n");
     int id_playlist = wordToInt(currentCommand) - 1;
 
-    if (IsIdxValidLD(DP, id_playlist)) {
+    if (IsIdxValidLD(*DP, id_playlist)) {
         int listcount = 0;
         int b=0;
         int idpenyanyi,idalbum;
@@ -932,7 +936,7 @@ void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP) {
                 if(lagu2.A[k].album_id==idalbum){
                     lagu = lagu2.A[k].nama_lagu;
                     CreateD(&temp, penyanyi, album, lagu);
-                    if (!IsMemberLinked(DP.Content[id_playlist], temp)) {
+                    if (!IsMemberLinked(DP->Content[id_playlist], temp)) {
                         InsertSB(&list_lagu, temp, LengthSB(list_lagu));
                     }
                 }
@@ -949,8 +953,21 @@ void ENHANCE(ListPenyanyi  LP, SetLagu lagu2,MapAlbum m2,ListDinamik DP) {
         printf("Ingin memasukan rekomendasi ke playlist? (Y/N) ");
         STARTCOMMAND();
         if (currentCommand.TabWord[0]=='Y'){
-            
-
+            for(int k =0;k<lagu2.jumlah_lagu;k++){
+                lagu = lagu2.A[k].nama_lagu;
+                if(lagu2.A[k].album_id==idalbum){
+                    lagu = lagu2.A[k].nama_lagu;
+                    CreateD(&temp, penyanyi, album, lagu);
+                    if (!IsMemberLinked(DP->Content[id_playlist], temp)) {
+                        InsertSB(&DP->Content[id_playlist], temp, LengthSB(DP->Content[id_playlist]));
+                    }
+                }
+            }
+            printf("Berhasil menambahkan rekomendasi ke playlist. Silahkan melanjutkan pelayanan WayangWave. \n");
+        }
+        else if (currentCommand.TabWord[0]=='N'){
+            printf("Tidak menambahkan rekomendasi ke playlist. Silahkan melanjutkan pelayanan WayangWave. \n");
+            return;
         }
         else{
             printf("Input invalid. \n");

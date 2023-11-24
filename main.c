@@ -111,7 +111,7 @@ int main() {
             DisplaySemuaLD(DaftarPlaylist);
         }
         else if (StrComp(currentCommand.TabWord, "ENHANCE")){
-            ENHANCE(listmusisi3,lagu2,m2,DaftarPlaylist);
+            ENHANCE(listmusisi3,lagu2,m2,&DaftarPlaylist);
         }else{
             invalidCommand(start,load);
         }
