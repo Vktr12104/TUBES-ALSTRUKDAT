@@ -161,5 +161,7 @@ Word SplitCommandWords(Word* kata1);
 
 char* currentWordtoFileName(Word w);
 
+char* currentWordtoFileName2(Word w);
+
 
 #endif

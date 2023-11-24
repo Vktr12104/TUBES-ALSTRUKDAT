@@ -524,3 +524,22 @@ char* currentWordtoFileName(Word w) {
     s[w.Length + folder_length-4] = '\0';
     return s;
 }
+
+char* currentWordtoFileName2(Word w) {
+    // char * file_name = "../save/saved1.txt";
+    int folder_length = 7;
+    char * folder = "./save/";
+    char * s;
+    s = (char *)malloc(sizeof(char) * (folder_length + w.Length ));
+
+    for (int i = 0; i < folder_length; i++) {
+        s[i] = folder[i];
+    }
+
+    for (int i = 0; i < w.Length; i++) {
+        s[i+folder_length] = w.TabWord[i];
+        
+    }
+    s[w.Length + folder_length] = '\0';
+    return s;
+}
