@@ -544,3 +544,17 @@ char* currentWordtoFileName2(Word w) {
     return s;
 }
 
+
+int wordToIntload(Word word) {
+    int num, i;
+    
+    num = 0;
+
+    for (i = 0; i < word.Length; i++)
+    {
+        if (word.TabWord[i]>='0' && word.TabWord[i] <= '9'){
+            num = num * 10 + (word.TabWord[i] - '0');
+        }
+    }
+    return num;
+}

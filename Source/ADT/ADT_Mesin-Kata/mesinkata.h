@@ -163,5 +163,7 @@ char* currentWordtoFileName(Word w);
 
 char* currentWordtoFileName2(Word w);
 
+int wordToIntload(Word word) ;
+
 
 #endif
