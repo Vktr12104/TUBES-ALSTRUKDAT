@@ -3,7 +3,6 @@
 #include "Source/ADT/ADT_Map/map.h"
 #include "Source/ADT/ADT_List/liststatis.h"
 #include "Source/ADT/ADT_List/listdinamis.h"
-#include "Source/command/start.h"
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
 #include "Source/ADT/boolean.h"
