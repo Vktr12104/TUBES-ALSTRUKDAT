@@ -4,9 +4,13 @@ WayangWave “Spotify” ini merupakan simulasi service pemutaran musik yang mem
 
 Tugas Besar ini disusun oleh Kelompok 6 beranggotakan : 
 Kezia Caren Cahyadi 			( 18222041 ) 
+
 Ricky Wijaya 				( 18322043 ) 
+
 Viktor Arsindiantoro Siringoringo 	( 18222083 ) 
+
 Dedy Hofmanindo Saragih 		( 18222085 ) 
+
 Steven Adrian Corne 			( 18222101 ) 
 
 
