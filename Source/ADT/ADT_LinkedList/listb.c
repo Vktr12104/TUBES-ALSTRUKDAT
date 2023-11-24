@@ -138,3 +138,20 @@ void DisplaySB(LinkedList s) {
         }
     }
 }
+
+boolean IsMemberLinked(LinkedList s, Detail x) {
+    boolean found = false;
+    Address p;
+    p = First(s);
+    
+    while (p != Nil && !found) {
+        if (IsIsiSama(Info(p), (x))) {
+            found = true;
+        }
+        else {
+            p = Next(p);
+        }
+    }
+
+    return found;
+}

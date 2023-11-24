@@ -60,4 +60,7 @@ void DisplaySB(LinkedList s);
 /* F.S. Jika sb tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika LinkedList kosong : menulis [] */
+
+boolean IsMemberLinked(LinkedList s, Detail x) ;
+
 #endif
