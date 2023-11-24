@@ -6,10 +6,8 @@
 #include "Source/command/start.h"
 #include "Source/ADT/ADT_Set/set.h"
 #include "Source/command/list.h"
-#include "Source/command/playlist.h"
 #include "Source/ADT/boolean.h"
 #include "Source/console.h"
-#include "Source/command/welcome.h"
 #include <stdio.h>
 #include "Source/command/play.h"
 #include "Source/command/load.h"
@@ -42,7 +40,7 @@ int main() {
             Word namafileinput = SplitCommandWords(&currentCommand);
             displayWordNewLine(namafileinput);
             char* namafileinput2 = "./save/test.txt";
-            Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS);
+            //Load(&listmusisi3,&lagu2,&m2,&DaftarPlaylist,namafileinput2 , &Q,&HS);
             load = true;
             quit = true;
             start = true;
