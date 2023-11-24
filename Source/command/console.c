@@ -425,7 +425,6 @@ void QueSong(ListPenyanyi lp, MapAlbum m2,SetLagu S ,QueueLagu *Ql) {
     if (CIsFull(*Ql)){
         printf("Queue Lagu Penuh!\n");
     }else{
-        printf("Berhasil masuk\n");
         Cenqueue(Ql,comm,comm1,comm3);
         printf("Berhasil menambahkan lagu %s oleh %s ke queue.\n",comm3, comm);
     }CdisplayQueue(*Ql);
@@ -580,7 +579,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         printf("Queue kosong dan tidak ada lagu yang sedang dimainkan\n");
     }else if(CIsEmpty(*Q)) {
         printf("Queue kosong, memutar kembali lagu\n");
-        printf("\"%s\" oleh \"%s\"",current.lagu,current.penyanyi);
+        printf("\"%s\" oleh \"%s\"",current.penyanyi,current.lagu);
     }else{
         printf("%s\n",current.penyanyi);
         printf("%s\n",current.album);
