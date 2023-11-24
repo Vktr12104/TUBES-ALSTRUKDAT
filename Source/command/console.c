@@ -581,14 +581,7 @@ void SongNext(HistoriLagu *HS, QueueLagu *Q){
         printf("Queue kosong, memutar kembali lagu\n");
         printf("\"%s\" oleh \"%s\"",current.penyanyi,current.lagu);
     }else{
-        printf("%s\n",current.penyanyi);
-        printf("%s\n",current.album);
-        printf("%s\n",current.lagu);
-        printf("%d\n",isNotPlaying());
         if(!isNotPlaying()){
-            printf("%s\n",current.penyanyi);
-            printf("%s\n",current.album);
-            printf("%s\n",current.lagu);
             PushLagu(HS,current.lagu,current.album,current.penyanyi);
         }
         Cdequeue(Q,&current.lagu,&current.album,&current.penyanyi);
