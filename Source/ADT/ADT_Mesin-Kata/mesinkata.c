@@ -507,18 +507,20 @@ Word SplitCommandWords(Word* kata1){
 
 char* currentWordtoFileName(Word w) {
     // char * file_name = "../save/saved1.txt";
-    int folder_length = 5;
-    char * folder = "save/";
+    int folder_length = 7;
+    char * folder = "./save/";
     char * s;
-    s = (char *)malloc(sizeof(char) * (folder_length + w.Length + 1));
+    s = (char *)malloc(sizeof(char) * (folder_length + w.Length -4));
 
     for (int i = 0; i < folder_length; i++) {
         s[i] = folder[i];
     }
 
-    for (int i = 0; i < w.Length; i++) {
-        s[i+folder_length] = w.TabWord[i];
+    int j =5;
+    for (int i = 0; i < w.Length-4; i++) {
+        s[i+folder_length] = w.TabWord[j];
+        j++;
     }
-    s[w.Length + folder_length] = '\0';
+    s[w.Length + folder_length-4] = '\0';
     return s;
 }
