@@ -9,6 +9,7 @@
 #include "../ADT/ADT_LinkedList/listb.h"
 #include "../ADT/ADT_List/listdinamis.h"
 #include "../ADT/ADT_Stack/stack.h"
+#include "../ADT/boolean.h"
 
 #ifndef CONSOLE_H
 #define CONSOLE_H
@@ -17,6 +18,12 @@
 //LIST COMMAND START
 
 void STARTREAD(ListPenyanyi * LP, SetLagu *lagu2,MapAlbum *m2,ListDinamik *daftarplaylist, char NamaFile []);
+
+// LIST COMMAND LIST DEFAULT AND LIST PLAYLIST
+
+void listdefault(ListPenyanyi input1, SetLagu input3,MapAlbum input2); 
+
+void listplaylist(ListDinamik input);
 
 // LIST COMMAND PLAYLIST
 
