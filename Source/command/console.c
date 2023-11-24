@@ -705,13 +705,87 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
 }
 
 
+void saveuntukquit (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
+    char* tempsave = currentWordtoFileName2(currentCommand);
+    FILE* input = fopen(tempsave, "w+");
+    fprintf(input, "%d\n", p.NEff);
+    int counter=1;
+    int counter2=0;
+    for (int i = 0; i < p.NEff; i++){
+        int jumlahalbumperpenyanyi2 = jumlahalbumperpenyanyi(al,i);
+        fprintf(input,"%d ", jumlahalbumperpenyanyi2);
+        for (int a=0;a<p.A[i].Length;a++){
+            if (a<p.A[i].Length-1){
+                fprintf(input,"%c",p.A[i].TabWord[a]);      
+            }
+            else{
+                fprintf(input,"%c\n",p.A[i].TabWord[a]);   
+            }
+        }
+        for (int j = 0;j<jumlahalbumperpenyanyi2;j++){
+            int jumlahlagu = CountLaguByAlbumID(&lg,counter);
+            fprintf(input, "%d ", jumlahlagu);
+            for (int b=0 ; b<al.Elements[counter].nama_album.Length;b++){
+                if (b<al.Elements[counter].nama_album.Length-1){
+                    fprintf(input,"%c",al.Elements[counter].nama_album.TabWord[b]);      
+                }
+                else{
+                    fprintf(input,"%c\n",al.Elements[counter].nama_album.TabWord[b]);   
+                }
+            }
+            counter++;
+            for (int k=0;k<jumlahlagu;k++){
+                counter2++;
+                for (int c=0 ; c<lg.A[counter2].nama_lagu.Length;c++){
+                    if (c<lg.A[counter2].nama_lagu.Length-1){
+                        fprintf(input,"%c",lg.A[counter2].nama_lagu.TabWord[c]);      
+                    }
+                    else{
+                        fprintf(input,"%c\n",lg.A[counter2].nama_lagu.TabWord[c]);   
+                    }
+                }
+            }
+        }
+    }
+    char* CekEmpty = "-";
+    if (StrComp(current.penyanyi,CekEmpty)) fprintf(input, "-\n");
+    else fprintf(input, "%s;%s;%s\n", current.penyanyi, current.album, current.lagu);
+    if (!CIsEmpty(QL)){
+        fprintf(input,"%d\n",CLength(QL));
+        for (int i = 0; i < CLength(QL); i++) fprintf(input,"%s;%s;%s\n", QL.Isi[i].Penyanyi_playlist, QL.Isi[i].album_playlist, QL.Isi[i].lagu_playlist);
+    }
+    
+    if(!IsHistEmpty(HL)){
+        fprintf(input,"%d\n",HL.idxTop+1);
+        for (int i = HL.idxTop; i>=0; i--){
+            fprintf(input,"%s;%s;%s\n", HL.hist_lagu[i].Penyanyi_playlist, HL.hist_lagu[i].album_playlist, HL.hist_lagu[i].lagu_playlist);
+        }
+    }
+    if(LD.Neff != 0){
+        fprintf(input,"%d\n",LD.Neff);
+        for (int i = 0; i < LD.Neff; i++){
+            int JumlahLagu = LengthSB(LD.Content[i]);
+            fprintf(input,"%d %s\n", JumlahLagu, wordToString(LD.Content[i].Title));
+
+            Address Lagu = (LD.Content[i]).First;
+            for (int j=0; j<JumlahLagu; j++){
+                fprintf(input, "%s;%s;%s\n", wordToString(Lagu->Info.Penyanyi), wordToString(Lagu->Info.Album), wordToString(Lagu->Info.Lagu));
+                Lagu = Lagu->Next;
+            }
+        }
+    }
+    fclose(input);
+    printf("Save file berhasil disimpan.\n");
+    printf("// File disimpan pada %s \n",tempsave);
+    
+}
+
 void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
     printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
     STARTCOMMAND();
     if (currentCommand.TabWord[0] == 'Y') {
         printf("Masukkan nama file untuk penyimpanan: ");
         STARTCOMMAND();
-
         Word file;
         file.Length = currentCommand.Length;
 
@@ -719,7 +793,7 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
             file.TabWord[i] = currentWord.TabWord[i];
         }
 
-        save(p,al,lg,QL,HL,LD);
+        saveuntukquit(p,al,lg,QL,HL,LD);
         printf ("Data berhasil disimpan.\n");
         printf ("Kamu keluar dari WayangWave.\n");
         printf ("Dadah ^_^/\n");
@@ -728,6 +802,7 @@ void QUIT (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
         printf ("Dadah ^_^/\n");
     }
 }
+
 void help(boolean start){
     if (start == false) {
         printf ("=====[ Menu Help WayangWave ]=====\n");
