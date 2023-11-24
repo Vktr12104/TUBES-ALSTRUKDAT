@@ -4,7 +4,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     printf("Daftar Penyanyi :\n");
     DisplayListPenyanyi(lp);
 
-    printf("Masukkan Nama Penyanyi yang dipilih : \n");
+    printf("Masukkan Nama Penyanyi yang dipilih : ");
     STARTCOMMAND();
 
     if (!isMemberListPenyanyi(currentCommand, lp)){
@@ -23,7 +23,7 @@ void playsong (ListPenyanyi lp, SetLagu sl, MapAlbum ma, QueueLagu* Ql, HistoriL
     printf(" : \n");
     displayMapAlbum(ma, idpenyanyi);
 
-    printf("Masukkan Nama Album yang dipilih : \n");
+    printf("Masukkan Nama Album yang dipilih : ");
     STARTCOMMAND();
 
     if (!IsMemberMapAlbum(ma,currentCommand)){
