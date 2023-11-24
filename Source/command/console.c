@@ -630,7 +630,8 @@ void SongPrev(HistoriLagu *HS,QueueLagu *Q){
 lagu yang sedang diputar*/
 
 void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL, ListDinamik LD){
-    FILE* input = fopen("./save/test.txt", "w+");
+    char* tempsave = currentWordtoFileName(currentCommand);
+    FILE* input = fopen(tempsave, "w+");
     fprintf(input, "%d\n", p.NEff);
     int counter=1;
     int counter2=0;
@@ -699,7 +700,7 @@ void save (ListPenyanyi p,MapAlbum al ,SetLagu lg, QueueLagu QL, HistoriLagu HL,
     }
     fclose(input);
     printf("Save file berhasil disimpan.\n");
-    printf("// File disimpan pada /save/savefile.txt\n");
+    printf("// File disimpan pada %s \n",tempsave);
     
 }
 
